@@ -159,9 +159,11 @@ const skills = {
       title: "Full Stack Development",
       fileName: "FullStackImg",
       skills: [
-        "⚡ Building responsive website front end using React-Redux",
-        "⚡ Developing mobile applications using Flutter, React Native and solo android apps using Kotlin",
-        "⚡ Creating application backend in Node, Express & Flask",
+        "⚡ Architecting responsive web frontends leveraging React and Next.js frameworks for seamless cross-device compatibility",
+        "⚡ Engineering mobile applications with React Native and Kotlin, optimizing performance and user experience across iOS and Android platforms",
+        "⚡ Crafting scalable application backends utilizing Node with Express, Django, and PHP, ensuring efficient server-side logic and data processing",
+        "⚡ Designing robust database architectures with MongoDB and MySQL, focusing on high availability, fault tolerance, and data integrity",
+        "⚡ Mastering Git version control for efficient collaboration and project history management, and proficiently utilizing GitHub for remote repository hosting and collaborative development workflows",
       ],
       softwareSkills: [
         {
@@ -201,6 +203,34 @@ const skills = {
           },
         },
         {
+          skillName: "Nextjs",
+          fontAwesomeClassname: "logos:nextjs-icon",
+          style: {
+            color: "#FFFFFF",
+          },
+        },
+        {
+          skillName: "Tailwind CSS",
+          fontAwesomeClassname: "skill-icons:tailwindcss-light",
+          style: {
+            color: "#f4f2ed",
+          },
+        },
+        {
+          skillName: "Git",
+          fontAwesomeClassname: "vscode-icons:file-type-git",
+          style: {
+            color: "#dd4c35",
+          },
+        },
+        {
+          skillName: "GitHub",
+          fontAwesomeClassname: "mdi:github",
+          style: {
+            color: "#000000",
+          },
+        },
+        {
           skillName: "NodeJS",
           fontAwesomeClassname: "devicon-plain:nodejs-wordmark",
           style: {
@@ -215,41 +245,68 @@ const skills = {
           },
         },
         {
-          skillName: "Yarn",
-          fontAwesomeClassname: "simple-icons:yarn",
+          skillName: "MongoDB",
+          fontAwesomeClassname: "logos:mongodb-icon",
           style: {
-            color: "#2C8EBB",
+            color: "#01ec64",
           },
         },
         {
-          skillName: "Gatsby",
-          fontAwesomeClassname: "simple-icons:gatsby",
+          skillName: "MySQL",
+          fontAwesomeClassname: "logos:mysql",
           style: {
-            color: "#663399",
+            color: "#00758f",
           },
         },
         {
-          skillName: "Flutter",
-          fontAwesomeClassname: "simple-icons:flutter",
+          skillName: "React Native",
+          fontAwesomeClassname: "tabler:brand-react-native",
           style: {
-            color: "#02569B",
+            color: "#61DAFB",
+          },
+        },
+        {
+          skillName: "Kotlin",
+          fontAwesomeClassname: "skill-icons:kotlin-light",
+          style: {
+            color: "#f4f2ed",
+          },
+        },
+        {
+          skillName: "python",
+          fontAwesomeClassname: "logos:python",
+          style: {
+            color: "#f4f2ed",
+          },
+        },
+        {
+          skillName: "Django",
+          fontAwesomeClassname: "skill-icons:django",
+          style: {
+            color: "#f4f2ed",
+          },
+        },
+        {
+          skillName: "PHP",
+          fontAwesomeClassname: "skill-icons:php-dark",
+          style: {
+            color: "#f4f2ed",
           },
         },
       ],
     },
     {
-      title: "Cloud Infra-Architecture",
+      title: "Cloud Infrastructure",
       fileName: "CloudInfraImg",
       skills: [
-        "⚡ Experience working on multiple cloud platforms",
-        "⚡ Hosting and maintaining websites on virtual machine instances along with integration of databases",
-        "⚡ Deploying deep learning models on cloud to use on mobile devices",
-        "⚡ Setting up streaming jobs from DB to Server or vice-versa on GCP and AWS",
+        "⚡ Proficient in orchestrating multi-cloud environments, leveraging the strengths of various cloud platforms for optimized infrastructure deployment",
+        "⚡ Expertise in provisioning and managing virtual machine instances for web hosting, coupled with advanced database integration techniques",
+        "⚡ Specialized in configuring and optimizing data streaming pipelines between databases and servers across Google Cloud Platform (GCP) and Amazon Web Services (AWS), ensuring high throughput and low latency",
       ],
       softwareSkills: [
         {
           skillName: "GCP",
-          fontAwesomeClassname: "simple-icons:googlecloud",
+          fontAwesomeClassname: "devicon:googlecloud",
           style: {
             color: "#4285F4",
           },
@@ -262,45 +319,17 @@ const skills = {
           },
         },
         {
-          skillName: "Azure",
-          fontAwesomeClassname: "simple-icons:microsoftazure",
+          skillName: "Heroku",
+          fontAwesomeClassname: "devicon:heroku",
           style: {
-            color: "#0089D6",
+            color: "#6762a6",
           },
         },
         {
           skillName: "Firebase",
-          fontAwesomeClassname: "simple-icons:firebase",
+          fontAwesomeClassname: "logos:firebase",
           style: {
             color: "#FFCA28",
-          },
-        },
-        {
-          skillName: "PostgreSQL",
-          fontAwesomeClassname: "simple-icons:postgresql",
-          style: {
-            color: "#336791",
-          },
-        },
-        {
-          skillName: "MongoDB",
-          fontAwesomeClassname: "simple-icons:mongodb",
-          style: {
-            color: "#47A248",
-          },
-        },
-        {
-          skillName: "Docker",
-          fontAwesomeClassname: "simple-icons:docker",
-          style: {
-            color: "#1488C6",
-          },
-        },
-        {
-          skillName: "Kubernetes",
-          fontAwesomeClassname: "simple-icons:kubernetes",
-          style: {
-            color: "#326CE5",
           },
         },
       ],
@@ -309,9 +338,9 @@ const skills = {
       title: "UI/UX Design",
       fileName: "DesignImg",
       skills: [
-        "⚡ Designing highly attractive user interface for mobile and web applications",
-        "⚡ Customizing logo designs and building logos from scratch",
-        "⚡ Creating the flow of application functionalities to optimize user experience",
+        "⚡ Architecting visually stunning user interfaces for mobile and web applications, employing cutting-edge design principles and pixel-perfect precision",
+        "⚡ Championing accessibility in digital products, ensuring inclusivity through WCAG compliance and universal design methodologies",
+        "⚡ Crafting intuitive application flows and functionalities, leveraging UX research and iterative testing to elevate user experience to unparalleled heights",
       ],
       softwareSkills: [
         {
@@ -329,15 +358,8 @@ const skills = {
           },
         },
         {
-          skillName: "Adobe Illustrator",
-          fontAwesomeClassname: "simple-icons:adobeillustrator",
-          style: {
-            color: "#FF7C00",
-          },
-        },
-        {
-          skillName: "Inkscape",
-          fontAwesomeClassname: "simple-icons:inkscape",
+          skillName: "Penpot",
+          fontAwesomeClassname: "simple-icons:penpot",
           style: {
             color: "#000000",
           },
