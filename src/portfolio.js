@@ -24,8 +24,8 @@ const greeting = {
   nickname: "pcodesdev",
   subTitle:
     "Empowering teams and individuals through technology is my passion.  With 5+ years of experience, I excel in full-stack development (JavaScript, Python, React, Node.js), IT support, and UI/UX design.  My proven track record includes successfully delivering digital skills training to over 500 participants in Nairobi, Kenya with a 98% satisfaction and completion rate.  A continuous learner, I'm currently exploring Cloud, AI, and Machine Learning.  Adept at translating complex concepts into user-friendly solutions, I bring a unique blend of technical skills and creative problem-solving to drive innovation and efficiency for any forward-thinking organization.",
-  resumeLink: "https://github.com/pcodesdev/pcodesdev/",
-  portfolio_repository: "https://github.com/pcodesdev/pcodesdev/",
+  resumeLink: "https://github.com/pcodesdev/",
+  portfolio_repository: "https://github.com/pcodesdev/",
   githubProfile: "https://github.com/pcodesdev/",
 };
 
@@ -373,12 +373,12 @@ const skills = {
 const competitiveSites = {
   competitiveSites: [
     {
-      siteName: "LeetCode",
-      iconifyClassname: "simple-icons:leetcode",
+      siteName: "freeCodeCamp",
+      iconifyClassname: "simple-icons:freecodecamp",
       style: {
-        color: "#F79F1B",
+        color: "#000000",
       },
-      profileLink: "https://leetcode.com/layman_brother/",
+      profileLink: "https://www.freecodecamp.org/pcodesdev",
     },
     {
       siteName: "HackerRank",
@@ -386,39 +386,42 @@ const competitiveSites = {
       style: {
         color: "#2EC866",
       },
-      profileLink: "https://www.hackerrank.com/layman_brother",
+      profileLink: "https://www.hackerrank.com/profile/njugunapm233",
     },
     {
-      siteName: "Codechef",
-      iconifyClassname: "simple-icons:codechef",
+      siteName: "Cisco",
+      iconifyClassname: "simple-icons:cisco",
       style: {
-        color: "#5B4638",
+        color: "#000000",
       },
-      profileLink: "https://www.codechef.com/users/ashutosh_1919",
+      profileLink: "https://www.netacad.com/portal/profile",
     },
     {
-      siteName: "Codeforces",
-      iconifyClassname: "simple-icons:codeforces",
+      siteName: "Coursera",
+      iconifyClassname: "simple-icons:coursera",
       style: {
-        color: "#1F8ACB",
+        color: "#0056d2",
       },
-      profileLink: "http://codeforces.com/profile/layman_brother",
+      profileLink:
+        "https://www.coursera.org/user/4d72c50d2d43d84813a81ec603863414",
     },
     {
-      siteName: "Hackerearth",
-      iconifyClassname: "simple-icons:hackerearth",
+      siteName: "Google Cloud",
+      iconifyClassname: "devicon:googlecloud",
       style: {
-        color: "#323754",
+        color: "#ea4535",
       },
-      profileLink: "https://www.hackerearth.com/@ashutosh391",
+      profileLink:
+        "https://www.credly.com/badges/74673ffa-2e93-44b2-b287-cb146c5e41f7/public_url",
     },
     {
-      siteName: "Kaggle",
-      iconifyClassname: "simple-icons:kaggle",
+      siteName: "AWS",
+      iconifyClassname: "skill-icons:aws-dark",
       style: {
-        color: "#20BEFF",
+        color: "#242938",
       },
-      profileLink: "https://www.kaggle.com/laymanbrother",
+      profileLink:
+        "https://www.credly.com/badges/c965d339-68ae-4c86-a4c3-e1429ccddf00/public_url",
     },
   ],
 };
@@ -426,30 +429,41 @@ const competitiveSites = {
 const degrees = {
   degrees: [
     {
-      title: "Indian Institute of Information Technology Kurnool",
-      subtitle: "B.Tech. in Computer Engineering",
-      logo_path: "iiitk_logo.png",
-      alt_name: "IIITDM Kurnool",
-      duration: "2016 - 2020",
+      title: "Scrimba",
+      subtitle: "The Frontend Developer Career Path",
+      logo_path: "simple-icons--scrimba.png",
+      alt_name: "Scrimba Logo",
+      duration: "2024 - Current",
       descriptions: [
-        "⚡ I have studied basic software engineering subjects like DS, Algorithms, DBMS, OS, CA, AI etc.",
-        "⚡ Apart from this, I have done courses on Deep Learning, Data Science, Cloud Computing and Full Stack Development.",
-        "⚡ I was selected for Merit cum Means Scholarship which is given to top 10% of students in college. I have received award from respected director for consistently best performance in academics.",
+        "⚡ The curriculum is curated by Mozilla MDN, ensuring alignment with the latest industry standards and best practices in modern frontend development. It draws from extensive research on essential skills for new hires.",
+
+        "⚡ The program provides a balanced education between modern tools, such as React and GitHub, and fundamental practices like semantic HTML, JavaScript fundamentals, and accessibility.",
+
+        "⚡ The course includes over a dozen portfolio projects and hundreds of interactive coding challenges, providing practical experience and a strong portfolio to showcase your skills to potential employers.",
+
+        "⚡ The program is designed to be fully self-paced, allowing students to choose between part-time or full-time study to fit their schedules and personal commitments.",
+
+        "⚡ The curriculum benefits from Mozilla MDN's extensive resources, including over 12,000 pages of documentation on HTML, CSS, JavaScript, and other technologies, ensuring that learners have access to comprehensive guides, tutorials, and interactive examples.",
+
+        "⚡ Learners become part of a vibrant community, benefiting from a network of contributors and the shared goal of maintaining high-quality resources and translations, enhancing the learning experience.",
       ],
-      website_link: "http://iiitk.ac.in",
+      website_link:
+        "https://v2.scrimba.com/the-frontend-developer-career-path-c0j:details",
     },
     {
-      title: "Indiana University Bloomington",
-      subtitle: "M.S. in Computer Science",
-      logo_path: "iu_logo.png",
-      alt_name: "Indiana University Bloomington",
-      duration: "2021 - 2023",
+      title: "Laikipia University",
+      subtitle: "Bsc in Information and Communication Technology",
+      logo_path: "LU-Logo.png",
+      alt_name: "Laikipia University Nyahururu",
+      duration: "2016 - 2020",
       descriptions: [
-        "⚡ I have taken varity of courses related to Artificial Intelligence which correspond to Explainable AI, Graph Machine Learning, Computer Vision etc.",
-        "⚡ Apart from this, I have also done research assistantship. As part of it, I have worked on creating new algorithms in Graph ML and Network Science.",
-        "⚡ During my time at university, I was also associated with multimedia department. As part of it, I have worked on some documentry films and interviews.",
+        "⚡ Software Development and Programming• Languages: Python, Java, JavaScript, C++• Web technologies: HTML5, CSS3, React.js, Node.js• Version control: Git, GitHub• IDEs: Visual Studio Code, IntelliJ IDEA",
+        "⚡ Database Management and Data Analysis• Relational databases: MySQL, PostgreSQL• NoSQL databases: MongoDB, Cassandra• Big data technologies: Hadoop, Apache Spark• Data visualization: Tableau, D3.js",
+        "Networking and Cybersecurity• Network protocols: TCP/IP, HTTP/HTTPS, DNS• Network tools: Wireshark, Nmap• Security practices: Encryption, firewalls, intrusion detection systems• Cybersecurity frameworks: NIST, ISO 27001",
+        "⚡ Cloud Computing and DevOps• Cloud platforms: AWS (EC2, S3, Lambda), Microsoft Azure• Containerization: Docker, Kubernetes• CI/CD tools: Jenkins, GitLab CI• Infrastructure as Code: Terraform, Ansible",
+        "⚡ Emerging Technologies and Software Engineering Practices• Machine Learning libraries: TensorFlow, scikit-learn• Agile methodologies: Scrum, Kanban• API development: RESTful APIs, GraphQL• AI",
       ],
-      website_link: "https://www.indiana.edu/",
+      website_link: "https://laikipia.ac.ke/",
     },
   ],
 };
@@ -457,112 +471,119 @@ const degrees = {
 const certifications = {
   certifications: [
     {
-      title: "Machine Learning",
-      subtitle: "- Andrew Ng",
-      logo_path: "stanford_logo.png",
+      title: "Responsive Web Design",
+      subtitle: "- freeCodeCamp",
+      logo_path: "Freecodecamp.png",
       certificate_link:
-        "https://www.coursera.org/account/accomplishments/verify/22MTSSC5WDTM",
-      alt_name: "Stanford University",
-      color_code: "#8C151599",
+        "https://freecodecamp.org/certification/pcodesdev/responsive-web-design",
+      alt_name: "freeCodeCamp",
+      color_code: "#FFFFFF",
     },
     {
-      title: "Deep Learning",
-      subtitle: "- Andrew Ng",
-      logo_path: "deeplearning_ai_logo.png",
+      title: "JavaScript Algorithms and Data Structures",
+      subtitle: "- freeCodeCamp",
+      logo_path: "Freecodecamp.png",
       certificate_link:
-        "https://www.coursera.org/account/accomplishments/specialization/H8CPSFXAJD2G",
-      alt_name: "deeplearning.ai",
-      color_code: "#00000099",
+        "https://freecodecamp.org/certification/pcodesdev/javascript-algorithms-and-data-structures",
+      alt_name: "freeCodeCamp",
+      color_code: "#FFFFFF",
     },
     {
-      title: "ML on GCP",
-      subtitle: "- GCP Training",
-      logo_path: "google_logo.png",
+      title: "Frontend Developer (React)",
+      subtitle: "- Hackerrank",
+      logo_path: "hackerrank.png",
+      certificate_link: "https://www.hackerrank.com/certificates/b1765ea2884a",
+      alt_name: "hackerrank",
+      color_code: "#1f202a",
+    },
+    {
+      title: "Google IT Support",
+      subtitle: "- Coursera",
+      logo_path: "google.png",
       certificate_link:
-        "https://www.coursera.org/account/accomplishments/specialization/EB4VJARK8647",
+        "https://www.credly.com/badges/b9384c32-e908-48fa-bb44-e277cbd623a7/linked_in_profile",
       alt_name: "Google",
       color_code: "#0C9D5899",
     },
     {
-      title: "Data Science",
-      subtitle: "- Alex Aklson",
-      logo_path: "ibm_logo.png",
+      title: "Cloud Digital Leader",
+      subtitle: "- Google Cloud",
+      logo_path: "google.png",
       certificate_link:
-        "https://www.coursera.org/account/accomplishments/specialization/PLEAPCSJBZT5",
-      alt_name: "IBM",
-      color_code: "#1F70C199",
-    },
-    {
-      title: "Big Data",
-      subtitle: "- Kim Akers",
-      logo_path: "microsoft_logo.png",
-      certificate_link:
-        "https://drive.google.com/file/d/164zKCFOsI4vGqokc-Qj-e_D00kLDHIrG/view",
+        "https://www.credly.com/badges/74673ffa-2e93-44b2-b287-cb146c5e41f7/public_url",
       alt_name: "Microsoft",
-      color_code: "#D83B0199",
-    },
-    {
-      title: "Advanced Data Science",
-      subtitle: "- Romeo Kienzler",
-      logo_path: "ibm_logo.png",
-      certificate_link:
-        "https://www.coursera.org/account/accomplishments/verify/BH2T9BRU87BH",
-      alt_name: "IBM",
-      color_code: "#1F70C199",
-    },
-    {
-      title: "Advanced ML on GCP",
-      subtitle: "- GCP Training",
-      logo_path: "google_logo.png",
-      certificate_link:
-        "https://www.coursera.org/account/accomplishments/verify/5JZZM7TNQ2AV",
-      alt_name: "Google",
       color_code: "#0C9D5899",
     },
     {
-      title: "DL on Tensorflow",
-      subtitle: "- Laurence Moroney",
-      logo_path: "deeplearning_ai_logo.png",
+      title: "Cloud Practitioner",
+      subtitle: "- Amazon Web Services",
+      logo_path: "aws.png",
       certificate_link:
-        "https://www.coursera.org/account/accomplishments/verify/6T4DCUGNK8J8",
-      alt_name: "deeplearning.ai",
+        "https://www.credly.com/badges/c965d339-68ae-4c86-a4c3-e1429ccddf00/public_url",
+      alt_name: "AWS",
+      color_code: "#1F70C199",
+    },
+    {
+      title: "Cloud Computing",
+      subtitle: "- IBM",
+      logo_path: "ibm.png",
+      certificate_link:
+        "https://www.credly.com/badges/5a658a4d-62d6-4b08-b75c-9f2dea345af2/public_url",
+      alt_name: "International Business Machines Corporation",
+      color_code: "#FFFFFF",
+    },
+    {
+      title: "Programming Essentials in Python",
+      subtitle: "- Cisco Networking Academy",
+      logo_path: "cisco.png",
+      certificate_link:
+        "https://drive.google.com/file/d/18Be5Lj2ElIUDhDnsfdynfOS93xTJotZ9/view?usp=sharing",
+      alt_name: "OpenEDG Python Institute",
       color_code: "#00000099",
     },
     {
-      title: "Fullstack Development",
-      subtitle: "- Jogesh Muppala",
-      logo_path: "coursera_logo.png",
+      title: "NDG Linux Essentials",
+      subtitle: "- Cisco Networking Academy",
+      logo_path: "cisco.png",
       certificate_link:
-        "https://www.coursera.org/account/accomplishments/certificate/NRANJA66Y2YA",
-      alt_name: "Coursera",
-      color_code: "#2A73CC",
+        "https://drive.google.com/file/d/1xlC_vVxnWbMZKhEJ8ElNtQejUnws1KF9/view?usp=sharing",
+      alt_name: "Linux Professional Institute",
+      color_code: "#00000099",
     },
     {
-      title: "Kuberenetes on GCP",
+      title: "Google Cloud Platform",
       subtitle: "- Qwiklabs",
       logo_path: "gcp_logo.png",
       certificate_link:
-        "https://google.qwiklabs.com/public_profiles/e4d5a92b-faf6-4679-a70b-a9047c0cd750",
+        "https://www.cloudskillsboost.google/public_profiles/6d292a54-28c4-4517-b85b-db75568ecf47",
       alt_name: "GCP",
       color_code: "#4285F499",
     },
     {
-      title: "Cryptography",
-      subtitle: "- Saurabh Mukhopadhyay",
-      logo_path: "nptel_logo.png",
-      certificate_link:
-        "https://drive.google.com/open?id=1z5ExD_QJVdU0slLkp8CBqSF3-C3g-ro_",
-      alt_name: "NPTEL",
-      color_code: "#FFBB0099",
+      title: "Google Developer Program",
+      subtitle: "- Qwiklabs",
+      logo_path: "google.png",
+      certificate_link: "https://developers.google.com/profile/u/pcodesdev",
+      alt_name: "Google Developer Program",
+      color_code: "#4285F499",
     },
     {
-      title: "Cloud Architecture",
-      subtitle: "- Qwiklabs",
-      logo_path: "gcp_logo.png",
+      title: "Huawei Seeds for the Future",
+      subtitle: "- Huawei",
+      logo_path: "huawei.png",
       certificate_link:
-        "https://google.qwiklabs.com/public_profiles/5fab4b2d-be6f-408c-8dcb-6d3b58ecb4a2",
-      alt_name: "GCP",
-      color_code: "#4285F499",
+        "https://drive.google.com/file/d/1Ak30KTFViHOYhSIKXHsnAVmpZQLL3Jwk/view?usp=sharing",
+      alt_name: "Huawei",
+      color_code: "#FF8A8A",
+    },
+    {
+      title: "Training of Trainers(TOT)",
+      subtitle: "- Tallinn University",
+      logo_path: "tallinn.png",
+      certificate_link:
+        "https://drive.google.com/file/d/1mZ5I-JuBquqlQFxnZTU68T6bstLfSYm4/view?usp=sharing",
+      alt_name: "Tallinn University",
+      color_code: "#2E073F",
     },
   ],
 };
