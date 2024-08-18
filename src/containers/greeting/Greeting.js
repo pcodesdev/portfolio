@@ -46,7 +46,7 @@ export default function Greeting(props) {
           </div>
           <div className="greeting-image-div">
             <img
-							alt="saad sitting on table"
+							alt="Peter Njuguna Smilling"
 							src={require("../../assests/images/Peter-Portfolio.png")}
             ></img>
             {/* Peter Edit */}
