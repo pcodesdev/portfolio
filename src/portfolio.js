@@ -82,7 +82,7 @@ const skills = {
       softwareSkills: [
         {
           skillName: "Google Workspace",
-          fontAwesomeClassname: "logos:google-workspace",
+          fontAwesomeClassname: "devicon:google",
           style: {
             backgroundColor: "transparent",
           },
