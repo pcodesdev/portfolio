@@ -1,7 +1,11 @@
 .skills-main-div {
   display: flex;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+.main {
+  margin-top: 0;
 }
 
 .skills-header {
@@ -16,7 +20,7 @@
 }
 
 .skills-text-div {
-  margin-left: 50px;
+  /* margin-left: 50px; */
   font-family: "Google Sans Regular";
 }
 
@@ -63,11 +67,19 @@
     line-height: normal;
   }
   .skills-main-div {
+    display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    /* margin: 0rem 1rem; */
   }
   .skills-text-div {
-    margin-left: 0px;
-    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    /* margin-left: 0px;
+    margin: 1rem 1rem; */
   }
   .skills-text {
     font-size: 16px;

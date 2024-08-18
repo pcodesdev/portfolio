@@ -27,7 +27,7 @@
 
 .greeting-main > * {
   flex: 1;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 .button-greeting-div {
   display: flex;
@@ -48,7 +48,7 @@
 }
 
 .greeting-text-p {
-  font-size: 1.5rem;
+  font-size: 1rem;
   line-height: 40px;
   margin-right: 40px;
   font-family: "Google Sans Medium";
@@ -92,7 +92,9 @@
     /* text-align: center; */
   }
   .greeting-main {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    /* /* margin: 0rem 0.5rem; */
   }
 
   .portfolio-repo-btn-div {
