@@ -39,7 +39,7 @@ const socialMediaLinks = [
 
   {
     name: "Github",
-    link: "https://github.com/pcodesdev",
+    link: "https://github.com/pcodesdev/",
     fontAwesomeIcon: "fa-github", // Reference https://fontawesome.com/icons/github?style=brands
     backgroundColor: "#181717", // Reference https://simpleicons.org/?q=github
   },
@@ -757,7 +757,7 @@ const experience = {
 const projectsHeader = {
   title: "Projects",
   description:
-    "My projects makes use of vast variety of latest technology tools. My best experience is to create Data Science projects and deploy them to web applications using cloud infrastructure.",
+    "As a versatile software developer, I excel in leveraging cutting-edge technologies to create and deploy sophisticated software projects as web applications on cloud infrastructure, showcasing my expertise across the full development lifecycle.",
   avatar_image_path: "projects_image.svg",
 };
 
@@ -770,25 +770,28 @@ const publicationsHeader = {
 const publications = {
   data: [
     {
-      id: "neuro-symbolic-sudoku-solver",
-      name: "Neuro-Symbolic Sudoku Solver",
-      createdAt: "2023-07-02T00:00:00Z",
-      description: "Paper published in KDD KiML 2023",
-      url: "https://arxiv.org/abs/2307.00653",
+      id: "Tic-Tac-Toe-game-using-react",
+      name: "Create a Tic-Tac-Toe game using react",
+      createdAt: "2023-01-18T00:00:00Z",
+      description: "Blog published in hashnode",
+      url:
+        "https://pcodesdev.hashnode.dev/projectcreate-a-tic-tac-toe-game-using-react",
     },
     {
-      id: "mdp-diffusion",
-      name: "MDP-Diffusion",
-      createdAt: "2023-09-19T00:00:00Z",
-      description: "Blog published in Paperspace",
-      url: "https://blog.paperspace.com/mdp-diffusion/",
+      id: "push-files-over-100MB-to-github",
+      name: "How to Push Files Over 100MB to GitHub",
+      createdAt: "2023-04-21T00:00:00Z",
+      description: "Blog published in hashnode",
+      url:
+        "https://pcodesdev.hashnode.dev/how-to-push-files-over-100mb-to-github-a-step-by-step-guide-with-git-large-file-storage-lfs",
     },
     {
-      id: "consistency-models",
-      name: "Consistency Models",
-      createdAt: "2023-10-12T00:00:00Z",
-      description: "Blog published in Paperspace",
-      url: "https://blog.paperspace.com/consistency-models/",
+      id: "mastering-git-and-github",
+      name: "Mastering Git and Github",
+      createdAt: "2023-05-12T00:00:00Z",
+      description: "Blog published in hashnode",
+      url:
+        "https://pcodesdev.hashnode.dev/mastering-git-and-github-key-concepts-you-need-to-know-for-successful-version-control",
     },
   ],
 };
@@ -797,27 +800,28 @@ const publications = {
 const contactPageData = {
   contactSection: {
     title: "Contact Me",
-    profile_image_path: "animated_ashutosh.png",
+    profile_image_path: "Peter-Illustration.png",
     description:
-      "I am available on almost every social media. You can message me, I will reply within 24 hours. I can help you with ML, AI, React, Android, Cloud and Opensource Development.",
+      "A full-stack developer and AI enthusiast, I'm hyperconnected across social platforms, offering 24/7 support in software engineering, cutting-edge AI solutions, tech troubleshooting, digital upskilling, and agile project management—just ping me, and I'll respond faster than you can say \"Hello World!\"",
   },
+
   blogSection: {
     title: "Blogs",
     subtitle:
       "I like to document some of my experiences in professional career journey as well as some technical knowledge sharing.",
-    link: "https://blogs.ashutoshhathidara.com/",
+    link: "https://hashnode.com/@PcodesDev",
     avatar_image_path: "blogs_image.svg",
   },
   addressSection: {
     title: "Address",
-    subtitle: "Saratoga Ave, San Jose, CA, USA 95129",
-    locality: "San Jose",
-    country: "USA",
-    region: "California",
-    postalCode: "95129",
-    streetAddress: "Saratoga Avenue",
+    subtitle: "Nairobi, Kenya",
+    locality: "Nairobi",
+    country: "Kenya",
+    region: "Nairobi",
+    postalCode: "0100",
+    streetAddress: "Charles New Road",
     avatar_image_path: "address_image.svg",
-    location_map_link: "https://maps.app.goo.gl/NvYZqa34Wye4tpS17",
+    location_map_link: "https://maps.app.goo.gl/B1LzU1qSUNeWRNYg9",
   },
   phoneSection: {
     title: "",

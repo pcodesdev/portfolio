@@ -301,6 +301,8 @@ fetch(baseUrl, {
       }
     );
   })
-  .catch((error) =>
-    console.log("Error occured in pinned projects 2", JSON.stringify(error))
+  .catch((error) => {
+    console.error("Error fetching pinned projects:", error.message);
+    console.error("Full error stack:", error.stack);
+  }
   );
