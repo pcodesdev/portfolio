@@ -11,6 +11,16 @@
   margin-right: 10px;
 }
 
+.pull-requests-subtitle {
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: "Google Sans Regular";
+  text-align: center;
+  margin: 20px auto;
+  max-width: 90%;
+  padding: 0 20px;
+}
+
 .pull-request-body-div {
   text-align: center;
   width: 100%;
@@ -19,6 +29,10 @@
 @media (max-width: 1380px) {
   .pull-requests-header {
     font-size: 35px;
+  }
+
+  .pull-requests-subtitle {
+    font-size: 18px;
   }
 }
 
@@ -29,5 +43,10 @@
 
   .pull-requests-header {
     font-size: 25px;
+  }
+
+  .pull-requests-subtitle {
+    font-size: 16px;
+    line-height: normal;
   }
 }

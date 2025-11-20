@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./SocialMedia.css";
 import { socialMediaLinks } from "../../portfolio";
 import styled from "styled-components";
@@ -13,7 +13,7 @@ const IconWrapper = styled.span`
   }
 `;
 
-export default function socialMedia(props) {
+const SocialMedia = memo(function SocialMedia(props) {
   return (
     <div className="social-media-div">
       {socialMediaLinks.map((media, i) => {
@@ -34,4 +34,6 @@ export default function socialMedia(props) {
       })}
     </div>
   );
-}
+});
+
+export default SocialMedia;

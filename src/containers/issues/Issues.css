@@ -7,6 +7,16 @@
   margin-right: 10px;
 }
 
+.issues-subtitle {
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: "Google Sans Regular";
+  text-align: center;
+  margin: 20px auto;
+  max-width: 90%;
+  padding: 0 20px;
+}
+
 .issues-body-div {
   text-align: center;
   width: 100%;
@@ -16,10 +26,19 @@
   .issues-header {
     font-size: 35px;
   }
+
+  .issues-subtitle {
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 768px) {
   .issues-header {
     font-size: 25px;
+  }
+
+  .issues-subtitle {
+    font-size: 16px;
+    line-height: normal;
   }
 }

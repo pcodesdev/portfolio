@@ -14,6 +14,15 @@ class PullRequests extends Component {
             <h1 className="pull-requests-header" style={{ color: theme.text }}>
               Pull Requests
             </h1>
+            <p
+              className="subTitle pull-requests-subtitle"
+              style={{ color: theme.secondaryText }}
+            >
+              Active contributions to open-source projects through pull
+              requests. Focus areas include enhancing UI/UX responsiveness,
+              improving accessibility, fixing bugs, and adding new features
+              across React, JavaScript, and web development projects.
+            </p>
           </Fade>
         </div>
         <div className="pull-request-body-div">

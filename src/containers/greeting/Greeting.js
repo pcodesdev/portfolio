@@ -4,7 +4,7 @@ import SocialMedia from "../../components/socialMedia/SocialMedia";
 import Button from "../../components/button/Button";
 import { greeting } from "../../portfolio";
 import { Fade } from "react-reveal";
-import FeelingProud from "./FeelingProud";
+import LazyImage from "../../components/LazyImage/LazyImage";
 
 export default function Greeting(props) {
   const theme = props.theme;
@@ -45,10 +45,10 @@ export default function Greeting(props) {
             </div>
           </div>
           <div className="greeting-image-div">
-            <img
-							alt="Peter Njuguna Smilling"
-							src={require("../../assests/images/Peter-Portfolio.png")}
-            ></img>
+            <LazyImage
+              alt="Peter Njuguna Smiling"
+              src={require("../../assests/images/Peter-Portfolio.png")}
+            />
             {/* Peter Edit */}
             {/* <FeelingProud theme={theme} /> */}
           </div>

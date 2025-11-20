@@ -1,1 +1,101 @@
-{"data":[{"id":"R_kgDOID4iDQ","name":"gpt-3","createdAt":"2022-09-24T19:23:07Z","url":"https://github.com/pcodesdev/gpt-3","description":"Fully Responsive Modern UI/UX Website in React JS","isFork":false,"languages":[{"name":"HTML","iconifyClass":"logos-html-5"},{"name":"CSS","iconifyClass":"logos-css-3"},{"name":"JavaScript","iconifyClass":"logos-javascript"}]},{"id":"R_kgDOKuYlIQ","name":"task-list","createdAt":"2023-11-16T19:15:24Z","url":"https://github.com/pcodesdev/task-list","description":"A visually captivating and interactive todo list that blends productivity with captivating effects ","isFork":false,"languages":[{"name":"JavaScript","iconifyClass":"logos-javascript"},{"name":"HTML","iconifyClass":"logos-html-5"},{"name":"CSS","iconifyClass":"logos-css-3"}]},{"id":"R_kgDOLXAbfA","name":"password-generator","createdAt":"2024-02-23T14:38:11Z","url":"https://github.com/pcodesdev/password-generator","description":"A web app that generates two strong passwords of user-defined length (8-20 characters) and allows copying them to the clipboard.","isFork":false,"languages":[{"name":"HTML","iconifyClass":"logos-html-5"},{"name":"JavaScript","iconifyClass":"logos-javascript"},{"name":"CSS","iconifyClass":"logos-css-3"}]},{"id":"R_kgDOISCupQ","name":"hotel_ui_ux","createdAt":"2022-10-22T10:37:17Z","url":"https://github.com/pcodesdev/hotel_ui_ux","description":null,"isFork":false,"languages":[{"name":"HTML","iconifyClass":"logos-html-5"},{"name":"CSS","iconifyClass":"logos-css-3"},{"name":"JavaScript","iconifyClass":"logos-javascript"}]},{"id":"MDEwOlJlcG9zaXRvcnkyMzgwMzY2NjQ=","name":"dice","createdAt":"2020-02-03T18:47:54Z","url":"https://github.com/pcodesdev/dice","description":null,"isFork":false,"languages":[]}]}
+{
+  "data": [
+    {
+      "id": "R_kgDOID4iDQ",
+      "name": "gpt-3",
+      "createdAt": "2022-09-24T19:23:07Z",
+      "url": "https://github.com/pcodesdev/gpt-3",
+      "description": "Fully responsive modern UI/UX website built with React JS, showcasing GPT-3 AI capabilities. Features include mobile-first design, smooth animations, gradient effects, and optimized component architecture. Demonstrates proficiency in React hooks, CSS3, responsive layouts, and modern web design principles.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        },
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        }
+      ]
+    },
+    {
+      "id": "R_kgDOKuYlIQ",
+      "name": "task-list",
+      "createdAt": "2023-11-16T19:15:24Z",
+      "url": "https://github.com/pcodesdev/task-list",
+      "description": "Interactive todo list application with captivating visual effects and smooth animations. Built with vanilla JavaScript, featuring local storage persistence, drag-and-drop functionality, task filtering, and dynamic UI updates. Showcases DOM manipulation, event handling, and modern CSS animations for enhanced user experience.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        }
+      ]
+    },
+    {
+      "id": "R_kgDOLXAbfA",
+      "name": "password-generator",
+      "createdAt": "2024-02-23T14:38:11Z",
+      "url": "https://github.com/pcodesdev/password-generator",
+      "description": "Secure password generator web application that creates two strong, random passwords with user-defined length (8-20 characters). Features one-click clipboard copying, password strength indicators, and customizable character sets including uppercase, lowercase, numbers, and special symbols. Built with JavaScript, emphasizing security best practices and user-friendly interface design.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        }
+      ]
+    },
+    {
+      "id": "R_kgDOISCupQ",
+      "name": "hotel_ui_ux",
+      "createdAt": "2022-10-22T10:37:17Z",
+      "url": "https://github.com/pcodesdev/hotel_ui_ux",
+      "description": "Modern hotel booking website UI/UX design featuring elegant layouts, interactive elements, and responsive design. Showcases advanced CSS techniques, grid and flexbox layouts, image galleries, and smooth scrolling effects. Demonstrates expertise in creating visually appealing, user-centric web interfaces for hospitality industry.",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        },
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        }
+      ]
+    },
+    {
+      "id": "MDEwOlJlcG9zaXRvcnkyMzgwMzY2NjQ=",
+      "name": "dice",
+      "createdAt": "2020-02-03T18:47:54Z",
+      "url": "https://github.com/pcodesdev/dice",
+      "description": "Interactive dice rolling game built with JavaScript. Features random number generation, animated dice rolls, score tracking, and multiplayer functionality. Demonstrates fundamental programming concepts including random algorithms, DOM manipulation, game logic implementation, and event-driven programming.",
+      "isFork": false,
+      "languages": []
+    }
+  ]
+}
