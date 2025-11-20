@@ -821,7 +821,7 @@ const contactPageData = {
     description:
       "I am a Full Stack Developer and Cloud Architect available for freelance projects, consultancy, and full-time opportunities. With expertise in React, Node.js, Python, AWS, and Azure, I help businesses build scalable web applications and cloud solutions. Whether you need a technical consultant, a digital skills trainer, or a lead developer for your next big idea, I'm here to help. Connect with me to discuss your project requirements.",
     email: "njugunapm23@gmail.com",
-    phone: "",
+    phone: "+254702913043",
   },
 
   blogSection: {
@@ -844,7 +844,7 @@ const contactPageData = {
   },
   phoneSection: {
     title: "Phone",
-    subtitle: "",
+    subtitle: "+254702913043",
   },
 };
 
