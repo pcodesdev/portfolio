@@ -32,7 +32,11 @@ class Header extends Component {
               />
             </NavLink>
             <input className="menu-btn" type="checkbox" id="menu-btn" />
-            <label className="menu-icon" htmlFor="menu-btn">
+            <label
+              className="menu-icon"
+              htmlFor="menu-btn"
+              style={{ "--navicon-color": theme.text }}
+            >
               <span className="navicon"></span>
             </label>
             <ul className="menu" style={{ backgroundColor: theme.body }}>
