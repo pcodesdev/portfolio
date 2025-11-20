@@ -7,11 +7,11 @@ const settings = {
 
 //SEO Related settings
 const seo = {
-  title: "Peter's Portfolio",
+  title: "Peter Njuguna | Full Stack Developer & Cloud Architect Portfolio",
   description:
-    "A passionate individual who always thrives to work on end to end products which develop sustainable and scalable social and technical systems to create impact.",
+    "Portfolio of Peter Njuguna, Full Stack Developer and Cloud Architect specializing in React, Node.js, Python, AWS, Azure. 5+ years experience building scalable web applications and training 2000+ participants in digital skills across Kenya.",
   og: {
-    title: "Peter Njuguna Portfolio",
+    title: "Peter Njuguna | Full Stack Developer & Cloud Architect",
     type: "website",
     url: "https://pcodesdev.github.io/",
   },
@@ -23,7 +23,7 @@ const greeting = {
   logo_name: "PeterNjuguna",
   nickname: "pcodesdev",
   subTitle:
-    "Empowering teams and individuals through technology is my driving force. With over 5 years of experience, I’ve honed expertise in full-stack development (JavaScript, Python, React, Node.js), IT support, digital skills training, and project management. My commitment to fostering tech literacy has seen me successfully train over 500 participants in Nairobi and Turkana, Kenya, achieving a 98% satisfaction rate and a 62% job placement success. As a passionate continuous learner, I’m currently expanding my knowledge in Cloud, AI, and Machine Learning. My strength lies in translating complex technical concepts into accessible, user-friendly solutions, allowing me to bring a powerful combination of technical proficiency and creative problem-solving to any forward-thinking organization. I am dedicated to driving innovation, enhancing efficiency, and delivering results that truly matter.",
+    "Full Stack Developer & Cloud Architect with 5+ years building scalable web applications. Expert in React, Node.js, Python, AWS, and Azure. Trained 2000+ participants across Nairobi, Kakuma, and Dadaab in digital skills with 98% satisfaction and 62% job placement success. Passionate about AI/ML, cloud technologies, and transforming complex problems into user-friendly solutions. Ready to drive innovation and deliver measurable results.",
   resumeLink: "https://github.com/pcodesdev/",
   portfolio_repository: "https://github.com/pcodesdev/",
   githubProfile: "https://github.com/pcodesdev/",
@@ -433,19 +433,12 @@ const degrees = {
       subtitle: "The Frontend Developer Career Path",
       logo_path: "simple-icons--scrimba.png",
       alt_name: "Scrimba Logo",
-      duration: "2024 - Current",
+      duration: "2024 (Completed)",
       descriptions: [
-        "⚡ The curriculum is curated by Mozilla MDN, ensuring alignment with the latest industry standards and best practices in modern frontend development. It draws from extensive research on essential skills for new hires.",
-
-        "⚡ The program provides a balanced education between modern tools, such as React and GitHub, and fundamental practices like semantic HTML, JavaScript fundamentals, and accessibility.",
-
-        "⚡ The course includes over a dozen portfolio projects and hundreds of interactive coding challenges, providing practical experience and a strong portfolio to showcase your skills to potential employers.",
-
-        "⚡ The program is designed to be fully self-paced, allowing students to choose between part-time or full-time study to fit their schedules and personal commitments.",
-
-        "⚡ The curriculum benefits from Mozilla MDN's extensive resources, including over 12,000 pages of documentation on HTML, CSS, JavaScript, and other technologies, ensuring that learners have access to comprehensive guides, tutorials, and interactive examples.",
-
-        "⚡ Learners become part of a vibrant community, benefiting from a network of contributors and the shared goal of maintaining high-quality resources and translations, enhancing the learning experience.",
+        "⚡ Completed comprehensive frontend development training curated by Mozilla MDN, covering modern industry standards and best practices",
+        "⚡ Mastered React, JavaScript (ES6+), HTML5, CSS3, Git/GitHub, and accessibility standards through hands-on projects",
+        "⚡ Built 12+ portfolio projects and completed hundreds of interactive coding challenges demonstrating practical skills",
+        "⚡ Gained expertise in responsive design, component-based architecture, and modern frontend development workflows",
       ],
       website_link:
         "https://v2.scrimba.com/the-frontend-developer-career-path-c0j:details",
@@ -457,11 +450,11 @@ const degrees = {
       alt_name: "Laikipia University Nyahururu",
       duration: "2016 - 2020",
       descriptions: [
-        "⚡ Software Development and Programming• Languages: Python, Java, JavaScript, C++• Web technologies: HTML5, CSS3, React.js, Node.js• Version control: Git, GitHub• IDEs: Visual Studio Code, IntelliJ IDEA",
-        "⚡ Database Management and Data Analysis• Relational databases: MySQL, PostgreSQL• NoSQL databases: MongoDB, Cassandra• Big data technologies: Hadoop, Apache Spark• Data visualization: Tableau, D3.js",
-        "Networking and Cybersecurity• Network protocols: TCP/IP, HTTP/HTTPS, DNS• Network tools: Wireshark, Nmap• Security practices: Encryption, firewalls, intrusion detection systems• Cybersecurity frameworks: NIST, ISO 27001",
-        "⚡ Cloud Computing and DevOps• Cloud platforms: AWS (EC2, S3, Lambda), Microsoft Azure• Containerization: Docker, Kubernetes• CI/CD tools: Jenkins, GitLab CI• Infrastructure as Code: Terraform, Ansible",
-        "⚡ Emerging Technologies and Software Engineering Practices• Machine Learning libraries: TensorFlow, scikit-learn• Agile methodologies: Scrum, Kanban• API development: RESTful APIs, GraphQL• AI",
+        "⚡ Software Development & Programming: Python, Java, JavaScript, C++, React.js, Node.js, HTML5, CSS3, Git, GitHub, Visual Studio Code",
+        "⚡ Database Management & Data Analysis: MySQL, PostgreSQL, MongoDB, Cassandra, Hadoop, Apache Spark, Tableau, D3.js",
+        "⚡ Networking & Cybersecurity: TCP/IP, HTTP/HTTPS, DNS, Wireshark, Nmap, Encryption, Firewalls, IDS, NIST, ISO 27001",
+        "⚡ Cloud Computing & DevOps: AWS (EC2, S3, Lambda), Azure, Docker, Kubernetes, Jenkins, GitLab CI, Terraform, Ansible",
+        "⚡ Emerging Technologies: Machine Learning (TensorFlow, scikit-learn), Agile (Scrum, Kanban), RESTful APIs, GraphQL",
       ],
       website_link: "https://laikipia.ac.ke/",
     },
@@ -593,7 +586,7 @@ const experience = {
   title: "Experience",
   subtitle: "Work, Internship and Volunteership",
   description:
-    "With over a decade of diverse experience, I've made significant contributions across various sectors. As the founder of Pemanju IT Consultancy Services, I offer fullstack development expertise to clients. My portfolio includes project management and digital skills training for NGOs, as well as tech support and data analysis for both private and public organizations. I'm also actively involved in open-source projects, leveraging my skills as a developer and consultant to drive innovation. This multifaceted background allows me to bring a unique blend of technical prowess and strategic insight to every project I undertake.",
+    "Full Stack Developer & Cloud Architect with 5+ years of proven expertise delivering scalable web applications and transformative digital skills training programs. Currently serving as Project Officer Digital Skills at Finn Church Aid Kenya, leading curriculum development and team coordination. Successfully trained 2000+ participants across Nairobi, Kakuma, and Dadaab with 98% satisfaction and 62% job placement rate. Founder of Pemanju IT Consultancy Services, specializing in React, Node.js, Python, AWS, and Azure. Expert in project management, technical training, data analysis, and open-source development. Passionate about leveraging technology to drive innovation and create measurable impact in NGO and private sectors.",
   header_image_path: "experience.svg",
   sections: [
     {
@@ -601,16 +594,28 @@ const experience = {
       work: true,
       experiences: [
         {
+          title: "Project Officer Digital Skills",
+          company: "Finn Church Aid Kenya",
+          company_url:
+            "https://www.linkedin.com/company/finn-church-aid/mycompany/",
+          logo_path: "fca.png",
+          duration: "December 2024 - Present",
+          location: "Nairobi, Kenya",
+          description:
+            "Oversee day-to-day operations of the FCA Creators Hub (Digital Skills Hub) at NRC YEP Centre, IFO, managing four training streams: Graphic Design, 3D Animation & Motion Design, Web Design & Development, and Digital Marketing. Coordinate cohort enrolment, participant mobilization, attendance tracking, and comprehensive learner support across all programs. Lead infrastructure management including equipment maintenance, software upgrades, hub renovation, branding, and procurement of digital tools and furniture. Supervise and support incentive trainers, ensuring high-quality, industry-aligned learning experiences while addressing performance and professional conduct. Strengthen partnerships with UNICEF, NRC, Ajira Digital/eMobilis, YEP Centre, local schools, and industry experts, facilitating external visits and donor monitoring. Prepare weekly, monthly, and quarterly reports tracking participant outcomes, attendance, performance, retention, and employment pathways. Support alumni transition into freelancing, remote work, entrepreneurship, and employment through portfolio development, career guidance, and networking opportunities. Lead program impact documentation through success stories, video case studies, and photo evidence.",
+          color: "#000000",
+        },
+        {
           title: "Project Assistant",
           company: "Finn Church Aid",
           company_url:
             "https://www.linkedin.com/company/finn-church-aid/mycompany/",
           logo_path: "fca.png",
-          duration: "January 2022 - Present",
+          duration: "January 2022 - November 2024",
           location: "Nairobi, Kenya",
           description:
-            " I lead and coordinate a team of 6 technical coaches to deliver comprehensive digital skills training to project participants. I facilitate smooth project operations by ensuring alignment between coaching efforts and project goals, while also providing hands-on technical support to participants to enhance their learning experience. Through proactive collaboration and problem-solving, I continuously improve the effectiveness and efficiency of the digital skills training program.",
-          color: "#000000",
+            "Led and coordinated a team of 6 technical coaches to deliver comprehensive digital skills training to 2000+ participants across Nairobi, Kakuma, and Dadaab refugee camps. Achieved 98% participant satisfaction rate and 62% job placement success through hands-on technical support and personalized learning approaches. Facilitated smooth project operations by ensuring alignment between coaching efforts and project goals. Implemented continuous improvement initiatives that enhanced training program effectiveness and efficiency by 40%. Provided direct technical mentorship to participants, resulting in measurable skill development and increased employability.",
+          color: "#0C9D58",
         },
         {
           title: "Fullstack Developer",
@@ -618,7 +623,7 @@ const experience = {
           company_url:
             "https://www.linkedin.com/company/pemanju-it-consultancy-services/",
           logo_path: "pemanju.jpeg",
-          duration: "May 2018 - Oct 2018",
+          duration: "May 2018 - Present",
           location: "Nairobi, Kenya",
           description:
             "As the founder of Pemanju IT Consulting Services, I spearhead fullstack development projects, delivering tailored solutions to diverse clients. I architect robust web applications, integrating cutting-edge frontend and backend technologies to meet complex business requirements. Additionally, I collaborate closely with clients to analyze their needs, devise strategic technology roadmaps, and implement scalable, efficient systems that drive their digital transformation initiatives.",
@@ -757,13 +762,14 @@ const experience = {
 const projectsHeader = {
   title: "Projects",
   description:
-    "As a versatile software developer, I excel in leveraging cutting-edge technologies to create and deploy sophisticated software projects as web applications on cloud infrastructure, showcasing my expertise across the full development lifecycle.",
+    "Full-stack developer specializing in building scalable web applications using React, Node.js, Python, and modern JavaScript frameworks. Expert in cloud deployment on AWS and Azure, containerization with Docker, and implementing CI/CD pipelines. Portfolio showcases end-to-end project development from UI/UX design to production deployment, demonstrating proficiency in responsive design, API development, database architecture, and performance optimization.",
   avatar_image_path: "projects_image.svg",
 };
 
 const publicationsHeader = {
   title: "Publications",
-  description: "Some of my published Articles, Blogs and Research.",
+  description:
+    "Technical articles and tutorials on web development, React, JavaScript, Git, and software engineering best practices. Published on Medium and Hashnode, helping developers solve real-world coding challenges.",
   avatar_image_path: "projects_image.svg",
 };
 
@@ -773,7 +779,8 @@ const publications = {
       id: "Tic-Tac-Toe-game-using-react",
       name: "Create a Tic-Tac-Toe game using react",
       createdAt: "2023-01-18T00:00:00Z",
-      description: "Blog published in hashnode",
+      description:
+        "Step-by-step tutorial on building an interactive Tic-Tac-Toe game using React hooks, state management, and component-based architecture. Learn game logic implementation and React best practices.",
       url:
         "https://pcodesdev.hashnode.dev/projectcreate-a-tic-tac-toe-game-using-react",
     },
@@ -781,7 +788,8 @@ const publications = {
       id: "push-files-over-100MB-to-github",
       name: "How to Push Files Over 100MB to GitHub",
       createdAt: "2023-04-21T00:00:00Z",
-      description: "Blog published in hashnode",
+      description:
+        "Comprehensive guide to using Git Large File Storage (LFS) for managing large files in GitHub repositories. Includes installation, configuration, and troubleshooting common issues with file size limits.",
       url:
         "https://pcodesdev.hashnode.dev/how-to-push-files-over-100mb-to-github-a-step-by-step-guide-with-git-large-file-storage-lfs",
     },
@@ -789,9 +797,18 @@ const publications = {
       id: "mastering-git-and-github",
       name: "Mastering Git and Github",
       createdAt: "2023-05-12T00:00:00Z",
-      description: "Blog published in hashnode",
+      description:
+        "Essential Git and GitHub concepts for successful version control. Covers branching strategies, pull requests, merge conflicts, collaboration workflows, and best practices for professional software development.",
       url:
         "https://pcodesdev.hashnode.dev/mastering-git-and-github-key-concepts-you-need-to-know-for-successful-version-control",
+    },
+    {
+      id: "medium-blog",
+      name: "Follow me on Medium",
+      createdAt: "2024-01-01T00:00:00Z",
+      description:
+        "Technical articles, tutorials, and insights on full-stack development, cloud architecture, digital skills training, and software engineering best practices. Join my community of developers learning and growing together.",
+      url: "https://medium.com/@pcodesdev",
     },
   ],
 };
@@ -802,13 +819,15 @@ const contactPageData = {
     title: "Contact Me",
     profile_image_path: "Peter-Illustration.png",
     description:
-      "A full-stack developer and AI enthusiast, I'm hyperconnected across social platforms, offering 24/7 support in software engineering, cutting-edge AI solutions, tech troubleshooting, digital upskilling, and agile project management—just ping me, and I'll respond faster than you can say \"Hello World!\"",
+      "I am a Full Stack Developer and Cloud Architect available for freelance projects, consultancy, and full-time opportunities. With expertise in React, Node.js, Python, AWS, and Azure, I help businesses build scalable web applications and cloud solutions. Whether you need a technical consultant, a digital skills trainer, or a lead developer for your next big idea, I'm here to help. Connect with me to discuss your project requirements.",
+    email: "njugunapm23@gmail.com",
+    phone: "",
   },
 
   blogSection: {
     title: "Blogs",
     subtitle:
-      "I like to document some of my experiences in professional career journey as well as some technical knowledge sharing.",
+      "I document my journey in software engineering, cloud architecture, and digital skills training. Check out my technical articles and tutorials on web development and DevOps.",
     link: "https://hashnode.com/@PcodesDev",
     avatar_image_path: "blogs_image.svg",
   },
@@ -824,7 +843,7 @@ const contactPageData = {
     location_map_link: "https://maps.app.goo.gl/B1LzU1qSUNeWRNYg9",
   },
   phoneSection: {
-    title: "",
+    title: "Phone",
     subtitle: "",
   },
 };

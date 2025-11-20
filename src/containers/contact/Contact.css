@@ -31,6 +31,13 @@
   text-transform: uppercase;
 }
 
+.contact-description-padding {
+  padding: 0 20px;
+  line-height: 1.5;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
 .contact-text-div {
   margin-top: 1.5rem;
 }

@@ -14,6 +14,16 @@ class Issues extends Component {
             <h1 className="issues-header" style={{ color: theme.text }}>
               Issues
             </h1>
+            <p
+              className="subTitle issues-subtitle"
+              style={{ color: theme.secondaryText }}
+            >
+              Identifying and resolving technical challenges across diverse
+              open-source projects. Contributions include reporting bugs,
+              suggesting enhancements, troubleshooting deployment issues, and
+              collaborating with maintainers to improve project quality and user
+              experience.
+            </p>
           </Fade>
         </div>
         <div className="issues-body-div">
