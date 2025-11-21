@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./Organizations.css";
 import { Fade } from "react-reveal";
-import OrganizationList from "../../components/organizationList/OrganizationList";
-import OrganizationsData from "../../shared/opensource/organizations.json";
 
 class Organizations extends Component {
   render() {
@@ -28,17 +26,6 @@ class Organizations extends Component {
               sharing, and building solutions that empower developers worldwide.
             </p>
           </Fade>
-        </div>
-        <div className="organizations-body-div">
-          <Fade bottom duration={2000} distance="20px">
-            <h2
-              className="organizations-subheader"
-              style={{ color: theme.text }}
-            >
-              Contributed Organizations
-            </h2>
-          </Fade>
-          <OrganizationList logos={OrganizationsData["data"]} />
         </div>
       </div>
     );

@@ -1,9 +1,14 @@
+.organizations-main-div {
+  padding: 0;
+  margin: 0;
+}
+
 .dev-icons-orgs {
   padding-left: 0;
   list-style: none;
   font-size: 3rem;
-  margin-bottom: 0px;
-  margin-top: 50px;
+  margin-bottom: 5px;
+  margin-top: 0px;
   margin-left: 50px;
   margin-right: 50px;
   text-align: center;
@@ -17,7 +22,7 @@
 .organizations-inline {
   display: inline-block;
   margin-right: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   /* border: 1px solid #000000; */
   font-family: "Google Sans Regular";
 }
@@ -41,10 +46,12 @@
   .dev-icons-orgs {
     margin-left: 20px;
     margin-right: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 
   .organizations-inline {
     margin-right: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 }
