@@ -1,0 +1,164 @@
+.opensource-stats-main {
+  width: 90%;
+  margin: 10px auto 20px;
+  padding: 20px 0;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 10px 0;
+  font-family: "Google Sans Medium";
+}
+
+.stat-title {
+  font-size: 18px;
+  margin: 10px 0;
+  font-family: "Google Sans Regular";
+}
+
+.stat-description {
+  font-size: 14px;
+  margin: 5px 0;
+  font-family: "Google Sans Regular";
+  opacity: 0.8;
+}
+
+/* Large tablets and small desktops */
+@media (max-width: 1200px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .stat-value {
+    font-size: 34px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .opensource-stats-main {
+    width: 92%;
+    margin: 10px auto 15px;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .stat-card {
+    padding: 25px 18px;
+  }
+
+  .stat-icon {
+    font-size: 42px;
+  }
+
+  .stat-value {
+    font-size: 30px;
+  }
+
+  .stat-title {
+    font-size: 16px;
+  }
+
+  .stat-description {
+    font-size: 13px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .opensource-stats-main {
+    width: 95%;
+    margin: 5px auto 10px;
+    padding: 10px 0;
+  }
+
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .stat-card {
+    padding: 20px 12px;
+  }
+
+  .stat-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  .stat-value {
+    font-size: 26px;
+  }
+
+  .stat-title {
+    font-size: 14px;
+  }
+
+  .stat-description {
+    font-size: 11px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .opensource-stats-main {
+    width: 96%;
+    margin: 5px auto 5px;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 18px 15px;
+  }
+
+  .stat-icon {
+    font-size: 32px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .stat-title {
+    font-size: 13px;
+  }
+
+  .stat-description {
+    font-size: 11px;
+  }
+}

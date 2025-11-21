@@ -14,6 +14,7 @@
   /* table-layout: fixed; */
   width: 100%;
 }
+
 /* 
 .tb-item {
     display: table-cell;
@@ -38,5 +39,10 @@
 
   .os-charts-body-div {
     flex-direction: column;
+  }
+
+  .main-div {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }

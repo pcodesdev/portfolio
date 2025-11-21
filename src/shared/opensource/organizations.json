@@ -35,6 +35,24 @@
       "name": "Profile README Generator",
       "logo_path": "github_logo.png",
       "url": "https://github.com/maurodesouza/profile-readme-generator"
+    },
+    {
+      "id": 7,
+      "name": "DummyOrg1",
+      "logo_path": "github_logo.png",
+      "url": "#"
+    },
+    {
+      "id": 8,
+      "name": "DummyOrg2",
+      "logo_path": "github_logo.png",
+      "url": "#"
+    },
+    {
+      "id": 9,
+      "name": "DummyOrg3",
+      "logo_path": "github_logo.png",
+      "url": "#"
     }
   ]
 }

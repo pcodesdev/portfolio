@@ -1,5 +1,5 @@
 .pull-requests-header-div {
-  margin-top: 100px;
+  margin-top: 40px;
 }
 
 .pull-requests-header {
@@ -38,7 +38,7 @@
 
 @media (max-width: 768px) {
   .pull-requests-header-div {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .pull-requests-header {
