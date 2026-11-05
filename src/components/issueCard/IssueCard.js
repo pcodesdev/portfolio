@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./IssueCard.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Fade } from "react-reveal";
+import { Fade } from "../motion/Reveal";
 
 class IssueCard extends Component {
   render() {
@@ -11,15 +11,15 @@ class IssueCard extends Component {
     if (issue["closed"] === false) {
       iconPR = {
         iconifyClass: "octicon:issue-opened",
-        style: { color: "#28a745" },
+        style: { color: "var(--color-success)" },
       };
-      bgColor = "#dcffe4";
+      bgColor = "var(--color-success-bg)";
     } else {
       iconPR = {
         iconifyClass: "octicon:issue-closed",
-        style: { color: "#d73a49" },
+        style: { color: "var(--color-error)" },
       };
-      bgColor = "#ffdce0";
+      bgColor = "var(--color-error-bg)";
     }
 
     var subtitleString =
@@ -102,6 +102,8 @@ class IssueCard extends Component {
                 <a
                   style={{ color: iconPR.style.color }}
                   href={issue["repository"]["url"]}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {issue["repository"]["owner"]["login"]}/
                   {issue["repository"]["name"]}

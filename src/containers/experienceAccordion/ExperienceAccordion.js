@@ -19,11 +19,12 @@ class ExperienceAccordion extends Component {
                   Header: {
                     style: () => ({
                       backgroundColor: `${theme.body}`,
-                      border: `1px solid`,
+                      borderWidth: `1px`,
+                      borderStyle: `solid`,
                       borderRadius: `5px`,
                       borderColor: `${theme.headerColor}`,
                       marginBottom: `3px`,
-                      fontFamily: "Google Sans Regular",
+                      fontFamily: "var(--font-body)",
                       color: `${theme.text}`,
                       ":hover": {
                         color: `${theme.secondaryText}`,
@@ -37,9 +38,15 @@ class ExperienceAccordion extends Component {
                   },
                 }}
               >
-{section["experiences"].map((experience,index) => {
+                {section["experiences"].map((experience, index) => {
                   return (
-                    <ExperienceCard index={index} totalCards={section["experiences"].length} experience={experience} theme={theme} />
+                    <ExperienceCard
+                      key={experience.title}
+                      index={index}
+                      totalCards={section["experiences"].length}
+                      experience={experience}
+                      theme={theme}
+                    />
                   );
                 })}
               </Panel>

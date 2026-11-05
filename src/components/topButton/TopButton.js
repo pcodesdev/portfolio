@@ -1,65 +1,63 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./TopButton.css";
 
 export default function TopButton({ theme }) {
+  const topButtonRef = useRef(null);
+  const arrowRef = useRef(null);
+
   function GoUpEvent() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
 
-  function scrollFunction() {
-    if (
-      document.body.scrollTop > 30 ||
-      document.documentElement.scrollTop > 30
-    ) {
-      document.getElementById("topButton").style.visibility = "visible";
-    } else {
-      document.getElementById("topButton").style.visibility = "hidden";
+  useEffect(() => {
+    function scrollFunction() {
+      const topButton = topButtonRef.current;
+      if (!topButton) return;
+
+      topButton.style.visibility =
+        document.body.scrollTop > 30 || document.documentElement.scrollTop > 30
+          ? "visible"
+          : "hidden";
     }
-  }
 
-  window.onscroll = function () {
-    scrollFunction();
-  };
+    window.addEventListener("scroll", scrollFunction);
+    return () => window.removeEventListener("scroll", scrollFunction);
+  }, []);
 
-  const onMouseEnter = (color, bgColor) => {
-    /* For the button */
-    const topButton = document.getElementById("topButton");
+  const setHoverColors = (color, bgColor) => {
+    const topButton = topButtonRef.current;
+    const arrow = arrowRef.current;
+    if (!topButton || !arrow) return;
+
     topButton.style.color = color;
     topButton.style.backgroundColor = bgColor;
-
-    /* For arrow icon */
-    const arrow = document.getElementById("arrow");
-    arrow.style.color = color;
-    arrow.style.backgroundColor = bgColor;
-  };
-
-  const onMouseLeave = (color, bgColor) => {
-    /* For the button */
-    const topButton = document.getElementById("topButton");
-    topButton.style.color = color;
-    topButton.style.backgroundColor = bgColor;
-
-    /* For arrow icon */
-    const arrow = document.getElementById("arrow");
     arrow.style.color = color;
     arrow.style.backgroundColor = bgColor;
   };
 
   return (
-    <div
+    <button
+      ref={topButtonRef}
+      type="button"
       onClick={GoUpEvent}
       id="topButton"
+      aria-label="Back to top"
       style={{
         color: theme.body,
         backgroundColor: theme.text,
         border: `solid 1px ${theme.text}`,
       }}
       title="Go up"
-      onMouseEnter={() => onMouseEnter(theme.text, theme.body)}
-      onMouseLeave={() => onMouseLeave(theme.body, theme.text)}
+      onMouseEnter={() => setHoverColors(theme.text, theme.body)}
+      onMouseLeave={() => setHoverColors(theme.body, theme.text)}
     >
-      <i className="fas fa-arrow-up" id="arrow" aria-hidden="true" />
-    </div>
+      <i
+        className="fas fa-arrow-up"
+        id="arrow"
+        ref={arrowRef}
+        aria-hidden="true"
+      />
+    </button>
   );
 }

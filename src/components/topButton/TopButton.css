@@ -8,4 +8,11 @@
   outline: none;
   border-radius: 2rem;
   font-size: 1.5rem;
+  font-family: inherit;
+  border: 0;
+}
+
+#topButton:focus-visible {
+  outline: 3px solid #0e6ba8;
+  outline-offset: 3px;
 }

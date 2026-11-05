@@ -1,0 +1,419 @@
+.opensource-page {
+  width: min(92%, 1180px);
+  margin: 0 auto;
+  padding: 1.5rem 0 4rem;
+}
+
+.opensource-section-heading {
+  margin: 0 0 1rem;
+}
+
+.opensource-section-heading h2 {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+}
+
+.opensource-section-heading > p {
+  max-width: 760px;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.opensource-summary,
+.opensource-distributions,
+.opensource-records {
+  margin-top: 2rem;
+}
+
+.opensource-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.opensource-summary-card,
+.opensource-chart-card,
+.opensource-record-empty {
+  min-width: 0;
+  border: 1px solid;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07);
+}
+
+.opensource-summary-card {
+  padding: 1rem;
+}
+
+.opensource-summary-icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+  color: #0e6ba8;
+  font-size: 28px;
+}
+
+.opensource-summary-value {
+  margin: 0.6rem 0 0.15rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.opensource-summary-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.98rem;
+}
+
+.opensource-summary-card > p:last-child {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.opensource-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.opensource-chart-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  grid-template-areas:
+    "heading heading"
+    "summary summary"
+    "legend legend"
+    "note note";
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem;
+}
+
+.opensource-chart-card h3 {
+  grid-area: heading;
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.opensource-chart-note {
+  grid-area: note;
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.opensource-chart-summary {
+  grid-area: summary;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.opensource-chart-total {
+  display: grid;
+  gap: 0.1rem;
+  margin: 0;
+}
+
+.opensource-chart-total span:first-child {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.opensource-chart-total span:last-child {
+  color: var(--portfolio-secondary, #4a4a4a);
+  font-size: 0.8rem;
+}
+
+.opensource-chart-donut {
+  display: grid;
+  width: 104px;
+  aspect-ratio: 1;
+  flex: 0 0 104px;
+  place-items: center;
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(-90deg);
+}
+
+.opensource-chart-donut::before {
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  background: var(--opensource-donut-hole, #fff);
+  content: "";
+}
+
+.opensource-legend {
+  grid-area: legend;
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.88rem;
+}
+
+.opensource-legend li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  min-width: 0;
+  padding: 0.2rem 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.opensource-legend-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.opensource-legend-swatch {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+}
+
+.opensource-records-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.opensource-contribution-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin: 1rem 0;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid #0e6ba8;
+  background: rgba(14, 107, 168, 0.06);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.opensource-contribution-metrics p {
+  margin: 0;
+}
+
+.opensource-activity,
+.opensource-repository-contributions {
+  margin-top: 2rem;
+}
+
+.opensource-activity-bars {
+  display: grid;
+  height: 128px;
+  grid-auto-columns: minmax(3px, 1fr);
+  grid-auto-flow: column;
+  align-items: end;
+  gap: 2px;
+  padding: 0.75rem;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  border-radius: 6px;
+  background: rgba(127, 127, 127, 0.04);
+}
+
+.opensource-activity-bars span {
+  min-height: 3px;
+  border-radius: 2px 2px 0 0;
+  background: #0c9d58;
+}
+
+.opensource-activity-unavailable {
+  margin: 0;
+  padding: 1rem;
+  border: 1px dashed rgba(127, 127, 127, 0.45);
+  border-radius: 5px;
+  color: inherit;
+}
+
+.opensource-repository-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem 1rem;
+}
+
+.opensource-repository-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  border-radius: 4px;
+  color: inherit;
+  font-size: 0.86rem;
+  text-decoration: none;
+}
+
+.opensource-repository-row:hover,
+.opensource-repository-row:focus-visible {
+  border-color: #0e6ba8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.opensource-refresh-warning {
+  color: #8a4b08;
+  font-size: 0.84rem;
+}
+
+.opensource-refresh-button {
+  min-height: 38px;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.opensource-record-list {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.opensource-record-list > h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.opensource-record-card {
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.opensource-record-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.opensource-record-heading img {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 50%;
+}
+
+.opensource-record-heading > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.opensource-record-heading a {
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.opensource-record-heading p,
+.opensource-record-card > p {
+  margin: 0.2rem 0 0;
+  color: inherit;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.opensource-state {
+  padding: 0.2rem 0.4rem;
+  border-radius: 10px;
+  background: rgba(127, 127, 127, 0.13);
+  font-size: 0.72rem;
+  text-transform: capitalize;
+}
+
+.opensource-state--open {
+  color: #176b34;
+}
+.opensource-state--merged {
+  color: #56309a;
+}
+.opensource-state--closed {
+  color: #a12632;
+}
+
+.opensource-record-empty {
+  padding: 1.1rem;
+}
+
+.opensource-record-empty h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.opensource-record-empty p {
+  margin: 0 0 0.8rem;
+  font-size: 0.92rem;
+}
+
+.opensource-record-empty a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #0e6ba8;
+  text-underline-offset: 3px;
+}
+
+.opensource-record-empty a:focus-visible {
+  outline: 2px solid #0c9d58;
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .opensource-summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .opensource-chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .opensource-page {
+    width: 90%;
+    padding-top: 0.5rem;
+  }
+
+  .opensource-summary-grid,
+  .opensource-records-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .opensource-chart-card {
+    grid-template-columns: minmax(0, 1fr) 104px;
+    gap: 0.75rem;
+    padding: 0.8rem;
+  }
+
+  .opensource-chart-donut {
+    width: 84px;
+    flex-basis: 84px;
+  }
+
+  .opensource-chart-donut::before {
+    inset: 10px;
+  }
+
+  .opensource-repository-list {
+    grid-template-columns: 1fr;
+  }
+
+  .opensource-records-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -11,7 +11,7 @@
 .skills-header {
   font-size: 60px;
   line-height: normal;
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
   text-align: center;
 }
 
@@ -21,7 +21,7 @@
 
 .skills-text-div {
   /* margin-left: 50px; */
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
 }
 
 .skills-main-div > * {
@@ -38,7 +38,7 @@
 .skills-heading {
   font-size: 56px;
   font-weight: 400;
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
   line-height: normal;
 }
 

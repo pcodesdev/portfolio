@@ -5,7 +5,7 @@
 }
 
 .issue-chart-header {
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
 }
 
 @media (max-width: 1380px) {

@@ -1,20 +1,23 @@
 {
   "data": [
     {
-      "id": "R_kgDOID4iDQ",
-      "name": "gpt-3",
-      "createdAt": "2022-09-24T19:23:07Z",
-      "url": "https://github.com/pcodesdev/gpt-3",
-      "description": "Fully responsive modern UI/UX website built with React JS, showcasing GPT-3 AI capabilities. Features include mobile-first design, smooth animations, gradient effects, and optimized component architecture. Demonstrates proficiency in React hooks, CSS3, responsive layouts, and modern web design principles.",
-      "isFork": false,
+      "id": "edumetrics",
+      "name": "EduMetrics",
+      "createdAt": "2026-02-20T08:07:29Z",
+      "url": "https://github.com/pcodesdev/EduMetrics",
+      "homepage": "https://edumetricsschool.vercel.app/",
+      "projectType": "Original full-stack application",
+      "description": "Student performance analytics platform that imports assessment files, normalizes data, and produces class insights and printable reports.",
+      "useCase": "Schools can turn heterogeneous CSV, Excel, and ODS assessment data into student, subject, and term views.",
+      "stack": "Python, FastAPI, pandas, React, Vite, Tailwind CSS, Recharts",
+      "engineeringFocus": "File-mapping workflows, deterministic analytics, report exports, and temporary upload cleanup.",
+      "image": null,
+      "imageAlt": "Illustration of student assessment analytics with class performance charts.",
+      "fallbackImage": "/images/projects/edumetrics.svg",
       "languages": [
         {
-          "name": "HTML",
-          "iconifyClass": "logos-html-5"
-        },
-        {
-          "name": "CSS",
-          "iconifyClass": "logos-css-3"
+          "name": "Python",
+          "iconifyClass": "logos-python"
         },
         {
           "name": "JavaScript",
@@ -23,39 +26,133 @@
       ]
     },
     {
-      "id": "R_kgDOKuYlIQ",
-      "name": "task-list",
+      "id": "react-movie-app",
+      "name": "React Movie App",
+      "createdAt": "2026-02-08T08:50:25Z",
+      "url": "https://github.com/pcodesdev/react-movie-app",
+      "projectType": "Sample application",
+      "description": "Movie discovery sample integrating TMDB search and Appwrite-backed search analytics.",
+      "useCase": "Explore movie information and trending searches in a responsive discovery interface.",
+      "stack": "React 19, Vite, Tailwind CSS, Appwrite, TMDB API",
+      "engineeringFocus": "Debounced API search, external service configuration, and persisted search analytics.",
+      "image": "https://raw.githubusercontent.com/pcodesdev/react-movie-app/main/public/screenshots/demo-hero.png",
+      "imageAlt": "React Movie App hero and search interface",
+      "fallbackImage": "/images/projects/movie-watchlist.svg",
+      "languages": [
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        },
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        }
+      ]
+    },
+    {
+      "id": "weather-app",
+      "name": "Weather Forecast and History",
+      "createdAt": "2024-09-27T20:12:54Z",
+      "url": "https://github.com/pcodesdev/weather-app",
+      "projectType": "Sample application",
+      "description": "WeatherAPI sample that presents current conditions, a three-day forecast, and four days of historical data.",
+      "useCase": "Search for a city and compare current, forecast, and recent historical weather.",
+      "stack": "JavaScript, HTML, CSS, Node.js, Express, WeatherAPI",
+      "engineeringFocus": "Server-side API-key handling and combining current, forecast, and historical responses.",
+      "image": "https://raw.githubusercontent.com/pcodesdev/weather-app/main/iPhone%2014%20%26%2015%20Pro%20Max%20-%201.png",
+      "imageAlt": "Weather app mobile screenshot",
+      "fallbackImage": "/images/projects/project-generic.svg",
+      "languages": [
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        }
+      ]
+    },
+    {
+      "id": "movie-watch-list",
+      "name": "Movie Watch List",
+      "createdAt": "2024-10-11T20:02:11Z",
+      "url": "https://github.com/pcodesdev/Movie-Watch-List",
+      "projectType": "Learning project",
+      "description": "A browser-based movie search and watchlist app using the OMDb API and local storage.",
+      "useCase": "Search for movies, inspect details, and save titles to a personal watchlist.",
+      "stack": "HTML, CSS, JavaScript, OMDb API, localStorage",
+      "engineeringFocus": "REST API responses, client-side state persistence, and a two-page search/watchlist flow.",
+      "image": null,
+      "imageAlt": "Illustration of a movie search and saved watchlist interface.",
+      "fallbackImage": "/images/projects/movie-watchlist.svg",
+      "languages": [
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        }
+      ]
+    },
+    {
+      "id": "menu-cart",
+      "name": "Cart-Menu",
+      "createdAt": "2024-03-24T15:06:23Z",
+      "url": "https://github.com/pcodesdev/menu-cart",
+      "homepage": "https://cart-menu-v1.vercel.app/",
+      "projectType": "Front-end demo",
+      "description": "Restaurant menu and cart demo with item selection, order totals, and a simulated checkout flow.",
+      "useCase": "Select menu items, adjust an order, review totals, and step through a demonstration checkout.",
+      "stack": "JavaScript, HTML, CSS",
+      "engineeringFocus": "Client-side cart state, total calculation, input validation, and responsive presentation.",
+      "image": "https://raw.githubusercontent.com/pcodesdev/menu-cart/main/assets/desktop-food.jpg",
+      "imageAlt": "Food image from the Cart-Menu demo",
+      "fallbackImage": "/images/projects/project-generic.svg",
+      "languages": [
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        }
+      ]
+    },
+    {
+      "id": "task-list",
+      "name": "Task List",
       "createdAt": "2023-11-16T19:15:24Z",
       "url": "https://github.com/pcodesdev/task-list",
-      "description": "Interactive todo list application with captivating visual effects and smooth animations. Built with vanilla JavaScript, featuring local storage persistence, drag-and-drop functionality, task filtering, and dynamic UI updates. Showcases DOM manipulation, event handling, and modern CSS animations for enhanced user experience.",
-      "isFork": false,
+      "homepage": "https://todotasksapp.vercel.app/",
+      "projectType": "Interactive React project",
+      "description": "React task-list app with task creation, completion, deletion, sorting, and animated visual feedback.",
+      "useCase": "Organize tasks, mark completed items, and sort a personal task list.",
+      "stack": "React, Vite, JavaScript, CSS, Particles.js",
+      "engineeringFocus": "Interactive component state, task sorting, and responsive UI behavior.",
+      "image": null,
+      "imageAlt": "Illustration of a task organizer with a checklist and progress indicator.",
+      "fallbackImage": "/images/projects/task-list.svg",
       "languages": [
-        {
-          "name": "JavaScript",
-          "iconifyClass": "logos-javascript"
-        },
-        {
-          "name": "HTML",
-          "iconifyClass": "logos-html-5"
-        },
-        {
-          "name": "CSS",
-          "iconifyClass": "logos-css-3"
-        }
-      ]
-    },
-    {
-      "id": "R_kgDOLXAbfA",
-      "name": "password-generator",
-      "createdAt": "2024-02-23T14:38:11Z",
-      "url": "https://github.com/pcodesdev/password-generator",
-      "description": "Secure password generator web application that creates two strong, random passwords with user-defined length (8-20 characters). Features one-click clipboard copying, password strength indicators, and customizable character sets including uppercase, lowercase, numbers, and special symbols. Built with JavaScript, emphasizing security best practices and user-friendly interface design.",
-      "isFork": false,
-      "languages": [
-        {
-          "name": "HTML",
-          "iconifyClass": "logos-html-5"
-        },
         {
           "name": "JavaScript",
           "iconifyClass": "logos-javascript"
@@ -63,39 +160,12 @@
         {
           "name": "CSS",
           "iconifyClass": "logos-css-3"
-        }
-      ]
-    },
-    {
-      "id": "R_kgDOISCupQ",
-      "name": "hotel_ui_ux",
-      "createdAt": "2022-10-22T10:37:17Z",
-      "url": "https://github.com/pcodesdev/hotel_ui_ux",
-      "description": "Modern hotel booking website UI/UX design featuring elegant layouts, interactive elements, and responsive design. Showcases advanced CSS techniques, grid and flexbox layouts, image galleries, and smooth scrolling effects. Demonstrates expertise in creating visually appealing, user-centric web interfaces for hospitality industry.",
-      "isFork": false,
-      "languages": [
+        },
         {
           "name": "HTML",
           "iconifyClass": "logos-html-5"
-        },
-        {
-          "name": "CSS",
-          "iconifyClass": "logos-css-3"
-        },
-        {
-          "name": "JavaScript",
-          "iconifyClass": "logos-javascript"
         }
       ]
-    },
-    {
-      "id": "MDEwOlJlcG9zaXRvcnkyMzgwMzY2NjQ=",
-      "name": "dice",
-      "createdAt": "2020-02-03T18:47:54Z",
-      "url": "https://github.com/pcodesdev/dice",
-      "description": "Interactive dice rolling game built with JavaScript. Features random number generation, animated dice rolls, score tracking, and multiplayer functionality. Demonstrates fundamental programming concepts including random algorithms, DOM manipulation, game logic implementation, and event-driven programming.",
-      "isFork": false,
-      "languages": []
     }
   ]
 }

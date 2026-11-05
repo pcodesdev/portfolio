@@ -1,0 +1,71 @@
+{
+  "excludedProjects": [],
+  "excludedPublications": [],
+  "pinnedProjects": [
+    "edumetrics"
+  ],
+  "pinnedPublications": [
+    "9d5541ff07cb",
+    "7d9441d0b6c6"
+  ],
+  "projects": {
+    "edumetrics": {
+      "title": "EduMetrics",
+      "description": "Student performance analytics platform that imports assessment files, normalizes data, and produces class insights and printable reports.",
+      "projectType": "Original full-stack application",
+      "useCase": "Schools can turn heterogeneous CSV, Excel, and ODS assessment data into student, subject, and term views.",
+      "engineeringFocus": "File-mapping workflows, deterministic analytics, report exports, and temporary upload cleanup.",
+      "stack": "Python, FastAPI, pandas, React, Vite, Tailwind CSS, Recharts",
+      "imageAlt": "Illustration of student assessment analytics with class performance charts.",
+      "fallbackImage": "/images/projects/edumetrics.svg"
+    },
+    "react-movie-app": {
+      "title": "React Movie App",
+      "description": "Movie discovery sample integrating TMDB search and Appwrite-backed search analytics.",
+      "projectType": "Sample application",
+      "useCase": "Explore movie information and trending searches in a responsive discovery interface.",
+      "engineeringFocus": "Debounced API search, external service configuration, and persisted search analytics.",
+      "stack": "React 19, Vite, Tailwind CSS, Appwrite, TMDB API",
+      "fallbackImage": "/images/projects/project-generic.svg"
+    },
+    "weather-app": {
+      "title": "Weather Forecast and History",
+      "description": "WeatherAPI sample that presents current conditions, a three-day forecast, and four days of historical data.",
+      "projectType": "Sample application",
+      "useCase": "Search for a city and compare current, forecast, and recent historical weather.",
+      "engineeringFocus": "Server-side API-key handling and combining current, forecast, and historical responses.",
+      "stack": "JavaScript, HTML, CSS, Node.js, Express, WeatherAPI",
+      "fallbackImage": "/images/projects/project-generic.svg"
+    },
+    "movie-watch-list": {
+      "title": "Movie Watch List",
+      "description": "A browser-based movie search and watchlist app using the OMDb API and local storage.",
+      "projectType": "Learning project",
+      "useCase": "Search for movies, inspect details, and save titles to a personal watchlist.",
+      "engineeringFocus": "REST API responses, client-side state persistence, and a two-page search/watchlist flow.",
+      "stack": "HTML, CSS, JavaScript, OMDb API, localStorage",
+      "imageAlt": "Illustration of a movie search and saved watchlist interface.",
+      "fallbackImage": "/images/projects/movie-watchlist.svg"
+    },
+    "menu-cart": {
+      "title": "Cart-Menu",
+      "description": "Restaurant menu and cart demo with item selection, order totals, and a simulated checkout flow.",
+      "projectType": "Front-end demo",
+      "useCase": "Select menu items, adjust an order, review totals, and step through a demonstration checkout.",
+      "engineeringFocus": "Client-side cart state, total calculation, input validation, and responsive presentation.",
+      "stack": "JavaScript, HTML, CSS",
+      "fallbackImage": "/images/projects/project-generic.svg"
+    },
+    "task-list": {
+      "title": "Task List",
+      "description": "React task-list app with task creation, completion, deletion, sorting, and animated visual feedback.",
+      "projectType": "Interactive React project",
+      "useCase": "Organize tasks, mark completed items, and sort a personal task list.",
+      "engineeringFocus": "Interactive component state, task sorting, and responsive UI behavior.",
+      "stack": "React, Vite, JavaScript, CSS, Particles.js",
+      "imageAlt": "Illustration of a task organizer with a checklist and progress indicator.",
+      "fallbackImage": "/images/projects/task-list.svg"
+    }
+  },
+  "publications": {}
+}

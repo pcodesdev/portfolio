@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./PullRequestCard.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Fade } from "react-reveal";
+import { Fade } from "../motion/Reveal";
 
 class PullRequestCard extends Component {
   render() {
@@ -11,21 +11,21 @@ class PullRequestCard extends Component {
     if (pullRequest["state"] === "OPEN") {
       iconPR = {
         iconifyClass: "octicon:git-pull-request",
-        style: { color: "#28a745" },
+        style: { color: "var(--color-success)" },
       };
-      bgColor = "#dcffe4";
+      bgColor = "var(--color-success-bg)";
     } else if (pullRequest["state"] === "MERGED") {
       iconPR = {
         iconifyClass: "octicon:git-merge",
-        style: { color: "#6f42c1" },
+        style: { color: "var(--color-merged)" },
       };
-      bgColor = "#f5f0ff";
+      bgColor = "var(--color-merged-bg)";
     } else {
       iconPR = {
         iconifyClass: "octicon:git-pull-request",
-        style: { color: "#d73a49" },
+        style: { color: "var(--color-error)" },
       };
-      bgColor = "#ffdce0";
+      bgColor = "var(--color-error-bg)";
     }
 
     var subtitleString =
@@ -111,6 +111,8 @@ class PullRequestCard extends Component {
                 <a
                   style={{ color: iconPR.style.color }}
                   href={pullRequest["baseRepository"]["url"]}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {pullRequest["baseRepository"]["owner"]["login"]}/
                   {pullRequest["baseRepository"]["name"]}

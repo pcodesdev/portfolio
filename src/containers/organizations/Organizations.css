@@ -1,7 +1,7 @@
 .organizations-header {
   font-size: 40px;
   line-height: 1.1;
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
   text-align: center;
   margin-left: 10px;
   margin-right: 10px;
@@ -10,7 +10,7 @@
 .organizations-subtitle {
   font-size: 20px;
   line-height: 1.5;
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
   text-align: center;
   margin: 20px auto;
   max-width: 90%;
@@ -20,9 +20,17 @@
 .organizations-subheader {
   font-size: 30px;
   line-height: 1.1;
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
   text-align: center;
   margin: 20px 10px 15px 10px;
+}
+
+.organizations-profile-link {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 10px;
+  font-family: var(--font-body);
+  font-size: 16px;
 }
 
 #organizations {

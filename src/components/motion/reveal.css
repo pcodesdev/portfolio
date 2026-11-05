@@ -1,0 +1,82 @@
+.motion-reveal--pending {
+  opacity: 0;
+  transform: translate3d(
+    var(--motion-offset-x, 0px),
+    var(--motion-offset-y, 0px),
+    0
+  );
+}
+
+.motion-reveal--pending:focus-within {
+  opacity: 1;
+  transform: none;
+}
+
+.motion-reveal--visible.motion-reveal--fade {
+  animation: motion-fade-enter 340ms ease-out both;
+}
+
+.motion-reveal--visible.motion-reveal--flip {
+  animation: motion-scale-enter 340ms ease-out both;
+}
+
+.motion-reveal--top {
+  --motion-offset-x: 0px;
+  --motion-offset-y: -12px;
+}
+
+.motion-reveal--bottom {
+  --motion-offset-x: 0px;
+  --motion-offset-y: 12px;
+}
+
+.motion-reveal--left {
+  --motion-offset-x: -12px;
+  --motion-offset-y: 0px;
+}
+
+.motion-reveal--right {
+  --motion-offset-x: 12px;
+  --motion-offset-y: 0px;
+}
+
+.motion-reveal--still {
+  --motion-offset-x: 0px;
+  --motion-offset-y: 0px;
+}
+
+@keyframes motion-fade-enter {
+  from {
+    opacity: 0.94;
+    transform: translate3d(
+      var(--motion-offset-x, 0px),
+      var(--motion-offset-y, 0px),
+      0
+    );
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes motion-scale-enter {
+  from {
+    opacity: 0.94;
+    transform: scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal--pending,
+  .motion-reveal--visible {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    animation-delay: 0ms !important;
+  }
+}

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { Fade } from "react-reveal";
+import { Fade } from "../motion/Reveal";
 import "./PullRequestChart.css";
 import PullRequestData from "../../shared/opensource/pull_requests.json";
+import { statusPalette } from "../../theme";
 
 class PullRequestChart extends Component {
   render() {
@@ -15,8 +16,12 @@ class PullRequestChart extends Component {
             PullRequestData["merged"],
             PullRequestData["closed"],
           ],
-          backgroundColor: ["#28a745", "#6f42c1", "#d73a49"],
-          hoverBackgroundColor: ["#28a745dd", "#6f42c1dd", "#d73a49dd"],
+          backgroundColor: [
+            statusPalette.success,
+            statusPalette.merged,
+            statusPalette.error,
+          ],
+          hoverBackgroundColor: ["#176B34DD", "#56309ADD", "#A12632DD"],
         },
       ],
     };
@@ -26,18 +31,23 @@ class PullRequestChart extends Component {
         <Fade bottom duration={2000} distance="20px">
           <h2 className="pr-chart-header">Pull Request Distribution</h2>
         </Fade>
-        <Doughnut
-          data={data}
-          options={{
-            padding: "0",
-            margin: "0",
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-              duration: 4000,
-            },
-          }}
-        />
+        <div
+          role="img"
+          aria-label={`Pull request distribution: ${PullRequestData.open} open, ${PullRequestData.merged} merged, ${PullRequestData.closed} closed.`}
+        >
+          <Doughnut
+            data={data}
+            options={{
+              padding: "0",
+              margin: "0",
+              responsive: true,
+              maintainAspectRatio: true,
+              animation: {
+                duration: 4000,
+              },
+            }}
+          />
+        </div>
       </div>
     );
   }

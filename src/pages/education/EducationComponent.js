@@ -9,7 +9,7 @@ import EducationImg from "./EducationImg";
 import { competitiveSites } from "../../portfolio";
 import { certifications } from "../../portfolio";
 import "./EducationComponent.css";
-import { Fade } from "react-reveal";
+import { Fade } from "../../components/motion/Reveal";
 
 class Education extends Component {
   render() {
@@ -32,7 +32,7 @@ class Education extends Component {
                   Education
                 </h1>
                 <h3 className="heading-sub-text" style={{ color: theme.text }}>
-                  Basic Qualification and Certifcations
+                  Degrees, courses, and certifications
                 </h3>
                 <CompetitiveSites logos={competitiveSites.competitiveSites} />
               </div>

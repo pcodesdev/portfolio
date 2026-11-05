@@ -9,8 +9,9 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid #ddd;
-  background: white;
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
   cursor: pointer;
   font-size: 20px;
   display: flex;
@@ -25,11 +26,19 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+.theme-btn:focus-visible,
+.theme-item:focus-visible,
+.theme-backdrop:focus-visible {
+  outline: 3px solid var(--color-primary-hover);
+  outline-offset: 3px;
+}
+
 .theme-menu {
   position: absolute;
   top: 50px;
   right: 0;
-  background: white;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   padding: 8px;
@@ -43,6 +52,7 @@
   padding: 8px 12px;
   border: none;
   background: transparent;
+  color: var(--color-text-primary);
   text-align: left;
   cursor: pointer;
   border-radius: 4px;
@@ -51,12 +61,13 @@
 }
 
 .theme-item:hover {
-  background: #f0f0f0;
+  background: var(--color-primary);
+  color: #ffffff;
 }
 
 .theme-item.active {
-  background: #e3f2fd;
-  color: #0e6ba8;
+  background: var(--color-primary);
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -67,6 +78,9 @@
   right: 0;
   bottom: 0;
   z-index: 1000;
+  border: 0;
+  padding: 0;
+  background: transparent;
 }
 
 /* Mobile responsive - move button below header */

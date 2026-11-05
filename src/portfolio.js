@@ -1,368 +1,216 @@
 /* Change this file to get your personal Porfolio */
 
+import mediumPublications from "./shared/medium/publications.json";
+import { limitFeaturedItems } from "./shared/featuredItems";
+import {
+  seo,
+  greeting,
+  homeHighlights,
+  aboutPageData,
+  expertiseAreas,
+  projectCaseStudyMeta,
+} from "./profileData";
+
 // Website related settings
 const settings = {
   isSplash: false, // Change this to false if you don't want Splash screen.
 };
 
-//SEO Related settings
-const seo = {
-  title: "Peter Njuguna | Full Stack Developer & Cloud Architect Portfolio",
-  description:
-    "Portfolio of Peter Njuguna, Full Stack Developer and Cloud Architect specializing in React, Node.js, Python, AWS, Azure. 5+ years experience building scalable web applications and training 2000+ participants in digital skills across Kenya.",
-  og: {
-    title: "Peter Njuguna | Full Stack Developer & Cloud Architect",
-    type: "website",
-    url: "https://pcodesdev.github.io/",
-  },
-};
-
-//Home Page
-const greeting = {
-  title: "Peter Njuguna",
-  logo_name: "PeterNjuguna",
-  nickname: "pcodesdev",
-  subTitle:
-    "Full Stack Developer & Cloud Architect with 5+ years building scalable web applications. Expert in React, Node.js, Python, AWS, and Azure. Trained 2000+ participants across Nairobi, Kakuma, and Dadaab in digital skills with 98% satisfaction and 62% job placement success. Passionate about AI/ML, cloud technologies, and transforming complex problems into user-friendly solutions. Ready to drive innovation and deliver measurable results.",
-  resumeLink: "https://github.com/pcodesdev/",
-  portfolio_repository: "https://github.com/pcodesdev/",
-  githubProfile: "https://github.com/pcodesdev/",
-};
+// Profile content is imported from profileData.js.
 
 const socialMediaLinks = [
-  /* Your Social Media Link */
-  // github: "https://github.com/pcodesdev/",
-  // linkedin: "https://www.linkedin.com/in/pcodesdev/",
-  // gmail: "njugunapm23@gmail.com",
-  // gitlab: "https://gitlab.com/pcodesdev",
-  // twitter: "https://twitter.com/pcodesdev",
-
   {
     name: "Github",
     link: "https://github.com/pcodesdev/",
-    fontAwesomeIcon: "fa-github", // Reference https://fontawesome.com/icons/github?style=brands
-    backgroundColor: "#181717", // Reference https://simpleicons.org/?q=github
+    fontAwesomeIcon: "fa-github",
+    backgroundColor: "#181717",
   },
   {
     name: "LinkedIn",
     link: "https://www.linkedin.com/in/pcodesdev/",
-    fontAwesomeIcon: "fa-linkedin-in", // Reference https://fontawesome.com/icons/linkedin-in?style=brands
-    backgroundColor: "#0077B5", // Reference https://simpleicons.org/?q=linkedin
+    fontAwesomeIcon: "fa-linkedin-in",
+    backgroundColor: "#0077B5",
+  },
+  {
+    name: "Medium profile",
+    link: "https://medium.com/@pcodesdev",
+    fontAwesomeIcon: "fa-medium",
+    backgroundColor: "#000000",
   },
   {
     name: "YouTube",
     link: "https://www.youtube.com/channel/UCkhyflbByfOBOkQ8hA0RoTg",
-    fontAwesomeIcon: "fa-youtube", // Reference https://fontawesome.com/icons/youtube?style=brands
-    backgroundColor: "#FF0000", // Reference https://simpleicons.org/?q=youtube
+    fontAwesomeIcon: "fa-youtube",
+    backgroundColor: "#FF0000",
   },
   {
     name: "Gmail",
     link: "mailto:njugunapm23@gmail.com",
-    fontAwesomeIcon: "fa-google", // Reference https://fontawesome.com/icons/google?style=brands
-    backgroundColor: "#D14836", // Reference https://simpleicons.org/?q=gmail
+    fontAwesomeIcon: "fa-google",
+    backgroundColor: "#D14836",
   },
   {
     name: "X-Twitter",
     link: "https://twitter.com/pcodesdev",
-    fontAwesomeIcon: "fa-x-twitter", // Reference https://fontawesome.com/icons/x-twitter?f=brands&s=solid
-    backgroundColor: "#000000", // Reference https://simpleicons.org/?q=x
+    icon: "x",
+    backgroundColor: "#000000",
   },
 ];
 
 const skills = {
   data: [
     {
-      title: "Digital Skills Training",
+      title: "Digital Programme Delivery",
       fileName: "DataScienceImg",
       skills: [
-        "⚡ I specialize in digital skills training with a strong focus on digital competencies, web design and developemt, digital marketing, and tech support.",
-        "⚡ My expertise includes identifying and addressing technical skills gaps, creating industry-standard portfolios, and guiding participants through project-based learning.",
-        "⚡ I am dedicated to fostering innovation and entrepreneurship, ensuring that learners are equipped with the necessary skills to excel in the digital economy.",
+        "⚡ Delivering technology-enabled training, learning environments, and programme support for youth and community development initiatives.",
+        "⚡ Coordinating learning logistics, partner engagement, training delivery, and operational support across multiple locations and programme streams.",
+        "⚡ Translating technical and digital learning objectives into practical activities, learner support, and measurable programme outcomes.",
       ],
       softwareSkills: [
         {
           skillName: "Google Workspace",
           fontAwesomeClassname: "devicon:google",
-          style: {
-            backgroundColor: "transparent",
-          },
-        },
-        {
-          skillName: "Moodle",
-          fontAwesomeClassname: "devicon:moodle",
-          style: {
-            backgroundColor: "transparent",
-          },
-        },
-        {
-          skillName: "Replit",
-          fontAwesomeClassname: "logos:replit",
-          style: {
-            backgroundColor: "transparent",
-          },
-        },
-        {
-          skillName: "Zoom",
-          fontAwesomeClassname: "logos:zoom",
-          style: {
-            backgroundColor: "white",
-            color: "transparent",
-          },
-        },
-        {
-          skillName: "Canva",
-          fontAwesomeClassname: "devicon:canva",
-          style: {
-            backgroundColor: "white",
-            color: "transparent",
-          },
-        },
-        {
-          skillName: "Slack",
-          fontAwesomeClassname: "devicon:slack",
-          style: {
-            backgroundColor: "transparent",
-          },
+          style: { backgroundColor: "transparent" },
         },
         {
           skillName: "Microsoft Teams",
           fontAwesomeClassname: "logos:microsoft-teams",
-          style: {
-            backgroundColor: "transparent",
-          },
+          style: { backgroundColor: "transparent" },
         },
         {
-          skillName: "Padlet",
-          fontAwesomeClassname: "fa6-brands:padlet",
-          style: {
-            backgroundColor: "transparent",
-            color: "#3776AB",
-          },
+          skillName: "Moodle",
+          fontAwesomeClassname: "devicon:moodle",
+          style: { backgroundColor: "transparent" },
+        },
+        {
+          skillName: "Canva",
+          fontAwesomeClassname: "devicon:canva",
+          style: { backgroundColor: "white", color: "transparent" },
+        },
+        {
+          skillName: "Zoom",
+          fontAwesomeClassname: "logos:zoom",
+          style: { backgroundColor: "white", color: "transparent" },
         },
         {
           skillName: "Notion",
           fontAwesomeClassname: "mingcute:notion-fill",
-          style: {
-            color: "#000",
-          },
-        },
-        {
-          skillName: "One on one coaching",
-          fontAwesomeClassname: "mdi:google-classroom",
-          style: {
-            color: "#000",
-          },
+          style: { color: "#000" },
         },
       ],
     },
     {
-      title: "Full Stack Development",
+      title: "Full-Stack Development",
       fileName: "FullStackImg",
       skills: [
-        "⚡ Architecting responsive web frontends leveraging React and Next.js frameworks for seamless cross-device compatibility",
-        "⚡ Engineering mobile applications with React Native and Kotlin, optimizing performance and user experience across iOS and Android platforms",
-        "⚡ Crafting scalable application backends utilizing Node with Express, Django, and PHP, ensuring efficient server-side logic and data processing",
-        "⚡ Designing robust database architectures with MongoDB and MySQL, focusing on high availability, fault tolerance, and data integrity",
-        "⚡ Mastering Git version control for efficient collaboration and project history management, and proficiently utilizing GitHub for remote repository hosting and collaborative development workflows",
+        "⚡ Building responsive, user-focused web applications with React and TypeScript, with an emphasis on practical front-end architecture and maintainability.",
+        "⚡ Developing front-end and service-layer logic for data-driven workflows, API integration, and structured application behaviour.",
+        "⚡ Applying relational thinking to data models, form validation, and consistency across application workflows.",
+        "⚡ Working with offline-first patterns, local persistence, and structured import/export flows suited to environments with limited connectivity.",
       ],
       softwareSkills: [
         {
-          skillName: "HTML5",
-          fontAwesomeClassname: "simple-icons:html5",
-          style: {
-            color: "#E34F26",
-          },
+          skillName: "React",
+          fontAwesomeClassname: "simple-icons:react",
+          style: { color: "#61DAFB" },
         },
         {
-          skillName: "CSS3",
-          fontAwesomeClassname: "fa-css3",
-          style: {
-            color: "#1572B6",
-          },
-        },
-        {
-          skillName: "Sass",
-          fontAwesomeClassname: "simple-icons:sass",
-          style: {
-            color: "#CC6699",
-          },
+          skillName: "TypeScript",
+          fontAwesomeClassname: "simple-icons:typescript",
+          style: { color: "#3178C6" },
         },
         {
           skillName: "JavaScript",
           fontAwesomeClassname: "simple-icons:javascript",
-          style: {
-            backgroundColor: "#000000",
-            color: "#F7DF1E",
-          },
+          style: { backgroundColor: "#000000", color: "#F7DF1E" },
         },
         {
-          skillName: "ReactJS",
-          fontAwesomeClassname: "simple-icons:react",
-          style: {
-            color: "#61DAFB",
-          },
+          skillName: "HTML5",
+          fontAwesomeClassname: "simple-icons:html5",
+          style: { color: "#E34F26" },
         },
         {
-          skillName: "Nextjs",
-          fontAwesomeClassname: "logos:nextjs-icon",
-          style: {
-            color: "#FFFFFF",
-          },
-        },
-        {
-          skillName: "Tailwind CSS",
-          fontAwesomeClassname: "skill-icons:tailwindcss-light",
-          style: {
-            color: "#f4f2ed",
-          },
-        },
-        {
-          skillName: "Git",
-          fontAwesomeClassname: "vscode-icons:file-type-git",
-          style: {
-            color: "#dd4c35",
-          },
-        },
-        {
-          skillName: "GitHub",
-          fontAwesomeClassname: "mdi:github",
-          style: {
-            color: "#000000",
-          },
+          skillName: "CSS3",
+          fontAwesomeClassname: "fa-css3",
+          style: { color: "#1572B6" },
         },
         {
           skillName: "NodeJS",
           fontAwesomeClassname: "devicon-plain:nodejs-wordmark",
-          style: {
-            color: "#339933",
-          },
+          style: { color: "#339933" },
         },
         {
-          skillName: "NPM",
-          fontAwesomeClassname: "simple-icons:npm",
-          style: {
-            color: "#CB3837",
-          },
+          skillName: "Git",
+          fontAwesomeClassname: "vscode-icons:file-type-git",
+          style: { color: "#dd4c35" },
         },
         {
-          skillName: "MongoDB",
-          fontAwesomeClassname: "logos:mongodb-icon",
-          style: {
-            color: "#01ec64",
-          },
+          skillName: "GitHub",
+          fontAwesomeClassname: "mdi:github",
+          style: { color: "#000000" },
         },
         {
-          skillName: "MySQL",
-          fontAwesomeClassname: "logos:mysql",
-          style: {
-            color: "#00758f",
-          },
-        },
-        {
-          skillName: "React Native",
-          fontAwesomeClassname: "tabler:brand-react-native",
-          style: {
-            color: "#61DAFB",
-          },
-        },
-        {
-          skillName: "Kotlin",
-          fontAwesomeClassname: "skill-icons:kotlin-light",
-          style: {
-            color: "#f4f2ed",
-          },
-        },
-        {
-          skillName: "python",
-          fontAwesomeClassname: "logos:python",
-          style: {
-            color: "#f4f2ed",
-          },
-        },
-        {
-          skillName: "Django",
-          fontAwesomeClassname: "skill-icons:django",
-          style: {
-            color: "#f4f2ed",
-          },
-        },
-        {
-          skillName: "PHP",
-          fontAwesomeClassname: "skill-icons:php-dark",
-          style: {
-            color: "#f4f2ed",
-          },
+          skillName: "SQL",
+          fontAwesomeClassname: "simple-icons:postgresql",
+          style: { color: "#336791" },
         },
       ],
     },
     {
-      title: "Cloud Infrastructure",
+      title: "Cloud Solutions",
       fileName: "CloudInfraImg",
       skills: [
-        "⚡ Proficient in orchestrating multi-cloud environments, leveraging the strengths of various cloud platforms for optimized infrastructure deployment",
-        "⚡ Expertise in provisioning and managing virtual machine instances for web hosting, coupled with advanced database integration techniques",
-        "⚡ Specialized in configuring and optimizing data streaming pipelines between databases and servers across Google Cloud Platform (GCP) and Amazon Web Services (AWS), ensuring high throughput and low latency",
+        "⚡ Design and deployment thinking for cloud-enabled systems, service reliability, and structured application hosting approaches.",
+        "⚡ Working with infrastructure reliability, access control, secure deployment practices, and automation-minded workflows.",
+        "⚡ Applying cloud and DevOps concepts to improve maintainability, operational readiness, and deployment consistency.",
       ],
       softwareSkills: [
         {
-          skillName: "GCP",
-          fontAwesomeClassname: "devicon:googlecloud",
-          style: {
-            color: "#4285F4",
-          },
+          skillName: "Cloud Architecture",
+          fontAwesomeClassname: "simple-icons:googlecloud",
+          style: { color: "#4285F4" },
         },
         {
-          skillName: "AWS",
-          fontAwesomeClassname: "simple-icons:amazonaws",
-          style: {
-            color: "#FF9900",
-          },
+          skillName: "Deployment",
+          fontAwesomeClassname: "simple-icons:vercel",
+          style: { color: "#000000" },
         },
         {
-          skillName: "Heroku",
-          fontAwesomeClassname: "devicon:heroku",
-          style: {
-            color: "#6762a6",
-          },
+          skillName: "Security",
+          fontAwesomeClassname: "simple-icons:shield",
+          style: { color: "#4CAF50" },
         },
         {
-          skillName: "Firebase",
-          fontAwesomeClassname: "logos:firebase",
-          style: {
-            color: "#FFCA28",
-          },
+          skillName: "Automation",
+          fontAwesomeClassname: "simple-icons:githubactions",
+          style: { color: "#2088FF" },
         },
       ],
     },
     {
-      title: "UI/UX Design",
+      title: "Technology Programme Support",
       fileName: "DesignImg",
       skills: [
-        "⚡ Architecting visually stunning user interfaces for mobile and web applications, employing cutting-edge design principles and pixel-perfect precision",
-        "⚡ Championing accessibility in digital products, ensuring inclusivity through WCAG compliance and universal design methodologies",
-        "⚡ Crafting intuitive application flows and functionalities, leveraging UX research and iterative testing to elevate user experience to unparalleled heights",
+        "⚡ Supporting learners and teams through technology adoption, digital skill building, and practical application of software tools.",
+        "⚡ Turning technical concepts into accessible learning experiences that fit real-world implementation and community needs.",
+        "⚡ Bridging engineering work with programme delivery, monitoring, and stakeholder coordination.",
       ],
       softwareSkills: [
         {
-          skillName: "Adobe XD",
-          fontAwesomeClassname: "simple-icons:adobexd",
-          style: {
-            color: "#FF2BC2",
-          },
-        },
-        {
-          skillName: "Figma",
+          skillName: "UX Thinking",
           fontAwesomeClassname: "simple-icons:figma",
-          style: {
-            color: "#F24E1E",
-          },
+          style: { color: "#F24E1E" },
         },
         {
-          skillName: "Penpot",
-          fontAwesomeClassname: "simple-icons:penpot",
-          style: {
-            color: "#000000",
-          },
+          skillName: "Project Support",
+          fontAwesomeClassname: "simple-icons:trello",
+          style: { color: "#0079BF" },
+        },
+        {
+          skillName: "Documentation",
+          fontAwesomeClassname: "simple-icons:notion",
+          style: { color: "#000000" },
         },
       ],
     },
@@ -435,10 +283,9 @@ const degrees = {
       alt_name: "Scrimba Logo",
       duration: "2024 (Completed)",
       descriptions: [
-        "⚡ Completed comprehensive frontend development training curated by Mozilla MDN, covering modern industry standards and best practices",
-        "⚡ Mastered React, JavaScript (ES6+), HTML5, CSS3, Git/GitHub, and accessibility standards through hands-on projects",
-        "⚡ Built 12+ portfolio projects and completed hundreds of interactive coding challenges demonstrating practical skills",
-        "⚡ Gained expertise in responsive design, component-based architecture, and modern frontend development workflows",
+        "⚡ Completed the Frontend Developer Career Path, a structured course covering frontend development foundations",
+        "⚡ Course topics include React, JavaScript, HTML, CSS, Git/GitHub, and accessibility fundamentals",
+        "⚡ Practiced responsive layouts, component-based interfaces, and frontend workflows through course exercises",
       ],
       website_link:
         "https://v2.scrimba.com/the-frontend-developer-career-path-c0j:details",
@@ -504,7 +351,7 @@ const certifications = {
       logo_path: "google.png",
       certificate_link:
         "https://www.credly.com/badges/74673ffa-2e93-44b2-b287-cb146c5e41f7/public_url",
-      alt_name: "Microsoft",
+      alt_name: "Google Cloud",
       color_code: "#0C9D5899",
     },
     {
@@ -583,42 +430,83 @@ const certifications = {
 
 // Experience Page
 const experience = {
-  title: "Experience",
-  subtitle: "Work, Internship and Volunteership",
+  title: "Professional Experience",
+  subtitle:
+    "Digital skills, EdTech, workforce development, data systems, and software delivery",
   description:
-    "Full Stack Developer & Cloud Architect with 5+ years of proven expertise delivering scalable web applications and transformative digital skills training programs. Currently serving as Project Officer Digital Skills at Finn Church Aid Kenya, leading curriculum development and team coordination. Successfully trained 2000+ participants across Nairobi, Kakuma, and Dadaab with 98% satisfaction and 62% job placement rate. Founder of Pemanju IT Consultancy Services, specializing in React, Node.js, Python, AWS, and Azure. Expert in project management, technical training, data analysis, and open-source development. Passionate about leveraging technology to drive innovation and create measurable impact in NGO and private sectors.",
+    "My experience connects digital skills and learning programmes with workforce development, software engineering, data systems, and technology training. At Finn Church Aid Kenya, I progressed from Project Assistant / Digital Skills Trainer to Project Officer – Digital Skills. Earlier roles at Realfield Limited and Kenya Power demonstrate data-quality engineering and practical digital-tool adoption support.",
   header_image_path: "experience.svg",
   sections: [
     {
-      title: "Work",
+      title: "Work Experience",
       work: true,
       experiences: [
         {
-          title: "Project Officer Digital Skills",
+          title: "Project Officer – Digital Skills",
           company: "Finn Church Aid Kenya",
           company_url:
             "https://www.linkedin.com/company/finn-church-aid/mycompany/",
           logo_path: "fca.png",
           duration: "December 2024 - Present",
-          location: "Nairobi, Kenya",
+          location: "Kakuma & Dadaab, Kenya",
           description:
-            "Oversee day-to-day operations of the FCA Creators Hub (Digital Skills Hub) at NRC YEP Centre, IFO, managing four training streams: Graphic Design, 3D Animation & Motion Design, Web Design & Development, and Digital Marketing. Coordinate cohort enrolment, participant mobilization, attendance tracking, and comprehensive learner support across all programs. Lead infrastructure management including equipment maintenance, software upgrades, hub renovation, branding, and procurement of digital tools and furniture. Supervise and support incentive trainers, ensuring high-quality, industry-aligned learning experiences while addressing performance and professional conduct. Strengthen partnerships with UNICEF, NRC, Ajira Digital/eMobilis, YEP Centre, local schools, and industry experts, facilitating external visits and donor monitoring. Prepare weekly, monthly, and quarterly reports tracking participant outcomes, attendance, performance, retention, and employment pathways. Support alumni transition into freelancing, remote work, entrepreneurship, and employment through portfolio development, career guidance, and networking opportunities. Lead program impact documentation through success stories, video case studies, and photo evidence.",
-          color: "#000000",
+            "Coordinate implementation workplans, onboarding, training schedules, attendance, mentorship, learner progress, and follow-up across hubs. Organize learning resources and assessments; use programme data to monitor delivery and prepare reports; and coordinate UNICEF, Ajira Digital, UNHCR, DRC, government, private-sector, and community partners. Support LMS, blended, and AI-assisted learning across tracks in graphic design, 3D animation, web development, and digital marketing.",
+          achievements: [
+            "500+ refugee and host-community youth supported in training; approximately 70% are women and girls.",
+            "1,800+ junior and senior secondary school learners reached annually through STEM and digital-skills bootcamps; coordinate and supervise 12+ trainers, facilitators, and consultants.",
+            "Reported placement success in this role: 50%, through employment, apprenticeships, freelancing, and livelihoods.",
+          ],
+          color: "#0C9D58",
         },
         {
-          title: "Project Assistant",
+          title: "Project Assistant / Digital Skills Trainer",
           company: "Finn Church Aid",
           company_url:
             "https://www.linkedin.com/company/finn-church-aid/mycompany/",
           logo_path: "fca.png",
           duration: "January 2022 - November 2024",
-          location: "Nairobi, Kenya",
+          location: "Nairobi & Kakuma, Kenya",
           description:
-            "Led and coordinated a team of 6 technical coaches to deliver comprehensive digital skills training to 2000+ participants across Nairobi, Kakuma, and Dadaab refugee camps. Achieved 98% participant satisfaction rate and 62% job placement success through hands-on technical support and personalized learning approaches. Facilitated smooth project operations by ensuring alignment between coaching efforts and project goals. Implemented continuous improvement initiatives that enhanced training program effectiveness and efficiency by 40%. Provided direct technical mentorship to participants, resulting in measurable skill development and increased employability.",
+            "Delivered hands-on digital literacy and ICT training across graphic design, illustration, 3D animation, motion design, web development, and digital marketing. Supported session planning, blended delivery, LMS use, assignment tracking, onboarding, mentorship, career readiness, portfolios, learner follow-up, and ICT troubleshooting.",
+          achievements: [
+            "600+ learners trained in digital literacy and ICT.",
+            "Reported placement success in this role: 60%, through jobs, apprenticeships, freelancing, and entrepreneurship; separate from the Project Officer’s 50% figure.",
+            "Supported the introduction and use of an LMS to improve learning access, participation, and continuity.",
+          ],
           color: "#0C9D58",
         },
         {
-          title: "Fullstack Developer",
+          title: "Data Specialist",
+          company: "Realfield Limited",
+          company_url: "https://www.linkedin.com/company/realfield-limited/",
+          logo_path: "realfield.jpeg",
+          duration: "March 2021 - December 2021",
+          location: "Nakuru, Kenya (Remote)",
+          description:
+            "Collected, cleaned, validated, and analyzed data to improve data quality and reporting reliability. Implemented machine-learning approaches for anomaly detection and supported responsible data management through governance and audit-readiness practices.",
+          achievements: [
+            "Designed data-collection systems processing 500,000+ records with 99.7% accuracy.",
+            "Developed automated validation pipelines that reduced manual verification time by 80%.",
+          ],
+          color: "#0879bf",
+        },
+        {
+          title: "ICT Technical Associate",
+          company: "Kenya Power and Lighting Company",
+          company_url: "https://www.linkedin.com/company/kenya-power",
+          logo_path: "kplc.png",
+          duration: "January 2021 - March 2021",
+          location: "Nakuru, Kenya",
+          description:
+            "Developed technical documentation, user guides, presentations, and training materials. Translated technical concepts into accessible workshops and step-by-step guidance, and collaborated with IT teams to align learning with system functions and operational workflows.",
+          achievements: [
+            "Designed and delivered structured technical training for 50+ non-technical staff during digital transformation initiatives.",
+            "Improved digital-tool adoption by 30% through targeted training, practical demonstrations, and user support.",
+          ],
+          color: "#fc1f20",
+        },
+        {
+          title: "Full-Stack Developer",
           company: "Pemanju IT Consulting Services",
           company_url:
             "https://www.linkedin.com/company/pemanju-it-consultancy-services/",
@@ -626,131 +514,23 @@ const experience = {
           duration: "May 2018 - Present",
           location: "Nairobi, Kenya",
           description:
-            "As the founder of Pemanju IT Consulting Services, I spearhead fullstack development projects, delivering tailored solutions to diverse clients. I architect robust web applications, integrating cutting-edge frontend and backend technologies to meet complex business requirements. Additionally, I collaborate closely with clients to analyze their needs, devise strategic technology roadmaps, and implement scalable, efficient systems that drive their digital transformation initiatives.",
+            "Design and develop web-based solutions around usability, data integrity, and practical operational workflows. The work spans interface implementation, application logic, structured data handling, and technology consulting, translating user needs into maintainable software. Pemanju Farm Manager is a current example of applying offline-first design and structured records to farm operations.",
           color: "#9b1578",
         },
-        {
-          title: "Data Specialist",
-          company: "Realfield",
-          company_url: "https://www.linkedin.com/company/realfield-limited/",
-          logo_path: "realfield.jpeg",
-          duration: "March 2021 - December2021",
-          location: "Naivasha, Kenya",
-          description:
-            "Orchestrated comprehensive data collection initiatives, implementing rigorous verification processes to ensure data integrity and accuracy across diverse datasets. Spearheaded cross-functional collaboration to establish and maintain high data quality standards, while leveraging advanced analysis tools to enhance data usability. Engineered automated data cleaning scripts and workflows, significantly streamlining processes and boosting overall efficiency in data management operations.",
-          color: "#0879bf",
-        },
-
-        {
-          title: "IT Technical Support Specialist",
-          company: "Kenya Power and Lighting Company",
-          company_url: "https://www.linkedin.com/company/kenya-power",
-          logo_path: "kplc.png",
-          duration: "Nov 2017 - Dec 2017",
-          location: "Nakuru, Kenya",
-          description:
-            "At Kenya Power and Lighting Company, I spearheaded the implementation of a robust IT support system, significantly reducing downtime and enhancing operational efficiency. I orchestrated comprehensive training programs for staff, elevating the company's overall technical proficiency and fostering a culture of digital innovation. Additionally, I pioneered the development and deployment of customized software solutions, streamlining internal processes and dramatically improving customer service delivery.",
-          color: "#fc1f20",
-        },
       ],
     },
     {
-      title: "Internships",
+      title: "Community & Open Source",
       experiences: [
-        // At the moment I have no internship engagements
-        // {
-        //   title: "Machine Learning Intern",
-        //   company: "TikTok Inc.",
-        //   company_url: "https://www.tiktok.com/en/",
-        //   logo_path: "tiktok_logo.png",
-        //   duration: "May 2022 - Aug 2022",
-        //   location: "San Francisco, USA",
-        //   description:
-        //     "Building new features on the backend recommendation system, specifically ranking algorithms for Ads that touch hundreds of millions of people around the world. Improving online and offline content ranking algorithms by performing hard sample data replays for training steps.",
-        //   color: "#000000",
-        // },
-        // {
-        //   title: "Data Science Research Intern",
-        //   company: "Delhivery Pvt. Ltd.",
-        //   company_url: "https://www.delhivery.com/",
-        //   logo_path: "delhivery_logo.png",
-        //   duration: "May 2019 - Sept 2019",
-        //   location: "Gurgaon, Haryana",
-        //   description:
-        //     "I have worked on project of predicting freight rates based on previous data. There were two objectives: (1) To build a forecasting engine to predict daily freight rates. (2) To embed feature in the model which can explain the seasonal major changes in freight rate based on regions and locations. I have closely worked with deep learning models in combination with statistical methods to create solution for this. At the end of internship, I had created model deployed on AWS EC2 with the use of Kafka stream jobs, ElasticSearch and PostgreSQL.",
-        //   color: "#ee3c26",
-        // },
-        // {
-        //   title: "Data Science Intern",
-        //   company: "Intel Indexer LLC",
-        //   company_url:
-        //     "https://opencorporates.com/companies/us_dc/EXTUID_4170286",
-        //   logo_path: "intel_logo.jpg",
-        //   duration: "Nov 2018 - Dec 2018",
-        //   location: "Work From Home",
-        //   description:
-        //     "This is financial Solution Company. I have made Supervised Learning model for the company which can perform time series analysis on Stock price data for 32 companies. I have built LSTM Neural Networks Model and trained the data of 32 companies for last 2 years. This model is also used for forecasting.",
-        //   color: "#0071C5",
-        // },
-      ],
-    },
-    {
-      title: "Volunteerships",
-      experiences: [
-        // {
-        //   title: "Google Explore ML Facilitator",
-        //   company: "Google",
-        //   company_url: "https://about.google/",
-        //   logo_path: "google_logo.png",
-        //   duration: "June 2019 - April 2020",
-        //   location: "Hyderabad, Telangana",
-        //   description:
-        //     "Explore Machine Learning (ML) is a Google-sponsored program for university students to get started with Machine Learning. The curriculum offers 3 tracks of ML Content (Beginner, Intermediate, Advanced) and relies on university student facilitators to train other students on campus and to build opensource projects under this program.",
-        //   color: "#4285F4",
-        // },
-        // {
-        //   title: "Microsoft Student Partner",
-        //   company: "Microsoft",
-        //   company_url: "https://www.microsoft.com/",
-        //   logo_path: "microsoft_logo.png",
-        //   duration: "Aug 2019 - May 2020",
-        //   location: "Hyderabad, Telangana",
-        //   description:
-        //     "Microsoft Student Partner is a program for university students to lead the awareness and use of Cloud especially Azure tools in the development of their projects and startups. Under this program, I have organised hands on workshops and seminars to teach Cloud Computing concepts to students.",
-        //   color: "#D83B01",
-        // },
-        // {
-        //   title: "Mozilla Campus Captain",
-        //   company: "Mozilla",
-        //   company_url: "https://www.mozilla.org/",
-        //   logo_path: "mozilla_logo.png",
-        //   duration: "Oct 2019 - May 2020",
-        //   location: "Kurnool, Andhra Pradesh",
-        //   description:
-        //     "My responsibility for this program was to create opensource environment in college and in the city. We have organised multiple hackathons on the problems collected by ordinary people from Kurnool city. We have build opensource community of our own college. The community is available at dsc_iiitdmk on github.",
-        //   color: "#000000",
-        // },
-        // {
-        //   title: "Developer Students Club Member",
-        //   company: "DSC IIITDM Kurnool",
-        //   company_url:
-        //     "https://www.linkedin.com/company/developer-students-club-iiitdm-kurnool",
-        //   logo_path: "dsc_logo.png",
-        //   duration: "Jan 2018 - May 2020",
-        //   location: "Kurnool, Andhra Pradesh",
-        //   description:
-        //     "We have well established developer club in college which is directly associated with Google Developers. We have developed many interdisciplinary projects under the membership of this club. We have organised workshops and activities on Android Application Development, Flutter and React JS.",
-        //   color: "#0C9D58",
-        // },
         {
           title: "Developer Program Member",
-          company: "Github",
+          company: "GitHub",
           company_url: "https://github.com/",
           logo_path: "github_logo.png",
           duration: "July 2017 - Present",
           location: "Remote",
           description:
-            "I actively contribute to a diverse array of open-source projects, leveraging cutting-edge technologies and best practices in software development. My contributions span from healthcare informatics in Hospital Management Systems to educational technology in Free Open Source Courses, as well as technical content creation through tech blogging and the development of this portfolio as an open-source, globally accessible resource for developers. These contributions encompass critical bug fixes, innovative feature implementations, and the creation of comprehensive documentation, all adhering to industry standards and employing modern development workflows such as Git version control and continuous integration/continuous deployment (CI/CD) pipelines.",
+            "Participate in developer-community and open-source work through issue reports, pull requests, and documentation contributions. This provides ongoing practice with collaborative repository workflows and feedback from project maintainers.",
           color: "#181717",
         },
       ],
@@ -758,77 +538,117 @@ const experience = {
   ],
 };
 
+const projectCaseStudy = {
+  title: "Pemanju Farm Manager",
+  tag: "Flagship engineering case study",
+  summary:
+    "An offline-first livestock management application designed to improve record keeping, animal traceability, and practical farm operations with a strong emphasis on reliability and data integrity.",
+  overview: [
+    "Pemanju Farm Manager is a field-oriented livestock management application that helps organize animal records, track operational information, and reduce dependence on fragmented spreadsheet workflows.",
+    "The application is built for users working in practical farm environments where digital tools must be reliable, fast, and usable without always having a stable internet connection.",
+    "The core significance of the project lies in combining structured data models with offline-first persistence so that essential farm records remain dependable and easier to manage over time.",
+  ],
+  problem: [
+    "Livestock record keeping often becomes fragmented across spreadsheets, manual notes, and inconsistent identifiers.",
+    "When animal records are scattered, traceability, relationship integrity, and routine operational updates become harder to trust.",
+    "The project addresses this by designing a structured system around animal-centric records, relational data handling, and import/export workflows that fit real farm reporting needs.",
+  ],
+  solution: [
+    "The application uses a relational data model centred on animal identifiers, with structured records for livestock-related operational data. This supports traceability and reduces errors from inconsistent record handling.",
+    "Local persistence is handled through Dexie and IndexedDB so the app remains usable in offline farm conditions. Excel import/export is supported to align the system with real-world record-keeping workflows.",
+    "The project is intentionally designed to be practical: it supports daily management tasks while keeping the system understandable, maintainable, and aligned to the realities of field operations.",
+  ],
+  architecture: [
+    "User interface and workflows built with React and TypeScript.",
+    "Application logic and validation organized around a clear data model for livestock records and relationships.",
+    "IndexedDB storage through Dexie enables offline persistence and local workflow continuity.",
+    "Excel import and export pipelines are used for data movement and reconciliation.",
+    "Planned cloud synchronization with Supabase/PostgreSQL is identified as a future enhancement rather than a confirmed production capability.",
+  ],
+  challenges: [
+    {
+      title: "Relational integrity",
+      description:
+        "Managing accurate links between animals, records, and related data sets in a practical field application requires careful validation. The solution focuses on consistent identifiers and structured relationships so the data remains dependable even when records are imported or updated repeatedly.",
+    },
+    {
+      title: "Offline-first reliability",
+      description:
+        "Farm operations do not always happen in a connected environment. Local storage and resilient workflows reduce the risk of loss or interruption when users are working away from a reliable network connection.",
+    },
+    {
+      title: "Excel data handling",
+      description:
+        "Spreadsheet imports can carry inconsistencies and formatting variation. The project treats import reconciliation and validation as a key engineering concern to maintain safer data transitions from existing farm records into the application.",
+    },
+  ],
+  implementation:
+    "Implemented technologies include React, TypeScript, Vite, Tailwind CSS, Dexie, IndexedDB, and SheetJS. A Supabase/PostgreSQL synchronization layer is a planned future capability and is not presented as implemented production infrastructure.",
+  stack: {
+    implemented: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Dexie",
+      "IndexedDB",
+      "SheetJS",
+      "Relational record model",
+    ],
+    planned: [
+      "Supabase",
+      "PostgreSQL",
+      "Cloud synchronization",
+      "Expanded production deployment workflows",
+    ],
+    underDevelopment: [
+      "Advanced cloud sync automation",
+      "Expanded farm analytics and reporting",
+      "Deeper operational integrations",
+    ],
+  },
+  evidence: [
+    "Project design centres on offline-first persistence, structured record relationships, and Excel import/export workflows.",
+    "The architecture is intentionally framed around local data reliability and a clear future migration path to cloud synchronization.",
+    "The application is positioned as a practical farm operations tool rather than a generic demo or a speculative production platform.",
+  ],
+};
+
 // Projects Page
 const projectsHeader = {
-  title: "Projects",
+  title: "Featured Projects",
   description:
-    "Full-stack developer specializing in building scalable web applications using React, Node.js, Python, and modern JavaScript frameworks. Expert in cloud deployment on AWS and Azure, containerization with Docker, and implementing CI/CD pipelines. Portfolio showcases end-to-end project development from UI/UX design to production deployment, demonstrating proficiency in responsive design, API development, database architecture, and performance optimization.",
+    "I focus on practical digital solutions that combine software engineering, operational thinking, and technology-enabled impact. The featured work reflects a mix of product development, platform reliability, and programme-oriented problem solving.",
   avatar_image_path: "projects_image.svg",
 };
 
 const publicationsHeader = {
-  title: "Publications",
+  title: "Medium Publications",
   description:
-    "Technical articles and tutorials on web development, React, JavaScript, Git, and software engineering best practices. Published on Medium and Hashnode, helping developers solve real-world coding challenges.",
+    "Selected writing on software, technology adoption, AI, digital products, and practical programming.",
   avatar_image_path: "projects_image.svg",
 };
 
 const publications = {
-  data: [
-    {
-      id: "Tic-Tac-Toe-game-using-react",
-      name: "Create a Tic-Tac-Toe game using react",
-      createdAt: "2023-01-18T00:00:00Z",
-      description:
-        "Step-by-step tutorial on building an interactive Tic-Tac-Toe game using React hooks, state management, and component-based architecture. Learn game logic implementation and React best practices.",
-      url:
-        "https://pcodesdev.hashnode.dev/projectcreate-a-tic-tac-toe-game-using-react",
-    },
-    {
-      id: "push-files-over-100MB-to-github",
-      name: "How to Push Files Over 100MB to GitHub",
-      createdAt: "2023-04-21T00:00:00Z",
-      description:
-        "Comprehensive guide to using Git Large File Storage (LFS) for managing large files in GitHub repositories. Includes installation, configuration, and troubleshooting common issues with file size limits.",
-      url:
-        "https://pcodesdev.hashnode.dev/how-to-push-files-over-100mb-to-github-a-step-by-step-guide-with-git-large-file-storage-lfs",
-    },
-    {
-      id: "mastering-git-and-github",
-      name: "Mastering Git and Github",
-      createdAt: "2023-05-12T00:00:00Z",
-      description:
-        "Essential Git and GitHub concepts for successful version control. Covers branching strategies, pull requests, merge conflicts, collaboration workflows, and best practices for professional software development.",
-      url:
-        "https://pcodesdev.hashnode.dev/mastering-git-and-github-key-concepts-you-need-to-know-for-successful-version-control",
-    },
-    {
-      id: "medium-blog",
-      name: "Follow me on Medium",
-      createdAt: "2024-01-01T00:00:00Z",
-      description:
-        "Technical articles, tutorials, and insights on full-stack development, cloud architecture, digital skills training, and software engineering best practices. Join my community of developers learning and growing together.",
-      url: "https://medium.com/@pcodesdev",
-    },
-  ],
+  ...mediumPublications,
+  data: limitFeaturedItems(mediumPublications.data),
 };
 
 // Contact Page
 const contactPageData = {
   contactSection: {
-    title: "Contact Me",
+    title: "Contact",
     profile_image_path: "Peter-Illustration.png",
     description:
-      "I am a Full Stack Developer and Cloud Architect available for freelance projects, consultancy, and full-time opportunities. With expertise in React, Node.js, Python, AWS, and Azure, I help businesses build scalable web applications and cloud solutions. Whether you need a technical consultant, a digital skills trainer, or a lead developer for your next big idea, I'm here to help. Connect with me to discuss your project requirements.",
+      "I work across digital transformation and technology solutions, combining digital skills programme delivery, technology-enabled learning, and software development. I am open to roles and projects focused on practical implementation, stakeholder coordination, and workforce development.",
     email: "njugunapm23@gmail.com",
     phone: "+254702913043",
   },
-
   blogSection: {
-    title: "Blogs",
+    title: "Medium",
     subtitle:
-      "I document my journey in software engineering, cloud architecture, and digital skills training. Check out my technical articles and tutorials on web development and DevOps.",
-    link: "https://hashnode.com/@PcodesDev",
+      "Articles on software, digital products, technology, and learning.",
+    link: "https://medium.com/@pcodesdev",
     avatar_image_path: "blogs_image.svg",
   },
   addressSection: {
@@ -837,8 +657,6 @@ const contactPageData = {
     locality: "Nairobi",
     country: "Kenya",
     region: "Nairobi",
-    postalCode: "0100",
-    streetAddress: "Charles New Road",
     avatar_image_path: "address_image.svg",
     location_map_link: "https://maps.app.goo.gl/B1LzU1qSUNeWRNYg9",
   },
@@ -852,12 +670,17 @@ export {
   settings,
   seo,
   greeting,
+  homeHighlights,
+  aboutPageData,
+  expertiseAreas,
+  projectCaseStudyMeta,
   socialMediaLinks,
   skills,
   competitiveSites,
   degrees,
   certifications,
   experience,
+  projectCaseStudy,
   projectsHeader,
   publicationsHeader,
   publications,

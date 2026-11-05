@@ -1,1 +1,146 @@
-{"data":[{"id":"PR_kwDODqGIis55UjMI","title":"Enhance Responsiveness and Accessibility with CSS Updates","url":"https://github.com/ashutosh1919/masterPortfolio/pull/384","state":"OPEN","mergedBy":null,"createdAt":"2024-08-24T12:34:02Z","number":384,"changedFiles":1726,"additions":185854,"deletions":610,"baseRepository":{"name":"masterPortfolio","url":"https://github.com/ashutosh1919/masterPortfolio","owner":{"avatarUrl":"https://avatars.githubusercontent.com/u/20843596?u=6deb5872cde2e3ab5bf5d48ece503bc8b5b0bcf6&v=4","login":"ashutosh1919","url":"https://github.com/ashutosh1919"}}},{"id":"PR_kwDOA0kp685P7qiO","title":"Add video times in the readme file","url":"https://github.com/mosh-hamedani/vidly-mvc-5/pull/368","state":"OPEN","mergedBy":null,"createdAt":"2023-05-07T08:20:11Z","number":368,"changedFiles":1,"additions":1,"deletions":2,"baseRepository":{"name":"vidly-mvc-5","url":"https://github.com/mosh-hamedani/vidly-mvc-5","owner":{"avatarUrl":"https://avatars.githubusercontent.com/u/5441280?u=b47a6cf0d3de7d5ca81b9dbe95e1c7d1e260156e&v=4","login":"mosh-hamedani","url":"https://github.com/mosh-hamedani"}}},{"id":"PR_kwDOJff5OM5P6hvU","title":"create and proposed changes for development in the new file called ch…","url":"https://github.com/pcodesdev/Git-and-GitHub/pull/1","state":"MERGED","mergedBy":{"avatarUrl":"https://avatars.githubusercontent.com/u/44283776?u=9765b3460e006163f2f2d3791385cc24eb22b711&v=4","url":"https://github.com/pcodesdev","login":"pcodesdev"},"createdAt":"2023-05-06T11:29:36Z","number":1,"changedFiles":1,"additions":1,"deletions":0,"baseRepository":{"name":"Git-and-GitHub","url":"https://github.com/pcodesdev/Git-and-GitHub","owner":{"avatarUrl":"https://avatars.githubusercontent.com/u/44283776?u=9765b3460e006163f2f2d3791385cc24eb22b711&v=4","login":"pcodesdev","url":"https://github.com/pcodesdev"}}}],"open":2,"closed":0,"merged":1,"totalCount":3}
+{
+  "closed": 0,
+  "data": [
+    {
+      "id": "PR_golclinics_DSA-Clinics24_83",
+      "title": "pcodesdev - Peter",
+      "url": "https://github.com/golclinics/DSA-Clinics24/pull/83",
+      "state": "OPEN",
+      "mergedBy": null,
+      "createdAt": "2024-10-10T12:10:43Z",
+      "number": 83,
+      "changedFiles": 1,
+      "additions": 34,
+      "deletions": 0,
+      "baseRepository": {
+        "name": "DSA-Clinics24",
+        "url": "https://github.com/golclinics/DSA-Clinics24",
+        "owner": {
+          "avatarUrl": "https://avatars.githubusercontent.com/u/77222599?v=4",
+          "login": "golclinics",
+          "url": "https://github.com/golclinics"
+        }
+      }
+    },
+    {
+      "id": "PR_zero-to-mastery_resources_989",
+      "title": "Update CONTRIBUTORS.md with my GitHub profile username",
+      "url": "https://github.com/zero-to-mastery/resources/pull/989",
+      "state": "MERGED",
+      "mergedBy": {
+        "avatarUrl": "https://avatars.githubusercontent.com/u/16630701?v=4",
+        "url": "https://github.com/sophiabrandt",
+        "login": "sophiabrandt"
+      },
+      "createdAt": "2024-09-12T19:28:58Z",
+      "number": 989,
+      "changedFiles": 1,
+      "additions": 1,
+      "deletions": 0,
+      "baseRepository": {
+        "name": "resources",
+        "url": "https://github.com/zero-to-mastery/resources",
+        "owner": {
+          "avatarUrl": "https://avatars.githubusercontent.com/u/35373879?v=4",
+          "login": "zero-to-mastery",
+          "url": "https://github.com/zero-to-mastery"
+        }
+      }
+    },
+    {
+      "id": "PR_zero-to-mastery_resources_987",
+      "title": "Create new podcast category on product management and design and add the product talk podcast",
+      "url": "https://github.com/zero-to-mastery/resources/pull/987",
+      "state": "MERGED",
+      "mergedBy": {
+        "avatarUrl": "https://avatars.githubusercontent.com/u/16630701?v=4",
+        "url": "https://github.com/sophiabrandt",
+        "login": "sophiabrandt"
+      },
+      "createdAt": "2024-09-12T19:03:55Z",
+      "number": 987,
+      "changedFiles": 1,
+      "additions": 11,
+      "deletions": 10,
+      "baseRepository": {
+        "name": "resources",
+        "url": "https://github.com/zero-to-mastery/resources",
+        "owner": {
+          "avatarUrl": "https://avatars.githubusercontent.com/u/35373879?v=4",
+          "login": "zero-to-mastery",
+          "url": "https://github.com/zero-to-mastery"
+        }
+      }
+    },
+    {
+      "id": "PR_ashutosh1919_masterPortfolio_384",
+      "title": "Enhance Responsiveness and Accessibility with CSS Updates",
+      "url": "https://github.com/ashutosh1919/masterPortfolio/pull/384",
+      "state": "OPEN",
+      "mergedBy": null,
+      "createdAt": "2024-08-24T12:34:02Z",
+      "number": 384,
+      "changedFiles": 1726,
+      "additions": 185854,
+      "deletions": 610,
+      "baseRepository": {
+        "name": "masterPortfolio",
+        "url": "https://github.com/ashutosh1919/masterPortfolio",
+        "owner": {
+          "avatarUrl": "https://avatars.githubusercontent.com/u/20843596?v=4",
+          "login": "ashutosh1919",
+          "url": "https://github.com/ashutosh1919"
+        }
+      }
+    },
+    {
+      "id": "PR_mosh-hamedani_vidly-mvc-5_368",
+      "title": "Add video times in the readme file",
+      "url": "https://github.com/mosh-hamedani/vidly-mvc-5/pull/368",
+      "state": "OPEN",
+      "mergedBy": null,
+      "createdAt": "2023-05-07T08:20:11Z",
+      "number": 368,
+      "changedFiles": 1,
+      "additions": 1,
+      "deletions": 2,
+      "baseRepository": {
+        "name": "vidly-mvc-5",
+        "url": "https://github.com/mosh-hamedani/vidly-mvc-5",
+        "owner": {
+          "avatarUrl": "https://avatars.githubusercontent.com/u/5441280?v=4",
+          "login": "mosh-hamedani",
+          "url": "https://github.com/mosh-hamedani"
+        }
+      }
+    },
+    {
+      "id": "PR_pcodesdev_Git-and-GitHub_1",
+      "title": "create and proposed changes for development in the new file called ch…",
+      "url": "https://github.com/pcodesdev/Git-and-GitHub/pull/1",
+      "state": "MERGED",
+      "mergedBy": {
+        "avatarUrl": "https://avatars.githubusercontent.com/u/44283776?v=4",
+        "url": "https://github.com/pcodesdev",
+        "login": "pcodesdev"
+      },
+      "createdAt": "2023-05-06T11:29:36Z",
+      "number": 1,
+      "changedFiles": 1,
+      "additions": 1,
+      "deletions": 0,
+      "baseRepository": {
+        "name": "Git-and-GitHub",
+        "url": "https://github.com/pcodesdev/Git-and-GitHub",
+        "owner": {
+          "avatarUrl": "https://avatars.githubusercontent.com/u/44283776?v=4",
+          "login": "pcodesdev",
+          "url": "https://github.com/pcodesdev"
+        }
+      }
+    }
+  ],
+  "merged": 3,
+  "open": 3,
+  "totalCount": 6
+}

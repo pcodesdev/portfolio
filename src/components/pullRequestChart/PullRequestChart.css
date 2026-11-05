@@ -9,7 +9,7 @@ canvas {
 }
 
 .pr-chart-header {
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
 }
 
 @media (max-width: 768px) {

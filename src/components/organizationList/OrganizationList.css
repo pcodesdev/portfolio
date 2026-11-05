@@ -24,7 +24,7 @@
   margin-right: 50px;
   margin-bottom: 10px;
   /* border: 1px solid #000000; */
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
 }
 
 .organizations-inline:hover {

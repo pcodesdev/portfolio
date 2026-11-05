@@ -231,4 +231,15 @@ export const techMinimalTheme = {
   splashBg: "#1A1A1A",
 };
 
+export const statusPalette = {
+  success: "#176B34",
+  successBackground: "#DCFFE4",
+  error: "#A12632",
+  errorBackground: "#FFDCE0",
+  merged: "#56309A",
+  mergedBackground: "#F5F0FF",
+  text: "#3C4856",
+  warning: "#B54708",
+};
+
 export const chosenTheme = blueTheme;

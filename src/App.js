@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import * as themes from "./theme";
 import { GlobalStyles } from "./global";
 import SimpleThemeSwitcher from "./components/themeSwitcher/SimpleThemeSwitcher";
+import PortfolioSearch from "./components/portfolioSearch/PortfolioSearch";
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("blueTheme");
@@ -29,6 +30,7 @@ function App() {
           currentTheme={currentTheme}
           onThemeChange={handleThemeChange}
         />
+        <PortfolioSearch theme={theme} />
         <Main theme={theme} />
       </>
     </ThemeProvider>

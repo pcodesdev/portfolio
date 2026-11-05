@@ -1,0 +1,56 @@
+{
+  "data": [
+    {
+      "id": "9d5541ff07cb",
+      "name": "Kenya Is #1 in AI Usage. That’s Not the Same as Winning.",
+      "createdAt": "2026-08-31T09:23:31.000Z",
+      "description": "A headline went around African tech media a few weeks ago that felt good to read: Kenya now ranks first in the world for AI usage. Not first in Africa. First, period. Ahead of the UAE. Ahead of Indonesia. Miles ahead of...",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*UHNQIw6PMH8cxV0Go0j7gQ.jpeg",
+      "url": "https://medium.com/@pcodesdev/kenya-is-1-in-ai-usage-thats-not-the-same-as-winning-9d5541ff07cb"
+    },
+    {
+      "id": "a1f11e71b572",
+      "name": "You Haven’t Made a Real Decision in Three Weeks. Neither Have I.",
+      "createdAt": "2026-08-17T13:08:53.000Z",
+      "description": "It was 11:40 pm. I was typing a question into a chat window.",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*Q2gQRTUGLOdBi2aDF9Ql6w.jpeg",
+      "url": "https://medium.com/@pcodesdev/you-havent-made-a-real-decision-in-three-weeks-neither-have-i-a1f11e71b572"
+    },
+    {
+      "id": "d034b296f60b",
+      "name": "Google Stitch Just Killed Figma",
+      "createdAt": "2026-03-23T09:38:58.000Z",
+      "description": "I built a full LMS UI in one prompt. Here’s why Google Stitch is rewriting UI design and what Figma and Penpot need to do to survive.",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*7PVxOYtXCkZ2b-7j-OgTuA.png",
+      "url": "https://medium.com/@pcodesdev/google-stitch-just-killed-figma-d034b296f60b"
+    },
+    {
+      "id": "7ba11301334b",
+      "name": "We Asked 81,000 People What They Really Want from AI. The Answers Will Surprise You.",
+      "createdAt": "2026-03-19T07:48:26.000Z",
+      "description": "Spoiler: It’s not productivity. It’s freedom.",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*Jvo6Y_Qprpxwhn5eDyrxHQ.png",
+      "url": "https://medium.com/@pcodesdev/we-asked-81-000-people-what-they-really-want-from-ai-the-answers-will-surprise-you-7ba11301334b"
+    },
+    {
+      "id": "7d9441d0b6c6",
+      "name": "The Silicon Savannah Mirage: Why Kenya’s Tech Darlings Keep Crashing and What It Tells Us About Africa’s Unique Ecosystem",
+      "createdAt": "2026-02-01T12:21:41.000Z",
+      "description": "The promise of Silicon Savannah: Innovation meets reality in Nairobi’s tech ecosystem",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*YG4hnvZXVrNPpt2XliO07g.jpeg",
+      "url": "https://medium.com/@pcodesdev/the-silicon-savannah-mirage-why-kenyas-tech-darlings-keep-crashing-and-what-it-tells-us-about-7d9441d0b6c6"
+    },
+    {
+      "id": "5bd7fcc85208",
+      "name": "Python Lists, Loops, and Sequences: A Complete Guide with Real-World Examples",
+      "createdAt": "2026-01-24T09:14:47.000Z",
+      "description": "Learn Python’s most powerful features through practical scenarios you’ll actually use",
+      "image": "https://cdn-images-1.medium.com/max/1024/1*i-PKKS1qybiYuft0MTj8Cg.png",
+      "url": "https://medium.com/@pcodesdev/python-lists-loops-and-sequences-a-complete-guide-with-real-world-examples-5bd7fcc85208"
+    }
+  ],
+  "feedUrl": "https://medium.com/feed/@pcodesdev",
+  "fetchedAt": "2026-11-04T18:42:48.884Z",
+  "profileUrl": "https://medium.com/@pcodesdev",
+  "source": "Medium RSS"
+}

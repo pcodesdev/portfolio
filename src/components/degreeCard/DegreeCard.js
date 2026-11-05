@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./DegreeCard.css";
-import { Fade, Flip } from "react-reveal";
+import { Fade, Flip } from "../motion/Reveal";
 
 class DegreeCard extends Component {
   render() {
@@ -47,9 +47,13 @@ class DegreeCard extends Component {
               </div>
             </div>
             <div className="body-content">
-              {degree.descriptions.map((sentence) => {
+              {degree.descriptions.map((sentence, index) => {
                 return (
-                  <p className="content-list" style={{ color: theme.text }}>
+                  <p
+                    className="content-list"
+                    key={`${degree.title}-${index}`}
+                    style={{ color: theme.text }}
+                  >
                     {sentence}
                   </p>
                 );

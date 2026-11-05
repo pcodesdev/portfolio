@@ -1,0 +1,62 @@
+name: Curate Featured Portfolio Content
+
+on:
+  schedule:
+    - cron: "17 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Scan source and generated files for credential signatures
+        run: npm run security:scan
+
+      - name: Generate curated data
+        run: npm run curate:featured
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate generated data
+        run: npm run curate:validate
+
+      - name: Run regression tests
+        run: npm test -- --watch=false
+        env:
+          CI: true
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Open review pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/featured-content-curation
+          delete-branch: false
+          commit-message: "chore: refresh curated portfolio content"
+          title: "Review refreshed portfolio projects and articles"
+          body: |
+            Weekly or manually triggered update to generated project/publication data.
+
+            - Curation sources were fetched from public GitHub repository metadata and Medium RSS.
+            - Curated data passed the six-item, URL, and metadata validators.
+            - Regression tests and the static production build completed before this PR was opened.
+            - This workflow does not deploy to GitHub Pages.
+          labels: automated content update

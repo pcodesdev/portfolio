@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./PullRequests.css";
-import { Fade } from "react-reveal";
+import { Fade } from "../../components/motion/Reveal";
 import PullRequestCard from "../../components/pullRequestCard/PullRequestCard";
 import pullRequestsData from "../../shared/opensource/pull_requests.json";
 
@@ -18,16 +18,18 @@ class PullRequests extends Component {
               className="subTitle pull-requests-subtitle"
               style={{ color: theme.secondaryText }}
             >
-              Active contributions to open-source projects through pull
-              requests. Focus areas include enhancing UI/UX responsiveness,
-              improving accessibility, fixing bugs, and adding new features
-              across React, JavaScript, and web development projects.
+              Pull requests opened against open-source repositories, covering
+              responsive-layout and accessibility improvements, documentation
+              updates, and repository maintenance. The cards below reflect the
+              pull requests tracked in this portfolio's contribution data.
             </p>
           </Fade>
         </div>
         <div className="pull-request-body-div">
           {pullRequestsData["data"].map((pullRequest) => {
-            return <PullRequestCard pullRequest={pullRequest} />;
+            return (
+              <PullRequestCard key={pullRequest.id} pullRequest={pullRequest} />
+            );
           })}
         </div>
       </div>

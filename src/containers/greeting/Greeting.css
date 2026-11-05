@@ -38,20 +38,21 @@
   margin-top: 80px;
   font-size: 70px;
   line-height: 1.1;
-  font-family: "Google Sans Bold";
+  font-family: var(--font-heading);
 }
 
 .greeting-nickname {
   font-size: 30px;
-  line-height: 0px;
-  font-family: "Google Sans Bold Italic";
+  line-height: 1.2;
+  margin: 0.6rem 0 1rem;
+  font-family: var(--font-heading);
 }
 
 .greeting-text-p {
   font-size: 1rem;
   line-height: 40px;
   margin-right: 40px;
-  font-family: "Google Sans Medium";
+  font-family: var(--font-heading);
   /* text-align: left; */
 }
 
@@ -61,6 +62,66 @@
   border-radius: 100%;
   object-fit: cover; /* Ensure the image covers the area without stretching */
   overflow: hidden;
+}
+
+.home-cta-container {
+  margin-top: 1.5rem;
+}
+
+.home-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1.25rem;
+}
+
+.home-highlight {
+  border-left: 3px solid #0c9d58;
+  background: rgba(12, 157, 88, 0.08);
+  padding: 0.55rem 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+}
+
+.home-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.home-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  color: inherit;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.home-action-primary {
+  background: #0c9d58;
+  border-color: #0c9d58;
+  color: #fff;
+}
+
+.home-action:hover,
+.home-action:focus-visible {
+  outline: 2px solid #0c9d58;
+  outline-offset: 2px;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(12, 157, 88, 0.18);
+}
+
+.home-action:active {
+  transform: translateY(0);
 }
 
 /* Media Query */
@@ -97,9 +158,11 @@
     /* /* margin: 0rem 0.5rem; */
   }
 
-  .portfolio-repo-btn-div {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  .home-actions {
+    align-items: stretch;
+  }
+
+  .home-action {
+    flex: 1 1 100%;
   }
 }

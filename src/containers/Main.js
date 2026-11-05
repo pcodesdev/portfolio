@@ -1,10 +1,12 @@
 import React, { Component, lazy, Suspense } from "react";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch, HashRouter } from "react-router-dom";
 import { settings } from "../portfolio.js";
 import Loading from "../components/Loading/Loading";
 
 // Lazy load route components for better performance
 const Home = lazy(() => import("../pages/home/HomeComponent"));
+const About = lazy(() => import("../pages/about/AboutComponent"));
+const Expertise = lazy(() => import("../pages/expertise/ExpertiseComponent"));
 const Splash = lazy(() => import("../pages/splash/Splash"));
 const Education = lazy(() => import("../pages/education/EducationComponent"));
 const Experience = lazy(() => import("../pages/experience/Experience"));
@@ -16,7 +18,7 @@ const Error404 = lazy(() => import("../pages/errors/error404/Error"));
 export default class Main extends Component {
   render() {
     return (
-      <BrowserRouter basename="/">
+      <HashRouter>
         <Suspense fallback={<Loading />}>
           <Switch>
             <Route
@@ -33,6 +35,16 @@ export default class Main extends Component {
             <Route
               path="/home"
               render={(props) => <Home {...props} theme={this.props.theme} />}
+            />
+            <Route
+              path="/about"
+              render={(props) => <About {...props} theme={this.props.theme} />}
+            />
+            <Route
+              path="/expertise"
+              render={(props) => (
+                <Expertise {...props} theme={this.props.theme} />
+              )}
             />
             <Route
               path="/experience"
@@ -83,7 +95,7 @@ export default class Main extends Component {
             />
           </Switch>
         </Suspense>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

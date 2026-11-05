@@ -34,19 +34,19 @@
   font-size: 36px;
   font-weight: bold;
   margin: 10px 0;
-  font-family: "Google Sans Medium";
+  font-family: var(--font-heading);
 }
 
 .stat-title {
   font-size: 18px;
   margin: 10px 0;
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
 }
 
 .stat-description {
   font-size: 14px;
   margin: 5px 0;
-  font-family: "Google Sans Regular";
+  font-family: var(--font-body);
   opacity: 0.8;
 }
 
