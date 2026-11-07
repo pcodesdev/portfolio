@@ -1,7 +1,7 @@
 {
   "source": "GitHub public repository metadata",
   "rubricVersion": 2,
-  "generatedAt": "2026-11-07T16:56:04.519Z",
+  "generatedAt": "2026-11-07T17:07:27.248Z",
   "data": [
     {
       "id": "edumetrics",
@@ -72,7 +72,7 @@
       "id": "portfolio",
       "name": "portfolio",
       "createdAt": "2024-06-21T11:00:24Z",
-      "updatedAt": "2026-11-07T16:37:51Z",
+      "updatedAt": "2026-11-07T17:06:42Z",
       "url": "https://github.com/pcodesdev/portfolio",
       "projectType": "Original repository",
       "description": "This repository contains Peter Njuguna's professional portfolio, built around the positioning Digital Transformation & Technology Solutions Professional. The portfolio brings together project and programme delivery, digital learning,...",
@@ -109,7 +109,7 @@
       "forks": 0,
       "homepageAvailable": false,
       "isFork": false,
-      "lastUpdated": "2026-11-07T16:37:51Z",
+      "lastUpdated": "2026-11-07T17:06:42Z",
       "curationScore": 88.5,
       "rankingReasons": [
         "technical complexity 23.5/25",
@@ -190,7 +190,7 @@
         "source": "manual",
         "sourceUrl": "https://github.com/pcodesdev/react-movie-app",
         "license": "owner",
-        "retrievedAt": "2026-11-07T16:56:04.512Z",
+        "retrievedAt": "2026-11-07T17:07:27.241Z",
         "status": "ok"
       }
     },
