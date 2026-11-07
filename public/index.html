@@ -37,7 +37,7 @@
       ["pointerdown", "keydown", "touchstart"].forEach(function (eventName) {
         window.addEventListener(eventName, loadDeferredServices, { once: true, passive: true });
       });
-      window.setTimeout(loadDeferredServices, 15000);
+      window.setTimeout(loadDeferredServices, 60000);
     })();
   </script>
   <meta charset="utf-8" />

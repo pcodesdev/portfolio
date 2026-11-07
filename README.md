@@ -46,7 +46,7 @@ This repository contains Peter Njuguna's professional portfolio, built around th
 - Ask My Portfolio local retrieval and the server-side AI endpoint contract are implemented; hosted provider responses remain unconfigured and unverified.
 - Latest local validation: 27 Jest suites / 96 tests and 47 curation, deployment, and image tests passed. Curation and build checks validated six projects, six publications, and all referenced local image assets.
 - Production dependency audit: zero known vulnerabilities. Full development-tree audit: 18 findings (13 low, 3 moderate, 2 high; no criticals); the two highs are in CRA's local development server. Its patched successor is not compatible with CRA 5's middleware configuration, so `npm start` is bound to `127.0.0.1` and the server is never deployed.
-- Latest measured Lighthouse scores were captured before the CRA 5 migration. A fresh production Lighthouse run and live PageSpeed Insights run are pending after this release build is served.
+- Latest local production Lighthouse: mobile performance 87 (accessibility 98, best practices 100, SEO 100; FCP 0.9s, LCP 3.8s, TBT 160ms, CLS 0); desktop performance 99 (accessibility 98, best practices 100, SEO 100; FCP 0.5s, LCP 0.9s, TBT 0ms, CLS 0). The mobile target of 90 is not yet met; live PageSpeed Insights remains pending deployment.
 - Production builds explicitly use `PUBLIC_URL=https://pcodesdev.github.io` and are checked for emitted canonical metadata, footer branding, curated data, and local image assets.
 
 ### Implemented but Requiring External Verification

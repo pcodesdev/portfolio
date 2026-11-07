@@ -7,6 +7,7 @@ import { Fade } from "../../components/motion/Reveal";
 import LazyImage from "../../components/LazyImage/LazyImage";
 
 const portrait480 = require("../../assests/images/Peter-Portfolio-480.jpg");
+const portrait720 = require("../../assests/images/Peter-Portfolio-720.webp");
 const portrait960 = require("../../assests/images/Peter-Portfolio-960.jpg");
 
 export default function Greeting(props) {
@@ -16,26 +17,20 @@ export default function Greeting(props) {
       <div className="greeting-main">
         <div className="greeting-text-div">
           <div>
-            <Fade bottom duration={430}>
-              <h1 className="greeting-text" style={{ color: theme.text }}>
-                {greeting.title}
-              </h1>
-            </Fade>
+            <h1 className="greeting-text" style={{ color: theme.text }}>
+              {greeting.title}
+            </h1>
             {greeting.nickname && (
-              <Fade bottom duration={430} delay={70}>
-                <h2 className="greeting-nickname" style={{ color: theme.text }}>
-                  ( {greeting.nickname} )
-                </h2>
-              </Fade>
+              <h2 className="greeting-nickname" style={{ color: theme.text }}>
+                ( {greeting.nickname} )
+              </h2>
             )}
-            <Fade bottom duration={430} delay={140}>
-              <p
-                className="greeting-text-p subTitle"
-                style={{ color: theme.secondaryText }}
-              >
-                {greeting.subTitle}
-              </p>
-            </Fade>
+            <p
+              className="greeting-text-p subTitle"
+              style={{ color: theme.secondaryText }}
+            >
+              {greeting.subTitle}
+            </p>
             <Fade bottom duration={400} delay={200}>
               <div className="home-social-motion">
                 <SocialMedia theme={theme} />
@@ -78,7 +73,7 @@ export default function Greeting(props) {
           <LazyImage
             alt="Peter Njuguna Smiling"
             src={portrait960}
-            srcSet={`${portrait480} 480w, ${portrait960} 960w`}
+            srcSet={`${portrait480} 480w, ${portrait720} 720w, ${portrait960} 960w`}
             sizes="(max-width: 768px) 90vw, 42vw"
             loading="eager"
             fetchpriority="high"
