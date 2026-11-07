@@ -1,6 +1,6 @@
 .analytics-preferences {
   position: fixed;
-  bottom: 1rem;
+  bottom: 4.5rem;
   left: 1rem;
   z-index: 1000;
   max-width: min(24rem, calc(100vw - 2rem));
