@@ -623,9 +623,9 @@ const projectsHeader = {
 };
 
 const publicationsHeader = {
-  title: "Medium Publications",
+  title: "Technical Articles & Publications",
   description:
-    "Selected writing on software, technology adoption, AI, digital products, and practical programming.",
+    "Selected writing on software engineering, technology adoption, AI, digital products, and practical programming, published on Medium.",
   avatar_image_path: "projects_image.svg",
 };
 

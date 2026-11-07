@@ -2,14 +2,26 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import curationCore from "../src/shared/curationCore.cjs";
+import { assertImagesExist, enrichImages } from "./image-enrichment.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const SCRIPT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+// CURATION_ROOT lets tests run the real CLI against a scratch copy of the data files.
+const ROOT = process.env.CURATION_ROOT
+  ? path.resolve(process.env.CURATION_ROOT)
+  : SCRIPT_ROOT;
 const OWNER = "pcodesdev";
+const PUBLIC_ROOT = path.join(ROOT, "public");
 const PROJECTS_PATH = path.join(ROOT, "src/shared/opensource/projects.json");
 const PUBLICATIONS_PATH = path.join(ROOT, "src/shared/medium/publications.json");
 const OVERRIDES_PATH = path.join(ROOT, "scripts/curation-overrides.json");
 const MEDIUM_FEED_URL = "https://medium.com/feed/@pcodesdev";
 const GENERIC_IMAGE = "/images/projects/project-generic.svg";
+const USER_AGENT = "pcodesdev-portfolio-curation/2.0";
+// Fields that change on every upstream event and must not trigger a redeploy on their own.
+const VOLATILE_FIELDS = ["updatedAt", "lastUpdated", "stars", "forks"];
+// Stage-1 scores omit the language list and homepage check (worth at most 9 points).
+const SHORTLIST_MARGIN = 10;
+const SHORTLIST_LIMIT = 25;
 const IMAGE_ICONS = {
   Python: "logos-python",
   JavaScript: "logos-javascript",
@@ -71,27 +83,6 @@ function firstParagraph(html) {
   return match ? stripHtml(match[1]) : "";
 }
 
-function imageFromReadme(readme, repository) {
-  const imageMatch = String(readme || "").match(
-    /!\[[^\]]*\]\(<?([^\s)>]+)>?(?:\s+['"][^)]*['"])?\)/i
-  );
-  if (!imageMatch) return null;
-  const imagePath = imageMatch[1].replace(/&amp;/g, "&");
-  if (/^https:\/\//i.test(imagePath)) return imagePath;
-  if (/^data:/i.test(imagePath) || imagePath.startsWith("#")) return null;
-  const branch = encodeURIComponent(repository.default_branch || "main").replace(
-    /%2F/gi,
-    "/"
-  );
-  const relativePath = imagePath.replace(/^\.\//, "");
-  return `https://raw.githubusercontent.com/${OWNER}/${encodeURIComponent(
-    repository.name
-  )}/${branch}/${relativePath
-    .split("/")
-    .map((segment) => encodeURIComponent(segment))
-    .join("/")}`;
-}
-
 async function mapLimit(values, limit, mapper) {
   const results = new Array(values.length);
   let nextIndex = 0;
@@ -108,18 +99,44 @@ async function mapLimit(values, limit, mapper) {
   return results;
 }
 
+function delay(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+// Retries network errors and 5xx only; rate limits and 4xx fail closed immediately.
+async function fetchWithRetry(url, options, attempts = 3) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, options);
+      if (response.status < 500 || attempt === attempts) return response;
+      lastError = new Error(`HTTP ${response.status}`);
+    } catch (error) {
+      lastError = error;
+      if (attempt === attempts) throw error;
+    }
+    await delay(500 * attempt * attempt);
+  }
+  throw lastError;
+}
+
 async function githubRequest(url) {
   const headers = {
     Accept: "application/vnd.github+json",
-    "User-Agent": "pcodesdev-portfolio-curation/1.0",
+    "User-Agent": USER_AGENT,
     "X-GitHub-Api-Version": "2022-11-28",
   };
   if (process.env.GITHUB_TOKEN) {
     headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
-  const response = await fetch(url, { headers });
+  const response = await fetchWithRetry(url, { headers });
   if (!response.ok) {
-    throw new Error(`GitHub request failed (${response.status}): ${url}`);
+    const rateLimited =
+      response.status === 429 ||
+      (response.status === 403 && response.headers.get("x-ratelimit-remaining") === "0");
+    throw new Error(
+      `GitHub request failed (${response.status}${rateLimited ? ", rate limited" : ""}): ${url}`
+    );
   }
   return response.json();
 }
@@ -132,8 +149,8 @@ async function rawReadme(repository) {
   const url = `https://raw.githubusercontent.com/${OWNER}/${encodeURIComponent(
     repository.name
   )}/${branch}/README.md`;
-  const response = await fetch(url, {
-    headers: { "User-Agent": "pcodesdev-portfolio-curation/1.0" },
+  const response = await fetchWithRetry(url, {
+    headers: { "User-Agent": USER_AGENT },
   });
   if (response.status === 404) return "";
   if (!response.ok) throw new Error(`README request failed (${response.status}): ${url}`);
@@ -170,7 +187,7 @@ async function fetchAllRepositories() {
   const repositories = [];
   for (let page = 1; page <= 10; page += 1) {
     const result = await githubRequest(
-      `https://api.github.com/users/${OWNER}/repos?per_page=100&page=${page}&sort=updated`
+      `https://api.github.com/users/${OWNER}/repos?per_page=100&page=${page}&sort=full_name&direction=asc`
     );
     if (!Array.isArray(result)) throw new Error("GitHub repository response was not a list");
     repositories.push(...result);
@@ -187,7 +204,40 @@ async function fetchLanguages(repository) {
   return Object.keys(languages).sort((left, right) => languages[right] - languages[left]);
 }
 
-async function discoverProjectCandidates(overrides) {
+function scoringInput(repository, extra) {
+  return {
+    id: curationCore.normalizeId(repository.name),
+    name: repository.name,
+    owner: OWNER,
+    description: repository.description,
+    language: repository.language,
+    topics: repository.topics || [],
+    size: repository.size,
+    stars: repository.stargazers_count,
+    forks: repository.forks_count,
+    createdAt: repository.created_at,
+    pushedAt: repository.pushed_at,
+    updatedAt: repository.updated_at,
+    fork: repository.fork,
+    archived: repository.archived,
+    ...extra,
+  };
+}
+
+function countByReason(repositories) {
+  const counts = { forks: 0, archived: 0, empty: 0, siteRepositories: 0 };
+  repositories.forEach((repository) => {
+    if (repository.fork) counts.forks += 1;
+    else if (repository.archived) counts.archived += 1;
+    else if (Number(repository.size) === 0) counts.empty += 1;
+    else if (curationCore.scoreProject(scoringInput(repository, {})).exclusion === "site or profile repository excluded") {
+      counts.siteRepositories += 1;
+    }
+  });
+  return counts;
+}
+
+async function discoverProjectCandidates(overrides, report) {
   const repositories = await fetchAllRepositories();
   const byId = new Map(
     repositories.map((repository) => [
@@ -195,78 +245,84 @@ async function discoverProjectCandidates(overrides) {
       repository,
     ])
   );
-  const pinned = (overrides.pinnedProjects || []).map((id) => {
-    const repository = byId.get(curationCore.normalizeId(id));
-    if (!repository) throw new Error(`Pinned project is unavailable from GitHub: ${id}`);
-    return repository;
-  });
-  const pinnedIds = new Set(pinned.map((repository) => curationCore.normalizeId(repository.name)));
-  const initialCandidates = repositories
-    .filter((repository) => !repository.fork && !repository.archived && repository.size > 0)
-    .map((repository) => ({
-      id: curationCore.normalizeId(repository.name),
-      name: repository.name,
-      description: repository.description,
-      language: repository.language,
-      topics: repository.topics || [],
-      size: repository.size,
-      stars: repository.stargazers_count,
-      forks: repository.forks_count,
-      updatedAt: repository.updated_at,
-      fork: repository.fork,
-      archived: repository.archived,
-    }))
-    .map((candidate) => ({
-      candidate,
-      score: curationCore.scoreProject(candidate).score,
-    }))
-    .filter(({ candidate, score }) => pinnedIds.has(candidate.id) || score >= curationCore.MIN_PROJECT_SCORE)
-    .sort((left, right) => right.score - left.score)
-    .slice(0, 30)
-    .map(({ candidate }) => byId.get(candidate.id));
-  const shortlist = [...pinned, ...initialCandidates].filter(
-    (repository, index, list) =>
-      list.findIndex(
-        (candidate) =>
-          curationCore.normalizeId(candidate.name) ===
-          curationCore.normalizeId(repository.name)
-      ) === index
-  );
+  report.projects.discovered = repositories.length;
+  Object.assign(report.projects, countByReason(repositories));
 
-  return mapLimit(shortlist, 5, async (repository) => {
-    const [readme, languages, homepageAvailable] = await Promise.all([
-      rawReadme(repository),
+  const eligible = repositories.filter(
+    (repository) =>
+      !repository.fork &&
+      !repository.archived &&
+      Number(repository.size) > 0 &&
+      curationCore.scoreProject(scoringInput(repository, {})).eligible
+  );
+  report.projects.eligible = eligible.length;
+
+  // Stage 1: README-based score for every eligible repository (raw content, no API quota).
+  const stageOne = await mapLimit(eligible, 8, async (repository) => {
+    const readme = await rawReadme(repository);
+    const ranking = curationCore.scoreProject(scoringInput(repository, { readme }));
+    return { repository, readme, ranking };
+  });
+
+  const pinnedIds = (overrides.pinnedProjects || []).map(curationCore.normalizeId);
+  const cutoff = curationCore.MIN_PROJECT_SCORE - SHORTLIST_MARGIN;
+  const stageOneById = new Map(
+    stageOne.map((entry) => [curationCore.normalizeId(entry.repository.name), entry])
+  );
+  const shortlistedIds = new Set(
+    stageOne
+      .filter((entry) => entry.ranking.score >= cutoff)
+      .sort((left, right) =>
+        right.ranking.score !== left.ranking.score
+          ? right.ranking.score - left.ranking.score
+          : curationCore.normalizeId(left.repository.name).localeCompare(
+              curationCore.normalizeId(right.repository.name)
+            )
+      )
+      .slice(0, SHORTLIST_LIMIT)
+      .map((entry) => curationCore.normalizeId(entry.repository.name))
+  );
+  pinnedIds.forEach((id) => {
+    if (!byId.has(id)) throw new Error(`Pinned projects was not found upstream: ${id}`);
+    shortlistedIds.add(id);
+  });
+  report.projects.shortlisted = shortlistedIds.size;
+
+  stageOne
+    .filter((entry) => !shortlistedIds.has(curationCore.normalizeId(entry.repository.name)))
+    .forEach((entry) =>
+      report.projects.decisions.push({
+        id: curationCore.normalizeId(entry.repository.name),
+        name: entry.repository.name,
+        score: entry.ranking.score,
+        status: "not-shortlisted",
+        reason: `preliminary score below ${cutoff}`,
+      })
+    );
+
+  // Stage 2: full evaluation of the shortlist.
+  return mapLimit([...shortlistedIds].sort(), 5, async (id) => {
+    const repository = byId.get(id);
+    const preliminary =
+      stageOneById.get(id) || {
+        readme: await rawReadme(repository),
+      };
+    const [languages, homepageAvailable] = await Promise.all([
       fetchLanguages(repository),
       repository.homepage ? urlIsReachable(repository.homepage) : false,
     ]);
-    const scoreInput = {
-      id: curationCore.normalizeId(repository.name),
-      name: repository.name,
-      description: repository.description,
-      language: repository.language,
-      languages,
-      topics: repository.topics || [],
+    const readme = preliminary.readme;
+    const scoreInput = scoringInput(repository, {
       readme,
-      size: repository.size,
-      stars: repository.stargazers_count,
-      forks: repository.forks_count,
-      updatedAt: repository.updated_at,
-      fork: repository.fork,
-      archived: repository.archived,
-    };
+      languages,
+      homepageAvailable,
+    });
     const ranking = curationCore.scoreProject(scoreInput);
-    const previewImage = imageFromReadme(readme, repository);
-    const previewImageAvailable = previewImage
-      ? await urlIsReachable(previewImage)
-      : false;
     return {
       ...repository,
-      id: scoreInput.id,
+      id,
       languages,
       readme,
-      readmeSummary: firstParagraph(readXmlTag(readme, "description") || readme),
-      previewImage,
-      previewImageAvailable,
       homepageAvailable,
       ranking,
     };
@@ -280,13 +336,28 @@ function languageItems(names) {
   }));
 }
 
+function plainMarkdown(value) {
+  return value
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/(\*\*|__|`|^>\s*)/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function truncateAtWord(value, maxLength) {
+  if (value.length <= maxLength) return value;
+  const cutoff = value.lastIndexOf(" ", maxLength);
+  return `${value.slice(0, cutoff > 0 ? cutoff : maxLength).trim()}...`;
+}
+
 function firstReadmeParagraph(readme) {
   const headingsRemoved = String(readme || "").replace(/^#{1,6}\s.*$/gm, " ");
   const paragraph = headingsRemoved
     .split(/\r?\n\s*\r?\n/)
-    .map(stripHtml)
+    .map((entry) => plainMarkdown(stripHtml(entry)))
     .find((entry) => entry.length > 35 && !entry.startsWith("[!["));
-  return paragraph || "";
+  return truncateAtWord(paragraph || "", 240);
 }
 
 function projectData(candidate, existing, manual) {
@@ -314,11 +385,7 @@ function projectData(candidate, existing, manual) {
   );
   const image = Object.prototype.hasOwnProperty.call(manual, "image")
     ? manual.image
-    : existing && Object.prototype.hasOwnProperty.call(existing, "image")
-      ? existing.image
-      : candidate.previewImageAvailable
-        ? candidate.previewImage
-        : null;
+    : null;
   const homepage =
     candidate.homepage &&
     candidate.homepageAvailable &&
@@ -349,7 +416,6 @@ function projectData(candidate, existing, manual) {
     ),
     stack: useManual("stack", stack),
     image,
-    readmeImageAvailable: Boolean(candidate.previewImageAvailable),
     imageAlt: useManual(
       "imageAlt",
       image ? `${name} project screenshot` : `${name} project illustration`
@@ -371,77 +437,108 @@ function projectData(candidate, existing, manual) {
   return result;
 }
 
+function contentMetrics(rawContent) {
+  const count = (pattern) => (rawContent.match(pattern) || []).length;
+  return {
+    wordCount: stripHtml(rawContent).split(/\s+/).filter(Boolean).length,
+    headingCount: count(/<h[1-6]\b/gi),
+    paragraphCount: count(/<p\b/gi),
+    listItemCount: count(/<li\b/gi),
+    codeBlockCount: count(/<pre\b/gi),
+    // Medium appends a 1x1 tracking pixel served from /_/stat.
+    imageCount: count(/<img\b(?![^>]*\/_\/stat)/gi),
+  };
+}
+
 function parseMediumFeed(xml) {
   const items = [...String(xml).matchAll(/<item>([\s\S]*?)<\/item>/gi)].map(
     (match) => match[1]
   );
-  return items
-    .map((item) => {
-      const content = readRawXmlTag(item, "content:encoded");
-      const url = readXmlTag(item, "link").replace(/\?source=.*$/i, "");
-      const guid = readXmlTag(item, "guid");
-      const slugId = url.split("-").pop();
-      const id = guid.match(/\/p\/([a-z0-9]+)/i)?.[1] || slugId;
-      const description =
-        firstParagraph(content) ||
-        stripHtml(readXmlTag(item, "description"));
-      const pubDate = readXmlTag(item, "pubDate");
-      const feedTitle = readXmlTag(item, "title");
-      const fullHeading = stripHtml(
-        content.match(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i)?.[1] || ""
-      );
-      const titlePrefix = feedTitle.replace(/\s*…$/, "").trim();
-      const name =
-        feedTitle.endsWith("…") && fullHeading.startsWith(titlePrefix)
-          ? fullHeading
-          : feedTitle;
-      const image =
-        content.match(/<img\b[^>]*\bsrc=["']([^"']+)["']/i)?.[1] ||
-        item.match(/<media:thumbnail\b[^>]*\burl=["']([^"']+)["']/i)?.[1] ||
-        null;
-      return {
-        id,
-        name,
-        createdAt: pubDate ? new Date(pubDate).toISOString() : "",
-        description: description.slice(0, 280),
-        contentText: stripHtml(content),
-        image,
-        url,
-      };
-    })
-    .filter((publication) => publication.name && publication.id && publication.description);
+  return items.map((item) => {
+    const content = readRawXmlTag(item, "content:encoded");
+    const url = readXmlTag(item, "link").replace(/\?source=.*$/i, "");
+    const guid = readXmlTag(item, "guid");
+    const slugId = url.split("-").pop();
+    const id = guid.match(/\/p\/([a-z0-9]+)/i)?.[1] || slugId;
+    const description =
+      firstParagraph(content) ||
+      stripHtml(readXmlTag(item, "description"));
+    const pubDate = readXmlTag(item, "pubDate");
+    const feedTitle = readXmlTag(item, "title");
+    const fullHeading = stripHtml(
+      content.match(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i)?.[1] || ""
+    );
+    const titlePrefix = feedTitle.replace(/\s*…$/, "").trim();
+    const name =
+      feedTitle.endsWith("…") && fullHeading.startsWith(titlePrefix)
+        ? fullHeading
+        : feedTitle;
+    const contentImages = [...content.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)]
+      .map((match) => match[1])
+      .filter((src) => !/\/_\/stat/.test(src));
+    const image =
+      contentImages[0] ||
+      item.match(/<media:thumbnail\b[^>]*\burl=["']([^"']+)["']/i)?.[1] ||
+      null;
+    return {
+      id,
+      name,
+      createdAt: pubDate ? new Date(pubDate).toISOString() : "",
+      description: description.slice(0, 280),
+      contentText: stripHtml(content),
+      metrics: contentMetrics(content),
+      contentImages: contentImages.slice(1),
+      image,
+      url,
+    };
+  });
 }
 
-async function fetchPublications() {
-  const response = await fetch(MEDIUM_FEED_URL, {
+async function fetchPublications(report) {
+  const response = await fetchWithRetry(MEDIUM_FEED_URL, {
     headers: {
       Accept: "application/rss+xml, application/xml, text/xml",
-      "User-Agent": "pcodesdev-portfolio-curation/1.0 (+https://pcodesdev.github.io/)",
+      "User-Agent": `${USER_AGENT} (+https://pcodesdev.github.io/)`,
     },
   });
   if (!response.ok) {
     throw new Error(`Medium RSS request failed (${response.status})`);
   }
-  const publications = parseMediumFeed(await response.text());
-  if (publications.length === 0) throw new Error("Medium RSS returned no usable articles");
-  return publications;
+  const parsed = parseMediumFeed(await response.text());
+  const usable = parsed.filter(
+    (publication) => publication.name && publication.id && publication.description
+  );
+  report.publications.discovered = parsed.length;
+  report.publications.usable = usable.length;
+  if (usable.length === 0) throw new Error("Medium RSS returned no usable articles");
+  return usable;
 }
 
-function curateProjects(candidates, previousData, overrides) {
+function curateProjects(candidates, previousData, overrides, report, hints) {
   const previousById = new Map(
     previousData.map((item) => [curationCore.normalizeId(item.id), item])
   );
   const manualProjects = overrides.projects || {};
-  const ordered = curationCore.orderCandidates(
-    candidates.map((candidate) => ({ ...candidate, id: candidate.id })),
-    overrides.pinnedProjects || [],
-    overrides.excludedProjects || [],
-    (candidate) => candidate.ranking,
-    curationCore.MIN_PROJECT_SCORE,
-    "projects"
-  );
+  const { selected, decisions } = curationCore.rankCandidates({
+    candidates,
+    pinnedIds: overrides.pinnedProjects || [],
+    excludedIds: overrides.excludedProjects || [],
+    scoreFunction: (candidate) => candidate.ranking,
+    minimumScore: curationCore.MIN_PROJECT_SCORE,
+    kind: "projects",
+  });
+  report.projects.decisions.push(...decisions);
+  selected.forEach((candidate) => {
+    hints[candidate.id] = {
+      repository: candidate,
+      readme: candidate.readme,
+      manualImage: (manualProjects[candidate.id] || {}).image,
+      primaryLanguage: candidate.language,
+      topics: candidate.topics || [],
+    };
+  });
   return curationCore.validateProjects(
-    ordered.map((candidate) =>
+    selected.map((candidate) =>
       projectData(
         candidate,
         previousById.get(candidate.id),
@@ -451,22 +548,47 @@ function curateProjects(candidates, previousData, overrides) {
   );
 }
 
-function curatePublications(candidates, overrides) {
+// The Medium feed only exposes the 10 newest posts, so featured older posts are carried forward from stored data.
+function withCarriedForward(feedItems, previousPublications, previousRubricVersion) {
+  const feedIds = new Set(feedItems.map((item) => curationCore.normalizeId(item.id)));
+  const carried = previousPublications
+    .filter((item) => !feedIds.has(curationCore.normalizeId(item.id)))
+    .filter(
+      (item) =>
+        previousRubricVersion === curationCore.RUBRIC_VERSION &&
+        Number.isFinite(item.curationScore)
+    )
+    .map((item) => ({ ...item, carriedForward: true }));
+  return [...feedItems, ...carried];
+}
+
+function curatePublications(candidates, overrides, report, hints) {
   const manualPublications = overrides.publications || {};
-  const ordered = curationCore.orderCandidates(
-    candidates.map((candidate) => ({
-      ...candidate,
-      ranking: curationCore.scorePublication(candidate),
-    })),
-    overrides.pinnedPublications || [],
-    overrides.excludedPublications || [],
-    (candidate) => candidate.ranking,
-    curationCore.MIN_PUBLICATION_SCORE,
-    "publications"
-  );
+  const scoreFunction = (candidate) =>
+    candidate.carriedForward
+      ? {
+          score: candidate.curationScore,
+          reasons: candidate.rankingReasons || [],
+          eligible: true,
+          exclusion: "",
+        }
+      : curationCore.scorePublication(candidate);
+  const { selected, decisions } = curationCore.rankCandidates({
+    candidates,
+    pinnedIds: overrides.pinnedPublications || [],
+    excludedIds: overrides.excludedPublications || [],
+    scoreFunction,
+    minimumScore: curationCore.MIN_PUBLICATION_SCORE,
+    kind: "publications",
+    dedupeKeys: curationCore.publicationDedupeKeys,
+  });
+  report.publications.carriedForward = candidates.filter((item) => item.carriedForward).length;
+  report.publications.decisions.push(...decisions);
   return curationCore.validatePublications(
-    ordered.map((publication) => {
-      const { contentText, ranking, ...metadata } = publication;
+    selected.map((publication) => {
+      const ranking = scoreFunction(publication);
+      const { contentText, metrics, carriedForward, contentImages, ...metadata } = publication;
+      hints[publication.id] = { rssImage: publication.image, contentImages: contentImages || [] };
       return {
         ...metadata,
         ...(manualPublications[publication.id] || {}),
@@ -488,10 +610,40 @@ function validateOverrides(overrides) {
       }
     }
   );
-  const projects = readJson(PROJECTS_PATH).data;
-  const publications = readJson(PUBLICATIONS_PATH).data;
+}
+
+function validateStoredData(overrides) {
+  validateOverrides(overrides);
+  const projectPayload = readJson(PROJECTS_PATH);
+  const publicationPayload = readJson(PUBLICATIONS_PATH);
+  const projects = projectPayload.data;
+  const publications = publicationPayload.data;
   curationCore.validateProjects(projects);
   curationCore.validatePublications(publications);
+  if (projects.length < 1 || publications.length < 1) {
+    throw new Error("Featured content must contain at least one project and one publication");
+  }
+  [projectPayload, publicationPayload].forEach((payload) => {
+    if (payload.rubricVersion !== curationCore.RUBRIC_VERSION) {
+      throw new Error(
+        `Generated data was produced by rubric version ${payload.rubricVersion}; expected ${curationCore.RUBRIC_VERSION}. Run npm run curate:featured.`
+      );
+    }
+  });
+  curationCore.validateQuality(projects, {
+    minimumScore: curationCore.MIN_PROJECT_SCORE,
+    pinnedIds: overrides.pinnedProjects || [],
+    kind: "projects",
+  });
+  curationCore.validateImages(projects, { kind: "projects" });
+  curationCore.validateImages(publications, { kind: "publications" });
+  assertImagesExist(projects, PUBLIC_ROOT);
+  assertImagesExist(publications, PUBLIC_ROOT);
+  curationCore.validateQuality(publications, {
+    minimumScore: curationCore.MIN_PUBLICATION_SCORE,
+    pinnedIds: overrides.pinnedPublications || [],
+    kind: "publications",
+  });
   for (const project of projects) {
     const fallback = project.fallbackImage || GENERIC_IMAGE;
     if (fallback.startsWith("/")) {
@@ -505,17 +657,39 @@ function validateOverrides(overrides) {
 }
 
 function dataPayload(source, data) {
-  return { source, generatedAt: new Date().toISOString(), data };
+  return {
+    source,
+    rubricVersion: curationCore.RUBRIC_VERSION,
+    generatedAt: new Date().toISOString(),
+    data,
+  };
+}
+
+function withoutVolatileFields(items) {
+  return (items || []).map((item) => {
+    const copy = { ...item };
+    VOLATILE_FIELDS.forEach((field) => delete copy[field]);
+    return copy;
+  });
+}
+
+function readStoredPayload(filePath) {
+  try {
+    return readJson(filePath);
+  } catch (error) {
+    return { data: undefined };
+  }
 }
 
 async function writeIfMeaningfullyChanged(filePath, payload) {
-  let currentData;
-  try {
-    currentData = readJson(filePath).data;
-  } catch (error) {
-    currentData = undefined;
+  const current = readStoredPayload(filePath);
+  if (
+    current.rubricVersion === payload.rubricVersion &&
+    JSON.stringify(withoutVolatileFields(current.data)) ===
+      JSON.stringify(withoutVolatileFields(payload.data))
+  ) {
+    return false;
   }
-  if (JSON.stringify(currentData) === JSON.stringify(payload.data)) return false;
 
   const temporaryPath = `${filePath}.${process.pid}.tmp`;
   await fs.promises.writeFile(temporaryPath, `${JSON.stringify(payload, null, 2)}\n`);
@@ -523,72 +697,214 @@ async function writeIfMeaningfullyChanged(filePath, payload) {
   return true;
 }
 
-function appendWorkflowSummary(projects, publications, changed) {
-  const summaryPath = process.env.GITHUB_STEP_SUMMARY;
-  if (!summaryPath) return;
+function describeChanges(previous, next) {
+  const before = new Set(previous.map((item) => curationCore.normalizeId(item.id)));
+  const after = new Set(next.map((item) => curationCore.normalizeId(item.id)));
+  return {
+    added: next.filter((item) => !before.has(curationCore.normalizeId(item.id))).map((item) => item.id),
+    removed: previous.filter((item) => !after.has(curationCore.normalizeId(item.id))).map((item) => item.id),
+  };
+}
+
+const STATUS_ORDER = [
+  "selected-pinned",
+  "selected",
+  "outranked",
+  "below-threshold",
+  "duplicate",
+  "excluded-by-owner",
+  "ineligible",
+  "not-shortlisted",
+];
+
+function sortedDecisions(decisions) {
+  return [...decisions].sort((left, right) => {
+    const statusDelta = STATUS_ORDER.indexOf(left.status) - STATUS_ORDER.indexOf(right.status);
+    if (statusDelta) return statusDelta;
+    return (right.score ?? -1) - (left.score ?? -1) || String(left.id).localeCompare(String(right.id));
+  });
+}
+
+function decisionTable(decisions) {
+  const sorted = sortedDecisions(decisions);
+  const shown = sorted.filter((decision) => decision.status !== "not-shortlisted");
+  const rows = shown.map(
+    (decision, index) =>
+      `| ${index + 1} | ${String(decision.name || decision.id).replace(/\|/g, "\\|")} | ${
+        decision.score === null || decision.score === undefined ? "n/a" : decision.score
+      } | ${decision.status} | ${String(decision.reason).replace(/\|/g, "\\|")} |`
+  );
+  const hidden = sorted.length - shown.length;
+  if (hidden) {
+    rows.push(`| | ${hidden} further repositories | | not-shortlisted | preliminary score below the cut-off (see curation-report.json) |`);
+  }
+  return ["| # | Item | Score | Decision | Reason |", "| --- | --- | --- | --- | --- |", ...rows].join("\n");
+}
+
+function imageTable(images) {
+  const rows = [...images.projects.map((entry) => ({ kind: "project", ...entry })), ...images.publications.map((entry) => ({ kind: "article", ...entry }))].map(
+    (entry) =>
+      `| ${entry.kind} | ${entry.id} | ${entry.source} | ${entry.status} | ${entry.notes.join("; ").replace(/\|/g, "\\|") || "-"} |`
+  );
+  return ["| Type | Item | Image source | Status | Notes |", "| --- | --- | --- | --- | --- |", ...rows].join("\n");
+}
+
+function renderReport(report) {
+  const { projects, publications } = report;
   const lines = [
-    "## Portfolio curation",
-    `- Featured repositories: ${projects.length} (maximum ${curationCore.MAX_FEATURED_ITEMS})`,
-    `- Featured Medium articles: ${publications.length} (maximum ${curationCore.MAX_FEATURED_ITEMS})`,
-    `- Generated data changed: ${changed ? "yes" : "no"}`,
-    "- Deployment: not performed; data changes are proposed for review in a pull request.",
+    "## Portfolio content curation",
+    `- Rubric version: ${report.rubricVersion} (project/article threshold ${curationCore.MIN_PROJECT_SCORE}/${curationCore.MIN_PUBLICATION_SCORE} of 100; display limit ${curationCore.MAX_FEATURED_ITEMS} each)`,
+    `- Mode: ${report.dryRun ? "dry run (nothing written)" : "write"}`,
+    `- GitHub repositories discovered: ${projects.discovered} (forks ${projects.forks}, archived ${projects.archived}, empty ${projects.empty}, site/profile ${projects.siteRepositories}); eligible ${projects.eligible}; fully evaluated ${projects.shortlisted}`,
+    `- Medium articles discovered: ${publications.discovered} (usable ${publications.usable}, carried forward from stored data ${publications.carriedForward})`,
+    `- Items evaluated: ${projects.eligible + publications.usable + publications.carriedForward}`,
+    `- Projects added: ${report.changes.projects.added.join(", ") || "none"}; removed: ${report.changes.projects.removed.join(", ") || "none"}`,
+    `- Articles added: ${report.changes.publications.added.join(", ") || "none"}; removed: ${report.changes.publications.removed.join(", ") || "none"}`,
+    `- Validation: ${report.validation}`,
+    `- Generated data changed: ${report.changed ? "yes" : "no"}`,
+    `- Last content update: ${report.lastContentUpdate || "unknown"}`,
+    "",
+    "### Projects",
+    decisionTable(projects.decisions),
+    "",
+    "### Articles",
+    decisionTable(publications.decisions),
+    "",
+    "### Featured images",
+    imageTable(report.images),
   ];
-  fs.appendFileSync(summaryPath, `${lines.join("\n")}\n`);
+  return `${lines.join("\n")}\n`;
+}
+
+function emitReport(report) {
+  const markdown = renderReport(report);
+  console.log(markdown);
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${markdown}\n`);
+  }
+  if (process.env.CURATION_REPORT_PATH) {
+    fs.writeFileSync(process.env.CURATION_REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  }
+  if (process.env.GITHUB_OUTPUT) {
+    fs.appendFileSync(
+      process.env.GITHUB_OUTPUT,
+      [
+        `changed=${report.changed}`,
+        `projects_discovered=${report.projects.discovered}`,
+        `publications_discovered=${report.publications.discovered}`,
+        `projects_selected=${report.projects.decisions.filter((entry) => entry.status.startsWith("selected")).length}`,
+        `publications_selected=${report.publications.decisions.filter((entry) => entry.status.startsWith("selected")).length}`,
+      ].join("\n") + "\n"
+    );
+  }
 }
 
 async function run() {
   const overrides = readJson(OVERRIDES_PATH);
   validateOverrides(overrides);
   if (process.argv.includes("--validate")) {
-    const counts = validateOverrides(overrides);
+    const counts = validateStoredData(overrides);
     console.log(
       `Validated ${counts.projects} featured projects and ${counts.publications} featured publications.`
     );
     return;
   }
 
-  const previousProjects = readJson(PROJECTS_PATH).data;
   const dryRun = process.argv.includes("--dry-run");
-  let changed = false;
-  const { projects: curatedProjects, publications: curatedPublications } =
-    await curationCore.collectValidatedData(
+  const previousProjectPayload = readStoredPayload(PROJECTS_PATH);
+  const previousPublicationPayload = readStoredPayload(PUBLICATIONS_PATH);
+  const previousProjects = previousProjectPayload.data || [];
+  const previousPublications = previousPublicationPayload.data || [];
+  const report = {
+    startedAt: new Date().toISOString(),
+    dryRun,
+    rubricVersion: curationCore.RUBRIC_VERSION,
+    projects: {
+      discovered: 0,
+      forks: 0,
+      archived: 0,
+      empty: 0,
+      siteRepositories: 0,
+      eligible: 0,
+      shortlisted: 0,
+      decisions: [],
+    },
+    publications: { discovered: 0, usable: 0, carriedForward: 0, decisions: [] },
+    changes: {
+      projects: { added: [], removed: [] },
+      publications: { added: [], removed: [] },
+    },
+    validation: "not run",
+    changed: false,
+    images: { projects: [], publications: [] },
+    lastContentUpdate: previousProjectPayload.generatedAt || null,
+  };
+  const hints = { projects: {}, publications: {} };
+  const enrichmentContext = { publicRoot: PUBLIC_ROOT, owner: OWNER, dryRun, log: console.warn };
+
+  await curationCore.collectValidatedData(
       async () => {
-        const repositories = await discoverProjectCandidates(overrides);
-        return curateProjects(repositories, previousProjects, overrides);
+        const candidates = await discoverProjectCandidates(overrides, report);
+        return curateProjects(candidates, previousProjects, overrides, report, hints.projects);
       },
-      async () => curatePublications(await fetchPublications(), overrides),
-      async ({ projects, publications }) => {
-        if (dryRun) return;
-        const projectPayload = dataPayload(
-          "GitHub public repository metadata",
-          projects
+      async () => {
+        const feedItems = await fetchPublications(report);
+        return curatePublications(
+          withCarriedForward(
+            feedItems,
+            previousPublications,
+            previousPublicationPayload.rubricVersion
+          ),
+          overrides,
+          report,
+          hints.publications
         );
-        const publicationPayload = dataPayload("Medium RSS", publications);
+      },
+      async (selection) => {
+        if (selection.projects.length < 1 || selection.publications.length < 1) {
+          throw new Error("Refusing to publish: no project or article met the quality threshold");
+        }
+        const enrichedProjects = await enrichImages({
+          kind: "projects",
+          items: selection.projects,
+          previousItems: previousProjects,
+          hintsById: hints.projects,
+          context: enrichmentContext,
+        });
+        const enrichedPublications = await enrichImages({
+          kind: "articles",
+          items: selection.publications,
+          previousItems: previousPublications,
+          hintsById: hints.publications,
+          context: enrichmentContext,
+        });
+        const projects = enrichedProjects.items;
+        const publications = enrichedPublications.items;
+        report.images = { projects: enrichedProjects.outcomes, publications: enrichedPublications.outcomes };
+        curationCore.validateImages(projects, { kind: "projects" });
+        curationCore.validateImages(publications, { kind: "publications" });
+        if (!dryRun) {
+          assertImagesExist(projects, PUBLIC_ROOT);
+          assertImagesExist(publications, PUBLIC_ROOT);
+        }
+        report.validation = "passed";
+        report.changes.projects = describeChanges(previousProjects, projects);
+        report.changes.publications = describeChanges(previousPublications, publications);
+        if (dryRun) return;
         const changedProjects = await writeIfMeaningfullyChanged(
           PROJECTS_PATH,
-          projectPayload
+          dataPayload("GitHub public repository metadata", projects)
         );
         const changedPublications = await writeIfMeaningfullyChanged(
           PUBLICATIONS_PATH,
-          publicationPayload
+          dataPayload("Medium RSS", publications)
         );
-        changed = changedProjects || changedPublications;
+        report.changed = changedProjects || changedPublications;
+        report.lastContentUpdate = readStoredPayload(PROJECTS_PATH).generatedAt || null;
       }
     );
-  appendWorkflowSummary(curatedProjects, curatedPublications, changed);
-  console.log(
-    `Selected ${curatedProjects.length} projects and ${curatedPublications.length} Medium articles${
-      process.argv.includes("--dry-run") ? " (dry run)" : ""
-    }.`
-  );
-  curatedProjects.forEach((project) =>
-    console.log(`Project ${project.id}: ${project.curationScore} points (${project.rankingReasons.join(", ")})`)
-  );
-  curatedPublications.forEach((publication) =>
-    console.log(
-      `Article ${publication.id}: ${publication.curationScore} points (${publication.rankingReasons.join(", ")})`
-    )
-  );
+
+  emitReport(report);
 }
 
 run().catch((error) => {

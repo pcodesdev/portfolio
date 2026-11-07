@@ -42,7 +42,7 @@ function formatDate(value) {
       });
 }
 
-export default function OpenSourceOverview({ theme }) {
+export default function OpenSourceOverview({ theme, children }) {
   const overviewRef = useRef(null);
   const [snapshot, setSnapshot] = useState(githubSnapshot);
   const [refreshing, setRefreshing] = useState(false);
@@ -390,6 +390,7 @@ export default function OpenSourceOverview({ theme }) {
           </div>
         </div>
       </section>
+      {children}
     </main>
   );
 }

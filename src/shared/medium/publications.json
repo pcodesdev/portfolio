@@ -1,56 +1,193 @@
 {
+  "source": "Medium RSS",
+  "rubricVersion": 2,
+  "generatedAt": "2026-11-07T11:08:30.504Z",
   "data": [
     {
       "id": "9d5541ff07cb",
       "name": "Kenya Is #1 in AI Usage. That’s Not the Same as Winning.",
       "createdAt": "2026-08-31T09:23:31.000Z",
-      "description": "A headline went around African tech media a few weeks ago that felt good to read: Kenya now ranks first in the world for AI usage. Not first in Africa. First, period. Ahead of the UAE. Ahead of Indonesia. Miles ahead of...",
-      "image": "https://cdn-images-1.medium.com/max/1024/1*UHNQIw6PMH8cxV0Go0j7gQ.jpeg",
-      "url": "https://medium.com/@pcodesdev/kenya-is-1-in-ai-usage-thats-not-the-same-as-winning-9d5541ff07cb"
-    },
-    {
-      "id": "a1f11e71b572",
-      "name": "You Haven’t Made a Real Decision in Three Weeks. Neither Have I.",
-      "createdAt": "2026-08-17T13:08:53.000Z",
-      "description": "It was 11:40 pm. I was typing a question into a chat window.",
-      "image": "https://cdn-images-1.medium.com/max/1024/1*Q2gQRTUGLOdBi2aDF9Ql6w.jpeg",
-      "url": "https://medium.com/@pcodesdev/you-havent-made-a-real-decision-in-three-weeks-neither-have-i-a1f11e71b572"
-    },
-    {
-      "id": "d034b296f60b",
-      "name": "Google Stitch Just Killed Figma",
-      "createdAt": "2026-03-23T09:38:58.000Z",
-      "description": "I built a full LMS UI in one prompt. Here’s why Google Stitch is rewriting UI design and what Figma and Penpot need to do to survive.",
-      "image": "https://cdn-images-1.medium.com/max/1024/1*7PVxOYtXCkZ2b-7j-OgTuA.png",
-      "url": "https://medium.com/@pcodesdev/google-stitch-just-killed-figma-d034b296f60b"
-    },
-    {
-      "id": "7ba11301334b",
-      "name": "We Asked 81,000 People What They Really Want from AI. The Answers Will Surprise You.",
-      "createdAt": "2026-03-19T07:48:26.000Z",
-      "description": "Spoiler: It’s not productivity. It’s freedom.",
-      "image": "https://cdn-images-1.medium.com/max/1024/1*Jvo6Y_Qprpxwhn5eDyrxHQ.png",
-      "url": "https://medium.com/@pcodesdev/we-asked-81-000-people-what-they-really-want-from-ai-the-answers-will-surprise-you-7ba11301334b"
+      "description": "A headline went around African tech media a few weeks ago that felt good to read: Kenya now ranks first in the world for AI usage. Not first in Africa. First, period. Ahead of the UAE. Ahead of Indonesia. Miles ahead of the US and UK.",
+      "image": "/images/featured/articles/9d5541ff07cb-37d953d9-960.webp",
+      "url": "https://medium.com/@pcodesdev/kenya-is-1-in-ai-usage-thats-not-the-same-as-winning-9d5541ff07cb",
+      "curationScore": 59,
+      "rankingReasons": [
+        "technical depth 14/25",
+        "originality 6/15",
+        "practical value 0/15",
+        "professional relevance 15/20",
+        "explanation and structure 15/15",
+        "meaningful analysis 9/10"
+      ],
+      "imageAlt": "Cover image for the article \"Kenya Is #1 in AI Usage. That’s Not the Same as Winning.\"",
+      "imageMeta": {
+        "src": "/images/featured/articles/9d5541ff07cb-37d953d9-960.webp",
+        "srcSet": "/images/featured/articles/9d5541ff07cb-37d953d9-480.webp 480w, /images/featured/articles/9d5541ff07cb-37d953d9-960.webp 960w",
+        "width": 960,
+        "height": 540,
+        "alt": "Cover image for the article \"Kenya Is #1 in AI Usage. That’s Not the Same as Winning.\"",
+        "source": "medium-rss",
+        "sourceUrl": "https://medium.com/@pcodesdev/kenya-is-1-in-ai-usage-thats-not-the-same-as-winning-9d5541ff07cb",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:29.067Z",
+        "status": "ok"
+      },
+      "fallbackImage": "/images/featured/articles/9d5541ff07cb-fallback.svg"
     },
     {
       "id": "7d9441d0b6c6",
       "name": "The Silicon Savannah Mirage: Why Kenya’s Tech Darlings Keep Crashing and What It Tells Us About Africa’s Unique Ecosystem",
       "createdAt": "2026-02-01T12:21:41.000Z",
       "description": "The promise of Silicon Savannah: Innovation meets reality in Nairobi’s tech ecosystem",
-      "image": "https://cdn-images-1.medium.com/max/1024/1*YG4hnvZXVrNPpt2XliO07g.jpeg",
-      "url": "https://medium.com/@pcodesdev/the-silicon-savannah-mirage-why-kenyas-tech-darlings-keep-crashing-and-what-it-tells-us-about-7d9441d0b6c6"
+      "image": "/images/featured/articles/7d9441d0b6c6-2e0241ae-960.webp",
+      "url": "https://medium.com/@pcodesdev/the-silicon-savannah-mirage-why-kenyas-tech-darlings-keep-crashing-and-what-it-tells-us-about-7d9441d0b6c6",
+      "curationScore": 71,
+      "rankingReasons": [
+        "technical depth 16/25",
+        "originality 12/15",
+        "practical value 9/15",
+        "professional relevance 13/20",
+        "explanation and structure 12/15",
+        "meaningful analysis 9/10"
+      ],
+      "imageAlt": "Cover image for the article \"The Silicon Savannah Mirage: Why Kenya’s Tech Darlings Keep Crashing and What It Tells Us About Africa’s Unique Ecosystem\"",
+      "imageMeta": {
+        "src": "/images/featured/articles/7d9441d0b6c6-2e0241ae-960.webp",
+        "srcSet": "/images/featured/articles/7d9441d0b6c6-2e0241ae-480.webp 480w, /images/featured/articles/7d9441d0b6c6-2e0241ae-960.webp 960w",
+        "width": 960,
+        "height": 540,
+        "alt": "Cover image for the article \"The Silicon Savannah Mirage: Why Kenya’s Tech Darlings Keep Crashing and What It Tells Us About Africa’s Unique Ecosystem\"",
+        "source": "medium-rss",
+        "sourceUrl": "https://medium.com/@pcodesdev/the-silicon-savannah-mirage-why-kenyas-tech-darlings-keep-crashing-and-what-it-tells-us-about-7d9441d0b6c6",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:29.067Z",
+        "status": "ok"
+      },
+      "fallbackImage": "/images/featured/articles/7d9441d0b6c6-fallback.svg"
+    },
+    {
+      "id": "803c4e69d641",
+      "name": "OpenClaw: The Lobster That’s Eating Silicon Valley’s Lunch (And Your To-Do List)",
+      "createdAt": "2026-02-15T12:41:16.000Z",
+      "description": "Your personal AI assistant that actually does things. Any OS. Any Platform. The lobster way. 🦞",
+      "image": "/images/featured/articles/803c4e69d641-230a3e2c-960.webp",
+      "url": "https://medium.com/@pcodesdev/openclaw-the-lobster-thats-eating-silicon-valley-s-lunch-and-your-to-do-list-803c4e69d641",
+      "curationScore": 76.5,
+      "rankingReasons": [
+        "technical depth 25/25",
+        "originality 9/15",
+        "practical value 15/15",
+        "professional relevance 11/20",
+        "explanation and structure 12/15",
+        "meaningful analysis 4.5/10"
+      ],
+      "imageAlt": "Cover image for the article \"OpenClaw: The Lobster That’s Eating Silicon Valley’s Lunch (And Your To-Do List)\"",
+      "imageMeta": {
+        "src": "/images/featured/articles/803c4e69d641-230a3e2c-960.webp",
+        "srcSet": "/images/featured/articles/803c4e69d641-230a3e2c-480.webp 480w, /images/featured/articles/803c4e69d641-230a3e2c-960.webp 960w",
+        "width": 960,
+        "height": 540,
+        "alt": "Cover image for the article \"OpenClaw: The Lobster That’s Eating Silicon Valley’s Lunch (And Your To-Do List)\"",
+        "source": "medium-rss",
+        "sourceUrl": "https://medium.com/@pcodesdev/openclaw-the-lobster-thats-eating-silicon-valley-s-lunch-and-your-to-do-list-803c4e69d641",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:29.067Z",
+        "status": "ok"
+      },
+      "fallbackImage": "/images/featured/articles/803c4e69d641-fallback.svg"
+    },
+    {
+      "id": "d034b296f60b",
+      "name": "Google Stitch Just Killed Figma",
+      "createdAt": "2026-03-23T09:38:58.000Z",
+      "description": "I built a full LMS UI in one prompt. Here’s why Google Stitch is rewriting UI design and what Figma and Penpot need to do to survive.",
+      "image": "/images/featured/articles/d034b296f60b-ff25c320-960.webp",
+      "url": "https://medium.com/@pcodesdev/google-stitch-just-killed-figma-d034b296f60b",
+      "curationScore": 75.5,
+      "rankingReasons": [
+        "technical depth 21/25",
+        "originality 9/15",
+        "practical value 7/15",
+        "professional relevance 16/20",
+        "explanation and structure 15/15",
+        "meaningful analysis 7.5/10"
+      ],
+      "imageAlt": "Cover image for the article \"Google Stitch Just Killed Figma\"",
+      "imageMeta": {
+        "src": "/images/featured/articles/d034b296f60b-ff25c320-960.webp",
+        "srcSet": "/images/featured/articles/d034b296f60b-ff25c320-480.webp 480w, /images/featured/articles/d034b296f60b-ff25c320-960.webp 960w",
+        "width": 960,
+        "height": 540,
+        "alt": "Cover image for the article \"Google Stitch Just Killed Figma\"",
+        "source": "medium-rss",
+        "sourceUrl": "https://medium.com/@pcodesdev/google-stitch-just-killed-figma-d034b296f60b",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:29.067Z",
+        "status": "ok"
+      },
+      "fallbackImage": "/images/featured/articles/d034b296f60b-fallback.svg"
     },
     {
       "id": "5bd7fcc85208",
       "name": "Python Lists, Loops, and Sequences: A Complete Guide with Real-World Examples",
       "createdAt": "2026-01-24T09:14:47.000Z",
       "description": "Learn Python’s most powerful features through practical scenarios you’ll actually use",
-      "image": "https://cdn-images-1.medium.com/max/1024/1*i-PKKS1qybiYuft0MTj8Cg.png",
-      "url": "https://medium.com/@pcodesdev/python-lists-loops-and-sequences-a-complete-guide-with-real-world-examples-5bd7fcc85208"
+      "image": "/images/featured/articles/5bd7fcc85208-2abfc966-960.webp",
+      "url": "https://medium.com/@pcodesdev/python-lists-loops-and-sequences-a-complete-guide-with-real-world-examples-5bd7fcc85208",
+      "curationScore": 71.5,
+      "rankingReasons": [
+        "technical depth 22/25",
+        "originality 12/15",
+        "practical value 9/15",
+        "professional relevance 12/20",
+        "explanation and structure 12/15",
+        "meaningful analysis 4.5/10"
+      ],
+      "imageAlt": "Cover image for the article \"Python Lists, Loops, and Sequences: A Complete Guide with Real-World Examples\"",
+      "imageMeta": {
+        "src": "/images/featured/articles/5bd7fcc85208-2abfc966-960.webp",
+        "srcSet": "/images/featured/articles/5bd7fcc85208-2abfc966-480.webp 480w, /images/featured/articles/5bd7fcc85208-2abfc966-960.webp 960w",
+        "width": 960,
+        "height": 540,
+        "alt": "Cover image for the article \"Python Lists, Loops, and Sequences: A Complete Guide with Real-World Examples\"",
+        "source": "medium-rss",
+        "sourceUrl": "https://medium.com/@pcodesdev/python-lists-loops-and-sequences-a-complete-guide-with-real-world-examples-5bd7fcc85208",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:29.067Z",
+        "status": "ok"
+      },
+      "fallbackImage": "/images/featured/articles/5bd7fcc85208-fallback.svg"
+    },
+    {
+      "id": "a0fedf8fe6f7",
+      "name": "Python Basics: The Complete Beginner’s Guide to Programming in 2026",
+      "createdAt": "2026-01-16T08:10:01.000Z",
+      "description": "Master Python fundamentals with real-world examples and scenarios that make learning easy and fun",
+      "image": "/images/featured/articles/a0fedf8fe6f7-4079d336-960.webp",
+      "url": "https://medium.com/@pcodesdev/python-basics-the-complete-beginners-guide-to-programming-in-2026-a0fedf8fe6f7",
+      "curationScore": 71.5,
+      "rankingReasons": [
+        "technical depth 22/25",
+        "originality 6/15",
+        "practical value 15/15",
+        "professional relevance 12/20",
+        "explanation and structure 12/15",
+        "meaningful analysis 4.5/10"
+      ],
+      "imageAlt": "Cover image for the article \"Python Basics: The Complete Beginner’s Guide to Programming in 2026\"",
+      "imageMeta": {
+        "src": "/images/featured/articles/a0fedf8fe6f7-4079d336-960.webp",
+        "srcSet": "/images/featured/articles/a0fedf8fe6f7-4079d336-480.webp 480w, /images/featured/articles/a0fedf8fe6f7-4079d336-960.webp 960w",
+        "width": 960,
+        "height": 540,
+        "alt": "Cover image for the article \"Python Basics: The Complete Beginner’s Guide to Programming in 2026\"",
+        "source": "medium-rss",
+        "sourceUrl": "https://medium.com/@pcodesdev/python-basics-the-complete-beginners-guide-to-programming-in-2026-a0fedf8fe6f7",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:29.067Z",
+        "status": "ok"
+      },
+      "fallbackImage": "/images/featured/articles/a0fedf8fe6f7-fallback.svg"
     }
-  ],
-  "feedUrl": "https://medium.com/feed/@pcodesdev",
-  "fetchedAt": "2026-11-04T18:42:48.884Z",
-  "profileUrl": "https://medium.com/@pcodesdev",
-  "source": "Medium RSS"
+  ]
 }

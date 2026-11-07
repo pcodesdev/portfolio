@@ -1,20 +1,46 @@
-name: Curate Featured Portfolio Content
+name: Curate and Publish Portfolio Content
+
+# Discovers new GitHub repositories and Medium articles, scores them against the documented rubric
+# (docs/content-curation.md), and publishes the winners to the live GitHub Pages site. Every gate
+# below must pass before the deploy step runs; the deploy step itself never force-pushes.
 
 on:
   schedule:
-    - cron: "17 8 * * 1"
+    - cron: "17 6 * * *"
   workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: "Deploy even when the curated content is unchanged"
+        type: boolean
+        default: false
+      dry_run:
+        description: "Evaluate, test, and build only; do not commit or deploy"
+        type: boolean
+        default: false
+
+# One publication at a time; a queued run waits instead of cancelling an in-flight deployment.
+concurrency:
+  group: portfolio-content-publication
+  cancel-in-progress: false
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+
+env:
+  LIVE_SITE_URL: https://pcodesdev.github.io
 
 jobs:
-  curate:
+  publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
     steps:
-      - name: Check out repository
+      - name: Check out the default branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -25,38 +51,120 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Scan source and generated files for credential signatures
+      - name: Scan source for credential signatures
         run: npm run security:scan
 
-      - name: Generate curated data
+      - name: Discover, score, and select content
+        id: curate
         run: npm run curate:featured
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          IMAGE_SEARCH_PROVIDER: ${{ vars.IMAGE_SEARCH_PROVIDER }}
+          CURATION_REPORT_PATH: ${{ runner.temp }}/curation-report.json
 
-      - name: Validate generated data
+      - name: Validate generated content
         run: npm run curate:validate
 
+      - name: Run curation and deployment scenario tests
+        run: npm run test:curation
+
       - name: Run regression tests
-        run: npm test -- --watch=false
+        run: npm test -- --watchAll=false
         env:
           CI: true
 
       - name: Build static site
         run: npm run build
 
-      - name: Open review pull request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: automation/featured-content-curation
-          delete-branch: false
-          commit-message: "chore: refresh curated portfolio content"
-          title: "Review refreshed portfolio projects and articles"
-          body: |
-            Weekly or manually triggered update to generated project/publication data.
+      - name: Confirm the build contains the featured content
+        run: npm run verify:build
 
-            - Curation sources were fetched from public GitHub repository metadata and Medium RSS.
-            - Curated data passed the six-item, URL, and metadata validators.
-            - Regression tests and the static production build completed before this PR was opened.
-            - This workflow does not deploy to GitHub Pages.
-          labels: automated content update
+      - name: Scan source and build output for credential signatures
+        run: npm run security:scan
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        if: ${{ inputs.dry_run != true && (steps.curate.outputs.changed == 'true' || inputs.force_deploy == true) }}
+        env:
+          PAGES_DEPLOY_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        run: |
+          if [ -z "$PAGES_DEPLOY_TOKEN" ]; then
+            echo "::error::Repository secret PAGES_DEPLOY_TOKEN is not configured; nothing was deployed."
+            exit 1
+          fi
+          node scripts/deploy-live-site.mjs \
+            --source build \
+            --verify-url "$LIVE_SITE_URL" \
+            --verify-images \
+            --message "Deploy portfolio build from ${GITHUB_SHA::7} (automated content update)"
+
+      - name: Commit curated content to the default branch
+        if: ${{ inputs.dry_run != true && steps.curate.outputs.changed == 'true' && steps.deploy.outcome == 'success' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/shared/opensource/projects.json src/shared/medium/publications.json public/images/featured
+          if git diff --cached --quiet; then
+            echo "Curated content already committed."
+            exit 0
+          fi
+          git commit -m "chore: refresh curated portfolio content [skip ci]"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          for attempt in 1 2 3; do
+            git fetch --quiet origin "$TARGET_BRANCH"
+            git rebase "origin/$TARGET_BRANCH"
+            if git push origin "HEAD:$TARGET_BRANCH"; then
+              exit 0
+            fi
+            sleep $((attempt * 5))
+          done
+          echo "::error::Could not push the curated content to $TARGET_BRANCH."
+          exit 1
+
+      - name: Report run outcome
+        if: ${{ always() }}
+        env:
+          CURATE_OUTCOME: ${{ steps.curate.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outputs.deploy_outcome || steps.deploy.outcome }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          LAST_UPDATE=$(node -p "try { require('./src/shared/opensource/projects.json').generatedAt } catch (e) { 'unknown' }")
+          {
+            echo "## Run outcome"
+            echo "- Job status: $JOB_STATUS"
+            echo "- Curation step: $CURATE_OUTCOME"
+            echo "- Deployment: ${DEPLOY_OUTCOME:-skipped}"
+            echo "- Timestamp of the last content update in the repository: $LAST_UPDATE"
+            echo "- Live site: $LIVE_SITE_URL"
+            if [ "$JOB_STATUS" != "success" ]; then
+              echo "- A failing gate stops the pipeline before deployment, so the previous live version is preserved."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload curation report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: curation-report
+          path: ${{ runner.temp }}/curation-report.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+  # Scheduled workflows in public repositories are disabled after 60 days without repository
+  # activity. Days with no new content produce no commits, so re-enable the workflow each run.
+  keepalive:
+    if: ${{ github.event_name == 'schedule' }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      actions: write
+    steps:
+      - name: Keep the schedule enabled
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method PUT "repos/${GITHUB_REPOSITORY}/actions/workflows/featured-content-curation.yml/enable"

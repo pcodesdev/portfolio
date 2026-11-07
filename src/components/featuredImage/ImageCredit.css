@@ -1,0 +1,14 @@
+.featured-image-credit {
+  margin: 0;
+  padding: 0.35rem 1.5rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.featured-image-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

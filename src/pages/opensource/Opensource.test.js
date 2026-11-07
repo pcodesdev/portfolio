@@ -24,6 +24,15 @@ test("Open Source route restores summary and distribution layout without unsuppo
   expect(container.querySelectorAll(".opensource-record-card")).toHaveLength(
     18
   );
+  expect(container.textContent).not.toContain("Featured GitHub Projects");
+  expect(container.querySelectorAll(".repo-card-div")).toHaveLength(0);
+  expect(container.querySelectorAll(".publication-card-div")).toHaveLength(6);
+  expect(
+    container
+      .querySelector(".opensource-records")
+      .compareDocumentPosition(container.querySelector("#articles")) &
+      Node.DOCUMENT_POSITION_FOLLOWING
+  ).toBeTruthy();
   expect(container.textContent).toContain("Pull Request Distribution");
   expect(container.textContent).toContain("Issue Distribution");
   expect(

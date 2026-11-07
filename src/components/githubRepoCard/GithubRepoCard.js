@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import ProjectLanguages from "../../components/projectLanguages/ProjectLanguages";
 import "./GithubRepoCard.css";
 import { Fade } from "../motion/Reveal";
+import ImageCredit from "../featuredImage/ImageCredit";
 
 const GENERIC_PROJECT_IMAGE = "/images/projects/project-generic.svg";
+const CARD_IMAGE_SIZES =
+  "(max-width: 768px) 92vw, (max-width: 1200px) 46vw, 380px";
 
 export function ProjectCardImage({ repo }) {
   const fallbackImage = repo.fallbackImage || GENERIC_PROJECT_IMAGE;
-  const [imageSource, setImageSource] = useState(repo.image || fallbackImage);
+  const meta = repo.imageMeta || null;
+  const primary = (meta && meta.src) || repo.image || fallbackImage;
+  const [imageSource, setImageSource] = useState(primary);
   const [imageFailed, setImageFailed] = useState(false);
+  const showingPrimary = Boolean(meta) && imageSource === primary;
 
   function handleImageError() {
     if (imageSource === GENERIC_PROJECT_IMAGE) {
@@ -40,8 +46,17 @@ export function ProjectCardImage({ repo }) {
         <img
           className="repo-card-image"
           src={imageSource}
-          alt={repo.imageAlt || `${repo.name} project illustration`}
+          srcSet={showingPrimary && meta.srcSet ? meta.srcSet : undefined}
+          sizes={showingPrimary && meta.srcSet ? CARD_IMAGE_SIZES : undefined}
+          width={(showingPrimary && meta.width) || 960}
+          height={(showingPrimary && meta.height) || 540}
+          alt={
+            (showingPrimary && meta.alt) ||
+            repo.imageAlt ||
+            `${repo.name} project illustration`
+          }
           loading="lazy"
+          decoding="async"
           onError={handleImageError}
         />
       )}
@@ -60,6 +75,7 @@ export default function GithubRepoCard({ repo, theme, revealDelay = 0 }) {
       }}
     >
       <ProjectCardImage repo={repo} />
+      <ImageCredit meta={repo.imageMeta} />
       <Fade bottom duration={420} delay={revealDelay}>
         <div className="repo-card-content">
           <p

@@ -1,17 +1,20 @@
 {
+  "source": "GitHub public repository metadata",
+  "rubricVersion": 2,
+  "generatedAt": "2026-11-07T12:24:13.390Z",
   "data": [
     {
       "id": "edumetrics",
       "name": "EduMetrics",
       "createdAt": "2026-02-20T08:07:29Z",
+      "updatedAt": "2026-02-20T09:59:51Z",
       "url": "https://github.com/pcodesdev/EduMetrics",
-      "homepage": "https://edumetricsschool.vercel.app/",
       "projectType": "Original full-stack application",
       "description": "Student performance analytics platform that imports assessment files, normalizes data, and produces class insights and printable reports.",
       "useCase": "Schools can turn heterogeneous CSV, Excel, and ODS assessment data into student, subject, and term views.",
-      "stack": "Python, FastAPI, pandas, React, Vite, Tailwind CSS, Recharts",
       "engineeringFocus": "File-mapping workflows, deterministic analytics, report exports, and temporary upload cleanup.",
-      "image": null,
+      "stack": "Python, FastAPI, pandas, React, Vite, Tailwind CSS, Recharts",
+      "image": "/images/projects/edumetrics.svg",
       "imageAlt": "Illustration of student assessment analytics with class performance charts.",
       "fallbackImage": "/images/projects/edumetrics.svg",
       "languages": [
@@ -22,22 +25,127 @@
         {
           "name": "JavaScript",
           "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        },
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "Dockerfile",
+          "iconifyClass": "logos:dockerfile"
         }
-      ]
+      ],
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "homepageAvailable": true,
+      "isFork": false,
+      "lastUpdated": "2026-02-20T09:59:51Z",
+      "curationScore": 88.5,
+      "rankingReasons": [
+        "technical complexity 20.5/25",
+        "originality 10/10",
+        "practical usefulness 15/15",
+        "profile relevance 20/20",
+        "completeness and activity 3/10",
+        "documentation 10/10",
+        "skills demonstrated 10/10"
+      ],
+      "homepage": "https://edumetrics-seven.vercel.app",
+      "imageMeta": {
+        "src": "/images/projects/edumetrics.svg",
+        "width": 960,
+        "height": 540,
+        "alt": "Illustration of student assessment analytics with class performance charts.",
+        "source": "curated-illustration",
+        "sourceUrl": "https://github.com/pcodesdev/EduMetrics",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:24.621Z",
+        "status": "ok"
+      }
+    },
+    {
+      "id": "portfolio",
+      "name": "portfolio",
+      "createdAt": "2024-06-21T11:00:24Z",
+      "updatedAt": "2026-11-05T20:32:29Z",
+      "url": "https://github.com/pcodesdev/portfolio",
+      "projectType": "Original repository",
+      "description": "This repository contains Peter Njuguna's professional portfolio, built around the positioning Digital Transformation & Technology Solutions Professional. The portfolio brings together project and programme delivery, digital learning,...",
+      "useCase": "This repository contains Peter Njuguna's professional portfolio, built around the positioning Digital Transformation & Technology Solutions Professional. The portfolio brings together project and programme delivery, digital learning,...",
+      "engineeringFocus": "See the repository README for verified implementation details.",
+      "stack": "JavaScript, CSS, HTML, SCSS, Dockerfile",
+      "image": "/images/featured/projects/portfolio-fallback.svg",
+      "imageAlt": "Branded thumbnail for \"portfolio\" (project)",
+      "fallbackImage": "/images/featured/projects/portfolio-fallback.svg",
+      "languages": [
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        },
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "SCSS",
+          "iconifyClass": "logos:scss"
+        },
+        {
+          "name": "Dockerfile",
+          "iconifyClass": "logos:dockerfile"
+        }
+      ],
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "homepageAvailable": false,
+      "isFork": false,
+      "lastUpdated": "2026-11-05T20:32:29Z",
+      "curationScore": 87,
+      "rankingReasons": [
+        "technical complexity 22/25",
+        "originality 7/10",
+        "practical usefulness 11/15",
+        "profile relevance 20/20",
+        "completeness and activity 7/10",
+        "documentation 10/10",
+        "skills demonstrated 10/10"
+      ],
+      "imageMeta": {
+        "src": "/images/featured/projects/portfolio-fallback.svg",
+        "width": 960,
+        "height": 540,
+        "alt": "Branded thumbnail for \"portfolio\" (project)",
+        "source": "generated",
+        "sourceUrl": "https://github.com/pcodesdev/portfolio",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:24.621Z",
+        "status": "fallback"
+      }
     },
     {
       "id": "react-movie-app",
       "name": "React Movie App",
       "createdAt": "2026-02-08T08:50:25Z",
+      "updatedAt": "2026-02-09T09:11:08Z",
       "url": "https://github.com/pcodesdev/react-movie-app",
       "projectType": "Sample application",
       "description": "Movie discovery sample integrating TMDB search and Appwrite-backed search analytics.",
       "useCase": "Explore movie information and trending searches in a responsive discovery interface.",
-      "stack": "React 19, Vite, Tailwind CSS, Appwrite, TMDB API",
       "engineeringFocus": "Debounced API search, external service configuration, and persisted search analytics.",
-      "image": "https://raw.githubusercontent.com/pcodesdev/react-movie-app/main/public/screenshots/demo-hero.png",
-      "imageAlt": "React Movie App hero and search interface",
-      "fallbackImage": "/images/projects/movie-watchlist.svg",
+      "stack": "React 19, Vite, Tailwind CSS, Appwrite, TMDB API",
+      "image": "/images/featured/projects/react-movie-app-fallback.svg",
+      "imageAlt": "Branded illustration for the React Movie App project.",
+      "fallbackImage": "/images/featured/projects/react-movie-app-fallback.svg",
       "languages": [
         {
           "name": "JavaScript",
@@ -51,47 +159,172 @@
           "name": "HTML",
           "iconifyClass": "logos-html-5"
         }
-      ]
+      ],
+      "topics": [
+        "appwrite-database",
+        "html",
+        "reactjs",
+        "tailwindcss",
+        "tmdb-api"
+      ],
+      "stars": 0,
+      "forks": 0,
+      "homepageAvailable": false,
+      "isFork": false,
+      "lastUpdated": "2026-02-09T09:11:08Z",
+      "curationScore": 70,
+      "rankingReasons": [
+        "technical complexity 19/25",
+        "originality 10/10",
+        "practical usefulness 11/15",
+        "profile relevance 7/20",
+        "completeness and activity 5/10",
+        "documentation 10/10",
+        "skills demonstrated 8/10"
+      ],
+      "imageMeta": {
+        "src": "/images/featured/projects/react-movie-app-fallback.svg",
+        "width": 960,
+        "height": 540,
+        "alt": "Branded illustration for the React Movie App project.",
+        "source": "manual",
+        "sourceUrl": "https://github.com/pcodesdev/react-movie-app",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T12:24:13.352Z",
+        "status": "ok"
+      }
     },
     {
-      "id": "weather-app",
-      "name": "Weather Forecast and History",
-      "createdAt": "2024-09-27T20:12:54Z",
-      "url": "https://github.com/pcodesdev/weather-app",
-      "projectType": "Sample application",
-      "description": "WeatherAPI sample that presents current conditions, a three-day forecast, and four days of historical data.",
-      "useCase": "Search for a city and compare current, forecast, and recent historical weather.",
-      "stack": "JavaScript, HTML, CSS, Node.js, Express, WeatherAPI",
-      "engineeringFocus": "Server-side API-key handling and combining current, forecast, and historical responses.",
-      "image": "https://raw.githubusercontent.com/pcodesdev/weather-app/main/iPhone%2014%20%26%2015%20Pro%20Max%20-%201.png",
-      "imageAlt": "Weather app mobile screenshot",
-      "fallbackImage": "/images/projects/project-generic.svg",
+      "id": "react-travel-journal",
+      "name": "react-travel-journal",
+      "createdAt": "2025-01-16T15:27:45Z",
+      "updatedAt": "2025-01-16T15:44:16Z",
+      "url": "https://github.com/pcodesdev/react-travel-journal",
+      "projectType": "Original repository",
+      "description": "React Travel Journal fetching data from an API",
+      "useCase": "React Travel Journal fetching data from an API",
+      "engineeringFocus": "See the repository README for verified implementation details.",
+      "stack": "JavaScript, CSS, HTML",
+      "image": "/images/featured/projects/react-travel-journal-fallback.svg",
+      "imageAlt": "Branded thumbnail for \"react-travel-journal\" (project)",
+      "fallbackImage": "/images/featured/projects/react-travel-journal-fallback.svg",
       "languages": [
         {
           "name": "JavaScript",
           "iconifyClass": "logos-javascript"
         },
         {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        },
+        {
           "name": "HTML",
           "iconifyClass": "logos-html-5"
+        }
+      ],
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "homepageAvailable": false,
+      "isFork": false,
+      "lastUpdated": "2025-01-16T15:44:16Z",
+      "curationScore": 61.5,
+      "rankingReasons": [
+        "technical complexity 17.5/25",
+        "originality 10/10",
+        "practical usefulness 5/15",
+        "profile relevance 8/20",
+        "completeness and activity 3/10",
+        "documentation 10/10",
+        "skills demonstrated 8/10"
+      ],
+      "imageMeta": {
+        "src": "/images/featured/projects/react-travel-journal-fallback.svg",
+        "width": 960,
+        "height": 540,
+        "alt": "Branded thumbnail for \"react-travel-journal\" (project)",
+        "source": "generated",
+        "sourceUrl": "https://github.com/pcodesdev/react-travel-journal",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:24.621Z",
+        "status": "fallback"
+      }
+    },
+    {
+      "id": "menu-cart",
+      "name": "Cart-Menu",
+      "createdAt": "2024-03-24T15:06:23Z",
+      "updatedAt": "2024-03-25T11:14:10Z",
+      "url": "https://github.com/pcodesdev/menu-cart",
+      "projectType": "Front-end demo",
+      "description": "Restaurant menu and cart demo with item selection, order totals, and a simulated checkout flow.",
+      "useCase": "Select menu items, adjust an order, review totals, and step through a demonstration checkout.",
+      "engineeringFocus": "Client-side cart state, total calculation, input validation, and responsive presentation.",
+      "stack": "JavaScript, HTML, CSS",
+      "image": "/images/featured/projects/menu-cart-fallback.svg",
+      "imageAlt": "Branded thumbnail for \"Cart-Menu\" (project)",
+      "fallbackImage": "/images/featured/projects/menu-cart-fallback.svg",
+      "languages": [
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
         },
         {
           "name": "CSS",
           "iconifyClass": "logos-css-3"
+        },
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
         }
-      ]
+      ],
+      "topics": [
+        "asynchronous-programming",
+        "browser",
+        "javascript",
+        "responsive-design",
+        "synchronization"
+      ],
+      "stars": 0,
+      "forks": 0,
+      "homepageAvailable": true,
+      "isFork": false,
+      "lastUpdated": "2024-03-25T11:14:10Z",
+      "curationScore": 60.5,
+      "rankingReasons": [
+        "technical complexity 14.5/25",
+        "originality 10/10",
+        "practical usefulness 15/15",
+        "profile relevance 4/20",
+        "completeness and activity 5/10",
+        "documentation 8/10",
+        "skills demonstrated 4/10"
+      ],
+      "homepage": "https://cart-menu-v1.vercel.app/",
+      "imageMeta": {
+        "src": "/images/featured/projects/menu-cart-fallback.svg",
+        "width": 960,
+        "height": 540,
+        "alt": "Branded thumbnail for \"Cart-Menu\" (project)",
+        "source": "generated",
+        "sourceUrl": "https://github.com/pcodesdev/menu-cart",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:24.621Z",
+        "status": "fallback"
+      }
     },
     {
       "id": "movie-watch-list",
       "name": "Movie Watch List",
       "createdAt": "2024-10-11T20:02:11Z",
+      "updatedAt": "2024-10-14T07:49:15Z",
       "url": "https://github.com/pcodesdev/Movie-Watch-List",
       "projectType": "Learning project",
       "description": "A browser-based movie search and watchlist app using the OMDb API and local storage.",
       "useCase": "Search for movies, inspect details, and save titles to a personal watchlist.",
-      "stack": "HTML, CSS, JavaScript, OMDb API, localStorage",
       "engineeringFocus": "REST API responses, client-side state persistence, and a two-page search/watchlist flow.",
-      "image": null,
+      "stack": "HTML, CSS, JavaScript, OMDb API, localStorage",
+      "image": "/images/projects/movie-watchlist.svg",
       "imageAlt": "Illustration of a movie search and saved watchlist interface.",
       "fallbackImage": "/images/projects/movie-watchlist.svg",
       "languages": [
@@ -107,65 +340,41 @@
           "name": "CSS",
           "iconifyClass": "logos-css-3"
         }
-      ]
-    },
-    {
-      "id": "menu-cart",
-      "name": "Cart-Menu",
-      "createdAt": "2024-03-24T15:06:23Z",
-      "url": "https://github.com/pcodesdev/menu-cart",
-      "homepage": "https://cart-menu-v1.vercel.app/",
-      "projectType": "Front-end demo",
-      "description": "Restaurant menu and cart demo with item selection, order totals, and a simulated checkout flow.",
-      "useCase": "Select menu items, adjust an order, review totals, and step through a demonstration checkout.",
-      "stack": "JavaScript, HTML, CSS",
-      "engineeringFocus": "Client-side cart state, total calculation, input validation, and responsive presentation.",
-      "image": "https://raw.githubusercontent.com/pcodesdev/menu-cart/main/assets/desktop-food.jpg",
-      "imageAlt": "Food image from the Cart-Menu demo",
-      "fallbackImage": "/images/projects/project-generic.svg",
-      "languages": [
-        {
-          "name": "JavaScript",
-          "iconifyClass": "logos-javascript"
-        },
-        {
-          "name": "HTML",
-          "iconifyClass": "logos-html-5"
-        },
-        {
-          "name": "CSS",
-          "iconifyClass": "logos-css-3"
-        }
-      ]
-    },
-    {
-      "id": "task-list",
-      "name": "Task List",
-      "createdAt": "2023-11-16T19:15:24Z",
-      "url": "https://github.com/pcodesdev/task-list",
-      "homepage": "https://todotasksapp.vercel.app/",
-      "projectType": "Interactive React project",
-      "description": "React task-list app with task creation, completion, deletion, sorting, and animated visual feedback.",
-      "useCase": "Organize tasks, mark completed items, and sort a personal task list.",
-      "stack": "React, Vite, JavaScript, CSS, Particles.js",
-      "engineeringFocus": "Interactive component state, task sorting, and responsive UI behavior.",
-      "image": null,
-      "imageAlt": "Illustration of a task organizer with a checklist and progress indicator.",
-      "fallbackImage": "/images/projects/task-list.svg",
-      "languages": [
-        {
-          "name": "JavaScript",
-          "iconifyClass": "logos-javascript"
-        },
-        {
-          "name": "CSS",
-          "iconifyClass": "logos-css-3"
-        },
-        {
-          "name": "HTML",
-          "iconifyClass": "logos-html-5"
-        }
-      ]
+      ],
+      "topics": [
+        "api",
+        "api-rest",
+        "css3",
+        "html5",
+        "responsive-design"
+      ],
+      "stars": 0,
+      "forks": 1,
+      "homepageAvailable": true,
+      "isFork": false,
+      "lastUpdated": "2024-10-14T07:49:15Z",
+      "curationScore": 58.5,
+      "rankingReasons": [
+        "technical complexity 17.5/25",
+        "originality 10/10",
+        "practical usefulness 10/15",
+        "profile relevance 2/20",
+        "completeness and activity 5/10",
+        "documentation 8/10",
+        "skills demonstrated 6/10"
+      ],
+      "homepage": "https://movie-watch-list-scrimba.vercel.app",
+      "imageMeta": {
+        "src": "/images/projects/movie-watchlist.svg",
+        "width": 960,
+        "height": 540,
+        "alt": "Illustration of a movie search and saved watchlist interface.",
+        "source": "curated-illustration",
+        "sourceUrl": "https://github.com/pcodesdev/Movie-Watch-List",
+        "license": "owner",
+        "retrievedAt": "2026-11-07T11:08:24.621Z",
+        "status": "ok"
+      }
     }
   ]
 }

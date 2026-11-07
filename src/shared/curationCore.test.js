@@ -57,7 +57,9 @@ test("ranks relevant implementation above popularity-only repositories", () => {
   });
 
   expect(relevant.score).toBeGreaterThan(popular.score);
-  expect(relevant.reasons).toContain("technical depth");
+  expect(relevant.score).toBeGreaterThanOrEqual(curation.MIN_PROJECT_SCORE);
+  expect(popular.score).toBeLessThan(curation.MIN_PROJECT_SCORE);
+  expect(relevant.reasons.join(" ")).toContain("technical complexity");
 });
 
 test("excludes forks, archived repositories, and empty repositories", () => {
@@ -94,18 +96,41 @@ test("downranks tutorial repositories and excludes boilerplate-only projects", (
   expect(boilerplate.score).toBe(-Infinity);
 });
 
-test("uses full article content signals instead of requiring a keyword in the excerpt", () => {
-  const article = curation.scorePublication({
+test("scores articles on depth and analysis rather than a single keyword in the excerpt", () => {
+  const headline = curation.scorePublication({
     name: "Kenya Is #1 in AI Usage",
     description: "An unexpected headline.",
     contentText:
       "Digital skills, technology adoption, and local value capture shape the digital economy.",
   });
+  const rich = curation.scorePublication({
+    name: "Architecture and deployment case study",
+    description:
+      "A walkthrough of how I implemented a cloud data workflow, including the trade-offs and lessons learned.",
+    contentText: "In my experience, digital transformation depends on architecture. For example, I built an API and tested the deployment; however the analysis shows risks, impact and outcomes. ".repeat(
+      40
+    ),
+    metrics: {
+      wordCount: 1200,
+      headingCount: 4,
+      paragraphCount: 12,
+      listItemCount: 4,
+      codeBlockCount: 1,
+      imageCount: 1,
+    },
+  });
 
-  expect(article.score).toBeGreaterThanOrEqual(curation.MIN_PUBLICATION_SCORE);
-  expect(article.reasons).toContain(
-    "technology adoption and digital ecosystems"
-  );
+  expect(headline.score).toBeLessThan(curation.MIN_PUBLICATION_SCORE);
+  expect(headline.reasons.join(" ")).toContain("superficial length penalty");
+  expect(rich.score).toBeGreaterThanOrEqual(curation.MIN_PUBLICATION_SCORE);
+});
+
+test("rubric weights are explicit and total 100 points for both content types", () => {
+  const total = (rubric) => rubric.reduce((sum, { max }) => sum + max, 0);
+  expect(total(curation.PROJECT_RUBRIC)).toBe(100);
+  expect(total(curation.PUBLICATION_RUBRIC)).toBe(100);
+  expect(curation.MIN_PROJECT_SCORE).toBe(50);
+  expect(curation.MIN_PUBLICATION_SCORE).toBe(50);
 });
 
 test("pins and excludes candidates while keeping the result within six", () => {
@@ -185,4 +210,155 @@ test("does not commit invalid generated data", async () => {
     )
   ).rejects.toThrow("metadata is incomplete");
   expect(commit).not.toHaveBeenCalled();
+});
+
+const rank = (candidates, options = {}) =>
+  curation.rankCandidates({
+    candidates,
+    pinnedIds: [],
+    excludedIds: [],
+    scoreFunction: (item) => ({ score: item.score }),
+    minimumScore: 50,
+    kind: "projects",
+    ...options,
+  });
+
+test("ranking is deterministic, independent of input order, and never favours recency", () => {
+  const candidates = [
+    { id: "b", score: 60, updatedAt: "2026-12-01T00:00:00Z" },
+    { id: "a", score: 60, updatedAt: "2020-01-01T00:00:00Z" },
+    { id: "c", score: 90, updatedAt: "2019-01-01T00:00:00Z" },
+  ];
+  const forward = rank(candidates).selected.map((item) => item.id);
+  const reversed = rank([...candidates].reverse()).selected.map(
+    (item) => item.id
+  );
+  expect(forward).toEqual(["c", "a", "b"]);
+  expect(reversed).toEqual(forward);
+});
+
+test("a newcomer that scores higher displaces the lowest featured item", () => {
+  const featured = Array.from({ length: 6 }, (_, index) => ({
+    id: `old-${index}`,
+    score: 55 + index,
+  }));
+  const { selected, decisions } = rank([...featured, { id: "new", score: 80 }]);
+
+  expect(selected).toHaveLength(6);
+  expect(selected[0].id).toBe("new");
+  expect(decisions.find((item) => item.id === "old-0")).toMatchObject({
+    status: "outranked",
+  });
+});
+
+test("below-threshold items are reported and never selected", () => {
+  const { selected, decisions } = rank([
+    { id: "good", score: 70 },
+    { id: "weak", score: 49.99 },
+    { id: "ineligible", score: -Infinity },
+  ]);
+
+  expect(selected.map((item) => item.id)).toEqual(["good"]);
+  expect(decisions.find((item) => item.id === "weak").status).toBe(
+    "below-threshold"
+  );
+  expect(decisions.find((item) => item.id === "ineligible").status).toBe(
+    "ineligible"
+  );
+});
+
+test("duplicates by id, URL, or normalized title keep only the highest-scoring copy", () => {
+  const { selected, decisions } = rank(
+    [
+      {
+        id: "a1",
+        name: "Cloud Guide!",
+        url: "https://medium.com/@pcodesdev/cloud-1",
+        score: 60,
+      },
+      {
+        id: "a2",
+        name: "cloud guide",
+        url: "https://medium.com/@pcodesdev/cloud-2",
+        score: 75,
+      },
+      {
+        id: "a3",
+        name: "Other",
+        url: "https://medium.com/@pcodesdev/cloud-2/",
+        score: 70,
+      },
+      {
+        id: "a4",
+        name: "Distinct",
+        url: "https://medium.com/@pcodesdev/distinct",
+        score: 65,
+      },
+    ],
+    { dedupeKeys: curation.publicationDedupeKeys, kind: "publications" }
+  );
+
+  expect(selected.map((item) => item.id)).toEqual(["a2", "a4"]);
+  expect(
+    decisions
+      .filter((item) => item.status === "duplicate")
+      .map((item) => item.id)
+      .sort()
+  ).toEqual(["a1", "a3"]);
+});
+
+test("pinned items must be eligible and bypass only the score threshold", () => {
+  expect(() =>
+    rank([{ id: "forked", score: -Infinity }], { pinnedIds: ["forked"] })
+  ).toThrow("not eligible");
+  const { selected } = rank(
+    [
+      { id: "owner-choice", score: 20 },
+      { id: "good", score: 70 },
+    ],
+    { pinnedIds: ["owner-choice"] }
+  );
+  expect(selected.map((item) => item.id)).toEqual(["owner-choice", "good"]);
+});
+
+test("site, profile, and GitHub Pages repositories are never scored", () => {
+  expect(
+    curation.scoreProject({ name: "pcodesdev.github.io", size: 900 }).exclusion
+  ).toBe("site or profile repository excluded");
+  expect(
+    curation.scoreProject({ name: "pcodesdev", owner: "pcodesdev", size: 10 })
+      .eligible
+  ).toBe(false);
+});
+
+test("stored featured items below the quality threshold are rejected unless pinned", () => {
+  const items = [
+    { id: "ok", curationScore: 60 },
+    { id: "low", curationScore: 12 },
+  ];
+  expect(() =>
+    curation.validateQuality(items, { minimumScore: 50, kind: "projects" })
+  ).toThrow("below the quality threshold");
+  expect(
+    curation.validateQuality(items, {
+      minimumScore: 50,
+      pinnedIds: ["low"],
+      kind: "projects",
+    })
+  ).toHaveLength(2);
+});
+
+test("repeated repositories or articles cannot pass validation", () => {
+  expect(() =>
+    curation.validateProjects([
+      project("one"),
+      project("two", { url: "https://github.com/pcodesdev/one/" }),
+    ])
+  ).toThrow("must not repeat a repository");
+  expect(() =>
+    curation.validatePublications([
+      publication("a", { name: "Same Title" }),
+      publication("b", { name: "same title!" }),
+    ])
+  ).toThrow("must not repeat an article");
 });

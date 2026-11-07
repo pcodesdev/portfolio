@@ -15,7 +15,7 @@ const violations = [];
 function scanDirectory(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     const absolutePath = path.join(directory, entry.name);
-    if (entry.isDirectory()) {
+    if (fs.statSync(absolutePath).isDirectory()) {
       if (!["node_modules", ".git", ".ssh"].includes(entry.name)) {
         scanDirectory(absolutePath);
       }

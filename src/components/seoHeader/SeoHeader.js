@@ -12,7 +12,7 @@ import {
 
 function SeoHeader() {
   const pathname = window.location.hash.slice(1).split("?")[0] || "/";
-  const canonicalUrl = seo?.og?.url || "https://ashutoshhathidara.com/";
+  const canonicalUrl = seo?.og?.url || "https://pcodesdev.github.io/";
   const routeMetadata = {
     "/": {
       title: seo.title,

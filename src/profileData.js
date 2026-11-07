@@ -9,7 +9,7 @@ export const seo = {
     title:
       "Peter Njuguna | Digital Transformation, Digital Skills & EdTech Kenya",
     type: "website",
-    url: "https://ashutoshhathidara.com/",
+    url: "https://pcodesdev.github.io/",
   },
 };
 

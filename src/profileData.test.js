@@ -14,7 +14,7 @@ test("professional identity includes AI engineering and project management along
   expect(seo.title).toContain(
     "Digital Transformation, Digital Skills & EdTech Kenya"
   );
-  expect(seo.og.url).toBe("https://ashutoshhathidara.com/");
+  expect(seo.og.url).toBe("https://pcodesdev.github.io/");
   expect(homeHighlights).toEqual([
     "Project Management",
     "AI Engineering & Implementation",
@@ -118,7 +118,7 @@ test("About narrative uses first person outside the identity and SEO name fields
 });
 
 test("SEO configuration targets the configured custom domain and requested Kenya search phrases", () => {
-  expect(seo.og.url).toBe("https://ashutoshhathidara.com/");
+  expect(seo.og.url).toBe("https://pcodesdev.github.io/");
   expect(seo.title).toBe(
     "Peter Njuguna | Digital Transformation, Digital Skills & EdTech Kenya"
   );
