@@ -2,44 +2,6 @@
 <html lang="en">
 
 <head>
-  <!-- Load analytics and ads only after interaction or after the initial visit settles. -->
-  <script>
-    (function () {
-      var loaded = false;
-      function loadDeferredServices() {
-        if (loaded) return;
-        loaded = true;
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-
-        var manager = document.createElement("script");
-        manager.async = true;
-        manager.src = "https://www.googletagmanager.com/gtm.js?id=GTM-5TVFKDRF";
-        document.head.appendChild(manager);
-
-        window.gtag = function () {
-          window.dataLayer.push(arguments);
-        };
-        window.gtag("js", new Date());
-        window.gtag("config", "G-ZR4HM0S3MY");
-        var analytics = document.createElement("script");
-        analytics.async = true;
-        analytics.src = "https://www.googletagmanager.com/gtag/js?id=G-ZR4HM0S3MY";
-        document.head.appendChild(analytics);
-
-        var ads = document.createElement("script");
-        ads.async = true;
-        ads.crossOrigin = "anonymous";
-        ads.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1872573440852918";
-        document.head.appendChild(ads);
-      }
-
-      ["pointerdown", "keydown", "touchstart"].forEach(function (eventName) {
-        window.addEventListener(eventName, loadDeferredServices, { once: true, passive: true });
-      });
-      window.setTimeout(loadDeferredServices, 60000);
-    })();
-  </script>
   <meta charset="utf-8" />
   <!-- <link rel="icon" href="%PUBLIC_URL%/favicon1.ico" /> -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />

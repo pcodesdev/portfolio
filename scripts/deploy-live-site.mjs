@@ -88,7 +88,8 @@ function validateBuild(source) {
   }
   const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
   const mainBundle = manifest.files && manifest.files["main.js"];
-  if (!mainBundle || !fs.existsSync(path.join(source, mainBundle.replace(/^\//, "")))) {
+  const bundlePath = mainBundle && new URL(mainBundle, "https://pcodesdev.github.io").pathname;
+  if (!bundlePath || !bundlePath.startsWith("/static/js/") || !fs.existsSync(path.join(source, bundlePath.slice(1)))) {
     throw new Error("Refusing to deploy: the main JavaScript bundle named in asset-manifest.json is missing");
   }
   if (!/static\/js\//.test(fs.readFileSync(indexPath, "utf8"))) {
@@ -117,7 +118,10 @@ async function waitForLive(baseUrl, mainBundle, timeoutMs, intervalMs) {
       if (response.ok) {
         const manifest = await response.json();
         if (manifest.files && manifest.files["main.js"] === mainBundle) {
-          const bundle = await fetch(`${root}${mainBundle}?cb=${Date.now()}`);
+          const bundleUrl = new URL(mainBundle, `${root}/`);
+          if (bundleUrl.origin !== new URL(root).origin) return false;
+          bundleUrl.searchParams.set("cb", Date.now());
+          const bundle = await fetch(bundleUrl);
           if (bundle.ok) return true;
         }
       }

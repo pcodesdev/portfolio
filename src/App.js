@@ -6,6 +6,7 @@ import * as themes from "./theme";
 import { GlobalStyles } from "./global";
 import SimpleThemeSwitcher from "./components/themeSwitcher/SimpleThemeSwitcher";
 import PortfolioSearch from "./components/portfolioSearch/PortfolioSearch";
+import AnalyticsConsent from "./components/analytics/AnalyticsConsent";
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("blueTheme");
@@ -32,6 +33,7 @@ function App() {
         />
         <PortfolioSearch theme={theme} />
         <Main theme={theme} />
+        <AnalyticsConsent />
       </>
     </ThemeProvider>
   );

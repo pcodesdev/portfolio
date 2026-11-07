@@ -77,6 +77,8 @@ jobs:
 
       - name: Build static site
         run: npm run build
+        env:
+          REACT_APP_GOOGLE_ANALYTICS_ID: ${{ vars.REACT_APP_GOOGLE_ANALYTICS_ID }}
 
       - name: Confirm the build contains the featured content
         run: npm run verify:build
