@@ -48,6 +48,7 @@ test("tracks routes only after consent and stops after withdrawal", () => {
   renderWithId("G-TEST123");
   expect(document.getElementById("portfolio-ga4")).toBeNull();
   click("Allow analytics");
+  expect(root.querySelector("aside")).toBeNull();
   expect(document.getElementById("portfolio-ga4")).not.toBeNull();
   const views = () =>
     window.dataLayer.filter(
@@ -61,8 +62,11 @@ test("tracks routes only after consent and stops after withdrawal", () => {
   });
   expect(views()).toHaveLength(2);
   expect(views()[1][2].page_location).not.toContain("secret");
-  click("Analytics preferences");
+  act(() => {
+    window.dispatchEvent(new Event("open-analytics-preferences"));
+  });
   click("Decline");
+  expect(root.querySelector("aside")).toBeNull();
   expect(window["ga-disable-G-TEST123"]).toBe(true);
   act(() => {
     window.dispatchEvent(new Event("hashchange"));

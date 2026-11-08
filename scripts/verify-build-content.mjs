@@ -6,7 +6,10 @@ import { assertImagesExist } from "./image-enrichment.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const buildIndex = process.argv.indexOf("--build");
-const BUILD = path.resolve(ROOT, buildIndex > -1 ? process.argv[buildIndex + 1] : "build");
+const BUILD = path.resolve(
+  ROOT,
+  buildIndex > -1 ? process.argv[buildIndex + 1] : "build"
+);
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
@@ -34,7 +37,9 @@ const missing = [
 ].filter((url) => !bundle.includes(url));
 
 if (missing.length) {
-  console.error(`The build does not contain these featured items:\n${missing.join("\n")}`);
+  console.error(
+    `The build does not contain these featured items:\n${missing.join("\n")}`
+  );
   process.exitCode = 1;
 } else {
   console.log(

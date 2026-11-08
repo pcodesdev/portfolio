@@ -21,6 +21,9 @@ export default function Footer(props) {
           </a>{" "}
           &copy; {currentYear}
         </p>
+        <button type="button" className="analytics-settings-link" onClick={() => window.dispatchEvent(new Event("open-analytics-preferences"))}>
+          Analytics preferences
+        </button>
         {/* <ToggleSwitch theme={props.theme} onToggle={props.onToggle}/> */}
       </Fade>
     </div>

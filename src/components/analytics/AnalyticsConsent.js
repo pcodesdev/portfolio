@@ -39,6 +39,12 @@ export default function AnalyticsConsent({
   );
 
   useEffect(() => {
+    const showPreferences = () => setOpen(true);
+    window.addEventListener("open-analytics-preferences", showPreferences);
+    return () => window.removeEventListener("open-analytics-preferences", showPreferences);
+  }, []);
+
+  useEffect(() => {
     if (!validId) return undefined;
     window[`ga-disable-${measurementId}`] = consent !== "granted";
     if (consent !== "granted") return undefined;
@@ -87,10 +93,9 @@ export default function AnalyticsConsent({
     setOpen(false);
   };
 
-  if (!validId) return null;
+  if (!validId || !open) return null;
   return (
     <aside className="analytics-preferences" aria-label="Analytics preferences">
-      {open ? (
         <div role="group" aria-label="Analytics consent">
           <p>Allow optional analytics cookies to help improve this site?</p>
           <button type="button" onClick={() => choose("granted")}>
@@ -100,11 +105,6 @@ export default function AnalyticsConsent({
             Decline
           </button>
         </div>
-      ) : (
-        <button type="button" onClick={() => setOpen(true)}>
-          Analytics preferences
-        </button>
-      )}
     </aside>
   );
 }

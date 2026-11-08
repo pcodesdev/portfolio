@@ -14,8 +14,11 @@ test("footer links the exact pemahtech.com brand and preserves its other content
   const link = container.querySelector(".footer-brand-link");
   expect(link.textContent).toBe("pemahtech.com");
   expect(link.href).toBe("https://pemahtech.com/");
-  expect(container.textContent).toMatch(
+  expect(container.querySelector(".footer-text").textContent).toMatch(
     /^Made with\s*❤️\s*by\s*pemahtech\.com\s*©\s*\d{4}$/
+  );
+  expect(container.querySelector(".analytics-settings-link").textContent).toBe(
+    "Analytics preferences"
   );
 
   act(() => {

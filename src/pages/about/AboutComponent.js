@@ -4,6 +4,7 @@ import Footer from "../../components/footer/Footer";
 import TopButton from "../../components/topButton/TopButton";
 import { Fade } from "../../components/motion/Reveal";
 import { aboutPageData } from "../../portfolio";
+import biographyIllustration from "../../assests/images/push-to-production.svg";
 import "../profilePages.css";
 
 class AboutComponent extends Component {
@@ -42,7 +43,7 @@ class AboutComponent extends Component {
                 </div>
                 <figure className="about-biography-image">
                   <img
-                    src={require("../../assests/images/push-to-production.svg")}
+                    src={biographyIllustration}
                     alt="Illustration of a technology professional preparing a web application for production"
                     width="888"
                     height="880"

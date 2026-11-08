@@ -7,7 +7,10 @@ import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const repoRoot = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../.."
+);
 const script = path.join(repoRoot, "scripts/deploy-live-site.mjs");
 const identity = {
   GIT_AUTHOR_NAME: "test",
@@ -64,10 +67,17 @@ function createPagesRemote() {
     bare,
     url,
     head: () => git(["--git-dir", bare, "rev-parse", "main"], root),
-    tree: (ref = "main") => git(["--git-dir", bare, "rev-parse", `${ref}^{tree}`], root),
-    commits: () => Number(git(["--git-dir", bare, "rev-list", "--count", "main"], root)),
-    files: () => git(["--git-dir", bare, "ls-tree", "-r", "--name-only", "main"], root).split("\n"),
-    subjects: () => git(["--git-dir", bare, "log", "--format=%s", "main"], root).split("\n"),
+    tree: (ref = "main") =>
+      git(["--git-dir", bare, "rev-parse", `${ref}^{tree}`], root),
+    commits: () =>
+      Number(git(["--git-dir", bare, "rev-list", "--count", "main"], root)),
+    files: () =>
+      git(
+        ["--git-dir", bare, "ls-tree", "-r", "--name-only", "main"],
+        root
+      ).split("\n"),
+    subjects: () =>
+      git(["--git-dir", bare, "log", "--format=%s", "main"], root).split("\n"),
   };
 }
 
@@ -81,7 +91,14 @@ function deploy(args, env = {}) {
   return new Promise((resolve) => {
     const child = spawn(process.execPath, [script, ...args], {
       cwd: repoRoot,
-      env: { ...process.env, ...identity, GITHUB_ACTIONS: "", GITHUB_OUTPUT: "", GITHUB_STEP_SUMMARY: "", ...env },
+      env: {
+        ...process.env,
+        ...identity,
+        GITHUB_ACTIONS: "",
+        GITHUB_OUTPUT: "",
+        GITHUB_STEP_SUMMARY: "",
+        ...env,
+      },
     });
     let stdout = "";
     let stderr = "";
@@ -91,7 +108,10 @@ function deploy(args, env = {}) {
   });
 }
 
-function liveSite(manifestMain, { bundleStatus = 200, imageStatus = 200 } = {}) {
+function liveSite(
+  manifestMain,
+  { bundleStatus = 200, imageStatus = 200 } = {}
+) {
   const server = http.createServer((request, response) => {
     if (request.url.startsWith("/asset-manifest.json")) {
       response.setHeader("content-type", "application/json");
@@ -127,7 +147,10 @@ test("deploys a valid build, replaces stale hashed assets, and keeps unrelated f
   assert.equal(remote.commits(), before + 1);
   const files = remote.files();
   assert.ok(files.includes("static/js/main.new.chunk.js"));
-  assert.ok(!files.includes("static/js/stale.chunk.js"), "stale hashed assets are removed");
+  assert.ok(
+    !files.includes("static/js/stale.chunk.js"),
+    "stale hashed assets are removed"
+  );
   assert.ok(!files.includes("precache-manifest.old.js"));
   assert.ok(files.includes("favicon.ico"), "unrelated files are preserved");
   assert.match(result.stdout, /Deployment outcome: deployed/);
@@ -136,7 +159,10 @@ test("deploys a valid build, replaces stale hashed assets, and keeps unrelated f
 test("an unchanged build creates no commit", async () => {
   const remote = createPagesRemote();
   const build = createBuild(NEW_BUNDLE);
-  assert.equal((await deploy(["--source", build, "--repo", remote.url])).status, 0);
+  assert.equal(
+    (await deploy(["--source", build, "--repo", remote.url])).status,
+    0
+  );
   const head = remote.head();
 
   const second = await deploy(["--source", build, "--repo", remote.url]);
@@ -158,7 +184,12 @@ test("an incomplete build is refused and the live repository is untouched", asyn
 
   const missingBundle = createBuild(NEW_BUNDLE);
   fs.rmSync(path.join(missingBundle, "static"), { recursive: true });
-  const second = await deploy(["--source", missingBundle, "--repo", remote.url]);
+  const second = await deploy([
+    "--source",
+    missingBundle,
+    "--repo",
+    remote.url,
+  ]);
   assert.equal(second.status, 1);
   assert.equal(remote.head(), head);
 });
@@ -167,9 +198,18 @@ test("a rejected push fails the run and preserves the previous live version", as
   const remote = createPagesRemote();
   const head = remote.head();
   const hook = path.join(remote.bare, "hooks", "pre-receive");
-  fs.writeFileSync(hook, "#!/bin/sh\necho 'push rejected for test' >&2\nexit 1\n", { mode: 0o755 });
+  fs.writeFileSync(
+    hook,
+    "#!/bin/sh\necho 'push rejected for test' >&2\nexit 1\n",
+    { mode: 0o755 }
+  );
 
-  const result = await deploy(["--source", createBuild(NEW_BUNDLE), "--repo", remote.url]);
+  const result = await deploy([
+    "--source",
+    createBuild(NEW_BUNDLE),
+    "--repo",
+    remote.url,
+  ]);
   assert.equal(result.status, 1);
   assert.match(result.stderr, /push rejected for test/);
   assert.match(result.stderr, /live site was not changed/);
@@ -181,11 +221,16 @@ test("live verification succeeds when the new bundle is being served", async () 
   const site = await liveSite(NEW_BUNDLE);
   try {
     const result = await deploy([
-      "--source", createBuild(NEW_BUNDLE),
-      "--repo", remote.url,
-      "--verify-url", site.url,
-      "--verify-timeout-ms", "3000",
-      "--verify-interval-ms", "200",
+      "--source",
+      createBuild(NEW_BUNDLE),
+      "--repo",
+      remote.url,
+      "--verify-url",
+      site.url,
+      "--verify-timeout-ms",
+      "3000",
+      "--verify-interval-ms",
+      "200",
     ]);
     assert.equal(result.status, 0, result.stderr);
     assert.match(result.stdout, /verified live/);
@@ -218,12 +263,17 @@ test("featured image verification is part of the successful deployment transacti
   const site = await liveSite(NEW_BUNDLE);
   try {
     const result = await deploy([
-      "--source", createBuild(NEW_BUNDLE),
-      "--repo", remote.url,
-      "--verify-url", site.url,
+      "--source",
+      createBuild(NEW_BUNDLE),
+      "--repo",
+      remote.url,
+      "--verify-url",
+      site.url,
       "--verify-images",
-      "--verify-timeout-ms", "3000",
-      "--verify-interval-ms", "200",
+      "--verify-timeout-ms",
+      "3000",
+      "--verify-interval-ms",
+      "200",
     ]);
     assert.equal(result.status, 0, result.stderr);
     assert.match(result.stdout, /featured image URLs/);
@@ -239,16 +289,25 @@ test("a live featured image failure rolls the deployment back to the previous tr
   const site = await liveSite(NEW_BUNDLE, { imageStatus: 404 });
   try {
     const result = await deploy([
-      "--source", createBuild(NEW_BUNDLE),
-      "--repo", remote.url,
-      "--verify-url", site.url,
+      "--source",
+      createBuild(NEW_BUNDLE),
+      "--repo",
+      remote.url,
+      "--verify-url",
+      site.url,
       "--verify-images",
-      "--verify-timeout-ms", "800",
-      "--verify-interval-ms", "200",
+      "--verify-timeout-ms",
+      "800",
+      "--verify-interval-ms",
+      "200",
     ]);
     assert.equal(result.status, 1);
     assert.match(result.stdout, /featured image verification failed/);
-    assert.equal(remote.tree(), previousTree, "the prior live tree is restored after an image failure");
+    assert.equal(
+      remote.tree(),
+      previousTree,
+      "the prior live tree is restored after an image failure"
+    );
     assert.match(remote.subjects()[0], /Revert .*live verification failed/);
   } finally {
     await site.close();
@@ -261,15 +320,24 @@ test("failed live verification rolls the live repository back to the previous tr
   const site = await liveSite("/static/js/main.old.chunk.js");
   try {
     const result = await deploy([
-      "--source", createBuild(NEW_BUNDLE),
-      "--repo", remote.url,
-      "--verify-url", site.url,
-      "--verify-timeout-ms", "800",
-      "--verify-interval-ms", "200",
+      "--source",
+      createBuild(NEW_BUNDLE),
+      "--repo",
+      remote.url,
+      "--verify-url",
+      site.url,
+      "--verify-timeout-ms",
+      "800",
+      "--verify-interval-ms",
+      "200",
     ]);
     assert.equal(result.status, 1);
     assert.match(result.stdout, /Deployment outcome: rolled-back/);
-    assert.equal(remote.tree(), previousTree, "the live tree must equal the last known-good tree");
+    assert.equal(
+      remote.tree(),
+      previousTree,
+      "the live tree must equal the last known-good tree"
+    );
     assert.match(remote.subjects()[0], /Revert .*live verification failed/);
   } finally {
     await site.close();
@@ -279,10 +347,17 @@ test("failed live verification rolls the live repository back to the previous tr
 test("the deploy token is never printed", async () => {
   const remote = createPagesRemote();
   const secret = "synthetic-secret-value-for-test";
-  const result = await deploy(["--source", createBuild(NEW_BUNDLE), "--repo", remote.url], {
-    PAGES_DEPLOY_TOKEN: secret,
-  });
+  const result = await deploy(
+    ["--source", createBuild(NEW_BUNDLE), "--repo", remote.url],
+    {
+      PAGES_DEPLOY_TOKEN: secret,
+    }
+  );
   assert.equal(result.status, 0, result.stderr);
   assert.ok(!result.stdout.includes(secret) && !result.stderr.includes(secret));
-  assert.ok(!result.stdout.includes(Buffer.from(`x-access-token:${secret}`).toString("base64")));
+  assert.ok(
+    !result.stdout.includes(
+      Buffer.from(`x-access-token:${secret}`).toString("base64")
+    )
+  );
 });

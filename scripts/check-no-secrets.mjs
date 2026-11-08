@@ -5,7 +5,10 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ROOTS = ["."];
 const SIGNATURES = [
-  ["private-key material", /-----BEGIN (?:OPENSSH |RSA |EC |DSA )?PRIVATE KEY-----/],
+  [
+    "private-key material",
+    /-----BEGIN (?:OPENSSH |RSA |EC |DSA )?PRIVATE KEY-----/,
+  ],
   ["GitHub access token", /\bgh[pousr]_[A-Za-z0-9]{30,}\b/],
   ["GitHub fine-grained token", /\bgithub_pat_[A-Za-z0-9_]{40,}\b/],
   ["AWS access key", /\bAKIA[0-9A-Z]{16}\b/],
@@ -38,8 +41,12 @@ ROOTS.forEach((relativePath) => {
 });
 
 if (violations.length) {
-  violations.forEach(({ file, label }) => console.error(`Credential signature detected in ${file}: ${label}`));
+  violations.forEach(({ file, label }) =>
+    console.error(`Credential signature detected in ${file}: ${label}`)
+  );
   process.exitCode = 1;
 } else {
-  console.log("No common private-key or access-token signatures found in repository text or generated build files.");
+  console.log(
+    "No common private-key or access-token signatures found in repository text or generated build files."
+  );
 }

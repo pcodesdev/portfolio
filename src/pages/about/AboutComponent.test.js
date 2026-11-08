@@ -21,6 +21,8 @@ test("About renders the planning-stage EdTech initiative and illustration", () =
     "planning/conceptual stage only"
   );
   expect(container.textContent).toContain("learners are not yet using it");
-  expect(container.querySelector(".about-biography-image img")).not.toBeNull();
+  const illustration = container.querySelector(".about-biography-image img");
+  expect(illustration).not.toBeNull();
+  expect(illustration.getAttribute("src")).toContain("push-to-production.svg");
   ReactDOM.unmountComponentAtNode(container);
 });
