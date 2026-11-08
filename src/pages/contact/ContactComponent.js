@@ -8,9 +8,25 @@ import "./ContactComponent.css";
 import { contactPageData } from "../../portfolio.js";
 
 const ContactData = contactPageData.contactSection;
+const formSubmitId = "fd0f16a5813fab5fc42aa4d5668cb7c6";
 
 class Contact extends Component {
   state = { isSubmitting: false, status: "", statusMessage: "" };
+
+  componentDidUpdate(previousProps, previousState) {
+    if (previousState.statusMessage !== this.state.statusMessage) {
+      clearTimeout(this.statusTimeout);
+      if (this.state.statusMessage) {
+        this.statusTimeout = setTimeout(() => {
+          this.setState({ status: "", statusMessage: "" });
+        }, 60000);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.statusTimeout);
+  }
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,7 +38,7 @@ class Contact extends Component {
 
     try {
       const response = await fetch(
-        `https://formsubmit.co/ajax/${ContactData.email}`,
+        `https://formsubmit.co/ajax/${formSubmitId}`,
         {
           method: "POST",
           body: new FormData(form),
@@ -42,14 +58,13 @@ class Contact extends Component {
       this.setState({
         isSubmitting: false,
         status: "success",
-        statusMessage:
-          "Your message was accepted by the form provider. First-time use requires Peter to confirm the activation email before delivery.",
+        statusMessage: "Your message has been sent. Thank you!",
       });
     } catch (error) {
       this.setState({
         isSubmitting: false,
         status: "error",
-        statusMessage: `We couldn't submit your message. Email Peter directly at ${ContactData.email}.`,
+        statusMessage: `Your message couldn't be sent. Please try again or email Peter directly at ${ContactData.email}.`,
       });
     }
   };
@@ -86,16 +101,9 @@ class Contact extends Component {
 
           <section className="contact-form-section">
             <h2 style={{ color: theme.text }}>Send a message</h2>
-            <p
-              className="contact-provider-note"
-              style={{ color: theme.secondaryText }}
-            >
-              Messages are sent through FormSubmit to {ContactData.email}. The
-              provider requires a one-time email confirmation before first use.
-            </p>
             <form
               className="contact-form"
-              action={`https://formsubmit.co/${ContactData.email}`}
+              action={`https://formsubmit.co/${formSubmitId}`}
               method="POST"
               onSubmit={this.handleSubmit}
             >
@@ -169,16 +177,17 @@ class Contact extends Component {
               >
                 {this.state.isSubmitting ? "Sending..." : "Send Message"}
               </button>
-              {this.state.statusMessage ? (
-                <p
-                  className={`contact-form-status ${this.state.status}`}
-                  role={this.state.status === "error" ? "alert" : "status"}
-                  aria-live="polite"
-                  style={{ color: theme.text }}
-                >
-                  {this.state.statusMessage}
-                </p>
-              ) : null}
+              <div role="status" aria-live="polite" aria-atomic="true" className="contact-status-region">
+                {this.state.statusMessage ? (
+                  <p
+                    className={`contact-form-status ${this.state.status}`}
+                    role={this.state.status === "error" ? "alert" : undefined}
+                    style={{ color: theme.text }}
+                  >
+                    {this.state.statusMessage}
+                  </p>
+                ) : null}
+              </div>
             </form>
           </section>
         </main>

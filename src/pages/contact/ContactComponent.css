@@ -413,6 +413,14 @@
   border-color: #536273;
 }
 
+.contact-status-region {
+  grid-column: 1 / -1;
+}
+
+.contact-status-region:empty {
+  position: absolute;
+}
+
 .contact-form-status {
   align-self: center;
   margin: 0;
@@ -428,6 +436,9 @@
 
 .contact-form-status.success {
   border-left-color: var(--color-success);
+  background-color: rgba(12, 157, 88, 0.12);
+  padding: 14px 16px;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
