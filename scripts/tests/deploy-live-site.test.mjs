@@ -110,12 +110,15 @@ function deploy(args, env = {}) {
 
 function liveSite(
   manifestMain,
-  { bundleStatus = 200, imageStatus = 200 } = {}
+  { bundleStatus = 200, imageStatus = 200, absoluteManifest = false } = {}
 ) {
   const server = http.createServer((request, response) => {
     if (request.url.startsWith("/asset-manifest.json")) {
       response.setHeader("content-type", "application/json");
-      response.end(JSON.stringify({ files: { "main.js": manifestMain } }));
+      const mainBundle = absoluteManifest
+        ? new URL(manifestMain, `http://${request.headers.host}`).href
+        : manifestMain;
+      response.end(JSON.stringify({ files: { "main.js": mainBundle } }));
     } else if (request.url.startsWith("/images/")) {
       response.statusCode = imageStatus;
       response.setHeader("content-type", "image/svg+xml");
@@ -239,6 +242,35 @@ test("live verification succeeds when the new bundle is being served", async () 
     const result = await deploy([
       "--source",
       createBuild(NEW_BUNDLE),
+      "--repo",
+      remote.url,
+      "--verify-url",
+      site.url,
+      "--verify-timeout-ms",
+      "3000",
+      "--verify-interval-ms",
+      "200",
+    ]);
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /verified live/);
+  } finally {
+    await site.close();
+  }
+});
+
+test("live verification accepts absolute bundle URLs in build and live manifests", async () => {
+  const remote = createPagesRemote();
+  const site = await liveSite(NEW_BUNDLE, { absoluteManifest: true });
+  const build = createBuild(NEW_BUNDLE);
+  const manifestPath = path.join(build, "asset-manifest.json");
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  manifest.files["main.js"] = `${site.url}${NEW_BUNDLE}`;
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+
+  try {
+    const result = await deploy([
+      "--source",
+      build,
       "--repo",
       remote.url,
       "--verify-url",

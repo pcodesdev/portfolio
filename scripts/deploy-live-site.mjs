@@ -96,8 +96,10 @@ function validateBuild(source) {
   let localBundlePath = "";
   if (mainBundle) {
     try {
-      localBundlePath = new URL(mainBundle, "https://portfolio.invalid")
-        .pathname.replace(/^\//, "");
+      localBundlePath = new URL(
+        mainBundle,
+        "https://portfolio.invalid"
+      ).pathname.replace(/^\//, "");
     } catch (error) {
       localBundlePath = "";
     }
@@ -125,20 +127,27 @@ function replaceManagedFiles(source, site) {
 }
 
 async function waitForLive(baseUrl, mainBundle, timeoutMs, intervalMs) {
-  const root = baseUrl.replace(/\/$/, "");
+  const root = new URL(baseUrl);
+  const expectedBundle = new URL(mainBundle, root);
   const deadline = Date.now() + timeoutMs;
   for (;;) {
     try {
       const response = await fetch(
-        `${root}/asset-manifest.json?cb=${Date.now()}`,
+        new URL(`/asset-manifest.json?cb=${Date.now()}`, root),
         {
           headers: { "Cache-Control": "no-cache" },
         }
       );
       if (response.ok) {
         const manifest = await response.json();
-        if (manifest.files && manifest.files["main.js"] === mainBundle) {
-          const bundle = await fetch(`${root}${mainBundle}?cb=${Date.now()}`);
+        const liveBundle = manifest.files && manifest.files["main.js"];
+        if (
+          liveBundle &&
+          new URL(liveBundle, root).href === expectedBundle.href
+        ) {
+          const bundleUrl = new URL(expectedBundle);
+          bundleUrl.searchParams.set("cb", Date.now());
+          const bundle = await fetch(bundleUrl);
           if (bundle.ok) return true;
         }
       }
