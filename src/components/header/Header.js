@@ -4,7 +4,7 @@ import { Fade } from "../motion/Reveal";
 import { NavLink, Link } from "react-router-dom";
 import { settings } from "../../portfolio.js";
 import SeoHeader from "../seoHeader/SeoHeader";
-import logoUrl from "../../assests/images/pn-monogram.svg";
+import logoImage from "../../assests/images/pn-monogram.svg";
 
 const onMouseEnter = (event, backgroundColor, color) => {
   event.currentTarget.style.backgroundColor = backgroundColor;
@@ -37,7 +37,7 @@ class Header extends Component {
           <header className="header">
             <NavLink to={link} tag={Link} className="logo">
               <img
-                src={logoUrl}
+                src={logoImage}
                 alt="Peter Njuguna PN monogram"
                 className="logo-image"
               />

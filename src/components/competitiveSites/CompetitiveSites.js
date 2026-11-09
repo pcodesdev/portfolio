@@ -14,7 +14,11 @@ class CompetitiveSites extends React.Component {
                 placement={"top"}
                 style={{ marginBottom: "5px" }}
                 overlay={
-                  <Tooltip id={`tooltip-top`}>
+                  <Tooltip
+                    id={`competitive-site-${logo.siteName
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")}`}
+                  >
                     <strong>{logo.siteName}</strong>
                   </Tooltip>
                 }
@@ -24,6 +28,7 @@ class CompetitiveSites extends React.Component {
                     href={logo.profileLink}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={logo.siteName}
                   >
                     <span
                       className="iconify"

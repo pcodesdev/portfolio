@@ -9,6 +9,8 @@
 
 .heading-div {
   display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
 }
 
 .heading-div > * {
@@ -22,50 +24,94 @@
 }
 
 .heading-text-div {
-  text-align: center;
+  max-width: 620px;
+  text-align: left;
 }
 
 .heading-img-div > * {
-  max-width: 100%;
+  width: 100%;
+  max-width: 520px;
   height: auto;
 }
 
 .heading-text {
-  font-size: 56px;
+  font-size: 2.75rem;
   font-weight: 400;
   font-family: var(--font-heading);
-  line-height: 1.1;
-  text-align: center;
-  margin-top: 100px;
+  line-height: 1.15;
+  text-align: left;
+  margin: 0 0 0.65rem;
 }
 
 .heading-sub-text {
-  font-size: 30px;
+  font-size: 1.3rem;
   font-family: var(--font-body);
-  text-align: center;
+  line-height: 1.4;
+  text-align: left;
+  margin: 0;
+}
+
+.education-main .dev-icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.education-main .competitive-sites-inline {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  margin: 0;
+}
+
+.education-main .competitive-sites-inline a {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  border-radius: 4px;
+}
+
+.education-main .competitive-sites-inline a:focus-visible {
+  outline: 2px solid #0c9d58;
+  outline-offset: 3px;
+}
+
+.education-main .competitive-sites-inline .iconify {
+  font-size: 2rem;
 }
 
 @media (max-width: 1380px) {
   .heading-text {
-    font-size: 50px;
-    margin-top: 80px;
-  }
-  .heading-sub-text {
-    font-size: 25px;
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .heading-text {
-    font-size: 30px;
-    margin-top: 20px;
+    font-size: 2rem;
   }
 
   .heading-sub-text {
-    font-size: 20px;
+    font-size: 1.1rem;
   }
 
   .heading-div {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .heading-img-div > * {
+    max-width: 420px;
+  }
+
+  .education-main .dev-icons {
+    gap: 0.6rem;
+    margin-top: 1rem;
   }
 }

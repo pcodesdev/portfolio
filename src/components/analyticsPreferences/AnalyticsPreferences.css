@@ -1,0 +1,42 @@
+.analytics-preferences {
+  position: fixed;
+  z-index: 1000;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(340px, calc(100vw - 2rem));
+  padding: 1rem;
+  color: #172522;
+  background: #fff;
+  border: 1px solid #aebcb7;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+}
+
+.analytics-preferences p {
+  margin: 0 0 0.8rem;
+  line-height: 1.5;
+}
+.analytics-preferences div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.analytics-preferences button {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #166447;
+  border-radius: 4px;
+  background: #fff;
+  color: #164b38;
+  cursor: pointer;
+}
+.analytics-preferences button:first-child {
+  background: #166447;
+  color: #fff;
+}
+.analytics-settings-link {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}

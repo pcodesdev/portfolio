@@ -129,7 +129,7 @@ class AboutComponent extends Component {
 
           <Fade bottom duration={430}>
             <section
-              className="profile-section"
+              className="profile-section edtech-planning"
               aria-labelledby="edtech-planning-heading"
             >
               <h2 id="edtech-planning-heading">{data.edtechPlanning.title}</h2>

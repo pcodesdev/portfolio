@@ -44,7 +44,7 @@ This repository contains Peter Njuguna's professional portfolio, built around th
 - The eight portfolio routes, responsive layouts, themes, categorized expertise icons, AI Engineering & Implementation positioning, Project Management content, and motion/reduced-motion behavior.
 - The Open Source route shows GitHub contributions, PR/issue distributions and records, then six Medium articles. Featured GitHub project cards are intentionally absent there; the independent Featured Projects route retains its case study and project cards. PR/issue records are filtered by author login `pcodesdev`; issue search reports 14 matches but returns 12 records. The contribution calendar remains unavailable without authenticated GraphQL access.
 - Ask My Portfolio local retrieval and the server-side AI endpoint contract are implemented; hosted provider responses remain unconfigured and unverified.
-- Latest local validation: 28 Jest suites / 98 tests and 50 curation, deployment, and image tests passed. Curation and build checks validated six projects, six publications, and all referenced local image assets.
+- Latest local validation: 27 Jest suites / 96 tests and 47 curation, deployment, and image tests passed. Curation and build checks validated six projects, six publications, and all referenced local image assets.
 - Production dependency audit: zero known vulnerabilities. Full development-tree audit: 18 findings (13 low, 3 moderate, 2 high; no criticals); the two highs are in CRA's local development server. Its patched successor is not compatible with CRA 5's middleware configuration, so `npm start` is bound to `127.0.0.1` and the server is never deployed.
 - Latest local production Lighthouse: mobile performance 87 (accessibility 98, best practices 100, SEO 100; FCP 0.9s, LCP 3.8s, TBT 160ms, CLS 0); desktop performance 99 (accessibility 98, best practices 100, SEO 100; FCP 0.5s, LCP 0.9s, TBT 0ms, CLS 0). The mobile target of 90 is not yet met; live PageSpeed Insights remains pending deployment.
 - Production builds explicitly use `PUBLIC_URL=https://pcodesdev.github.io` and are checked for emitted canonical metadata, footer branding, curated data, and local image assets.
@@ -55,8 +55,7 @@ This repository contains Peter Njuguna's professional portfolio, built around th
 - Public impact metrics, which require source, period, denominator, and attribution confirmation.
 - Pemanju Farm Manager implementation claims and outcome evidence; a public repository/demo or approved project artifact has not been verified in this workspace.
 - Every item in the wider technology/tool inventory should be reviewed for the intended level of familiarity before publication.
-- Automated curation and live publication still require a successful GitHub Actions run. The `PAGES_DEPLOY_TOKEN` secret is configured as a fine-grained token limited to `pcodesdev/pcodesdev.github.io`, Contents read/write only, expiring 2027-11-07. See [Content curation and publication](docs/content-curation.md).
-- Analytics is disabled until the owner configures and verifies a GA4 measurement ID and visitors opt in; see the Analytics setup below.
+- Automated curation and live publication still require a successful GitHub Actions run. The `PAGES_DEPLOY_TOKEN` secret is configured as a fine-grained token limited to `pcodesdev/pcodesdev.github.io`, Contents read/write only, expiring 2027-11-07. Run a manual `workflow_dispatch` after the source history rewrite is pushed; see [Content curation and publication](docs/content-curation.md).
 
 ### Planned or Recommended
 
@@ -66,11 +65,11 @@ This repository contains Peter Njuguna's professional portfolio, built around th
 
 ### Security and Publication Blockers
 
-- A private key was present in Git history. The key is absent from GitHub account SSH keys and both repository deploy-key lists. Source `main` was rewritten and pushed with an explicit lease; the fetched reachable history has no private-key signature. Treat the key as compromised, including wherever else it may have been authorized. A verified DPAPI-encrypted pre-rewrite backup is retained locally.
+- A private key was present in Git history. The key is absent from GitHub account SSH keys and both repository deploy-key lists. Source `main` has been rewritten locally to remove the key and has a verified DPAPI-encrypted pre-rewrite backup; the rewrite must be pushed with an explicit lease and verified remotely.
 - The deployment token's limited repository scope and one-year expiry were verified in GitHub settings. The previous one-time token generated during setup was revoked before the current secret was created.
 - A legacy root-level `CNAME` references `ashutoshhathidara.com`; it is not copied into the live Pages repository by the deployment script. Confirm custom-domain intent before configuring a CNAME on the live site.
 - FormSubmit delivery and public metric source verification remain outstanding.
-- The latest deployment must be verified separately in GitHub Actions and on the live site.
+- This repository has not been deployed or published as part of this work.
 
 ## Setup and Development
 
@@ -111,10 +110,6 @@ npm run test:curation
 ```
 
 `npm run curate:featured` fetches public GitHub/Medium data, scores it, and rewrites the two generated data files; GitHub API access can be rate-limited without `GITHUB_TOKEN`. Add `--dry-run` to see the ranking report without writing files. Do not put credentials in frontend files or commit them.
-
-## Analytics
-
-Set `REACT_APP_GOOGLE_ANALYTICS_ID` to the owner's verified GA4 web-stream measurement ID at build time, or set the same GitHub Actions repository variable for automated builds. A measurement ID is public in a browser build; never use an API secret or service-account credential here. Without a valid ID no Analytics script or consent control is loaded. Visitors can allow, decline, or withdraw Analytics consent. Only route paths are sent, without query strings. Disable GA4 enhanced measurement's history-based page changes and remove duplicate GA4 tags from other containers before enabling this integration, then verify events in the owner's GA4 property. Advertising and the old tag-manager integration are not enabled.
 
 ## Source and Deployment Repositories
 

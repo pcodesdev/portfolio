@@ -9,6 +9,8 @@
 
 .experience-heading-div {
   display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
 }
 
 .experience-heading-div > * {
@@ -22,67 +24,67 @@
 }
 
 .experience-heading-text-div {
-  text-align: center;
+  max-width: 620px;
+  text-align: left;
 }
 
 .experience-heading-img-div > * {
-  max-width: 100%;
+  width: 100%;
+  max-width: 520px;
   height: auto;
 }
 
 .experience-heading-text {
-  font-size: 56px;
+  font-size: 2.75rem;
   font-weight: 400;
   font-family: var(--font-heading);
-  line-height: 1.1;
-  text-align: center;
-  margin-top: 80px;
+  line-height: 1.15;
+  text-align: left;
+  margin: 0 0 0.75rem;
 }
 
 .experience-heading-sub-text {
-  font-size: 30px;
+  font-size: 1.3rem;
   font-family: var(--font-body);
-  text-align: center;
-  margin-bottom: 10px;
+  line-height: 1.35;
+  text-align: left;
+  margin: 0 0 0.75rem;
 }
 
 .experience-header-detail-text {
-  font-size: 20px;
-  line-height: 30px;
-  margin-top: 0px;
-  margin-left: 20px;
-  margin-right: 20px;
-  font-family: var(--font-heading);
+  max-width: 62ch;
+  font-size: 1rem;
+  line-height: 1.65;
+  margin: 0;
+  font-family: var(--font-body);
 }
 
 @media (max-width: 1380px) {
   .experience-heading-text {
-    font-size: 50px;
-    margin-top: 80px;
-  }
-  .experience-heading-sub-text {
-    font-size: 25px;
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .experience-heading-text {
-    font-size: 30px;
-    margin-top: 20px;
+    font-size: 2rem;
   }
 
   .experience-heading-sub-text {
-    font-size: 20px;
+    font-size: 1.15rem;
   }
 
   .experience-heading-div {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .experience-heading-img-div > * {
+    max-width: 420px;
   }
 
   .experience-header-detail-text {
-    font-size: 16px;
-    margin-right: 0px;
-    line-height: normal;
-    text-align: center;
+    font-size: 0.98rem;
   }
 }

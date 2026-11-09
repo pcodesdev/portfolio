@@ -287,8 +287,7 @@ const degrees = {
         "⚡ Course topics include React, JavaScript, HTML, CSS, Git/GitHub, and accessibility fundamentals",
         "⚡ Practiced responsive layouts, component-based interfaces, and frontend workflows through course exercises",
       ],
-      website_link:
-        "https://v2.scrimba.com/the-frontend-developer-career-path-c0j:details",
+      website_link: "https://scrimba.com/u017h29:certs",
     },
     {
       title: "Laikipia University",
@@ -569,21 +568,21 @@ const projectCaseStudy = {
     {
       title: "Relational integrity",
       description:
-        "Managing accurate links between animals, records, and related data sets in a practical field application requires careful validation. The solution focuses on consistent identifiers and structured relationships so the data remains dependable even when records are imported or updated repeatedly.",
+        "Consistent identifiers and validation keep relationships between animals and operational records reliable during edits and imports.",
     },
     {
       title: "Offline-first reliability",
       description:
-        "Farm operations do not always happen in a connected environment. Local storage and resilient workflows reduce the risk of loss or interruption when users are working away from a reliable network connection.",
+        "Dexie and IndexedDB support local work when connectivity is unreliable, so routine record updates do not depend on a live connection.",
     },
     {
       title: "Excel data handling",
       description:
-        "Spreadsheet imports can carry inconsistencies and formatting variation. The project treats import reconciliation and validation as a key engineering concern to maintain safer data transitions from existing farm records into the application.",
+        "Import validation and reconciliation account for spreadsheet variation and reduce errors when bringing existing farm records into the app.",
     },
   ],
   implementation:
-    "Implemented technologies include React, TypeScript, Vite, Tailwind CSS, Dexie, IndexedDB, and SheetJS. A Supabase/PostgreSQL synchronization layer is a planned future capability and is not presented as implemented production infrastructure.",
+    "Implemented stack: React, TypeScript, Vite, Tailwind CSS, Dexie, IndexedDB, and SheetJS. Supabase/PostgreSQL cloud sync remains planned.",
   stack: {
     implemented: [
       "React",
@@ -608,9 +607,9 @@ const projectCaseStudy = {
     ],
   },
   evidence: [
-    "Project design centres on offline-first persistence, structured record relationships, and Excel import/export workflows.",
-    "The architecture is intentionally framed around local data reliability and a clear future migration path to cloud synchronization.",
-    "The application is positioned as a practical farm operations tool rather than a generic demo or a speculative production platform.",
+    "Offline-first storage, structured animal records, and Excel import/export.",
+    "Local reliability first; cloud synchronization is planned, not deployed.",
+    "Designed around day-to-day farm records and workflows.",
   ],
 };
 

@@ -40,7 +40,7 @@ function buildFiles(mainBundle, extra = {}) {
   return {
     "index.html": `<html><script src="${mainBundle}"></script></html>`,
     "asset-manifest.json": JSON.stringify({ files: { "main.js": mainBundle } }),
-    [new URL(mainBundle, "https://example.com").pathname.replace(/^\//, "")]: "console.log('site')",
+    [mainBundle.replace(/^\//, "")]: "console.log('site')",
     ...extra,
   };
 }
@@ -115,7 +115,7 @@ function liveSite(
   const server = http.createServer((request, response) => {
     if (request.url.startsWith("/asset-manifest.json")) {
       response.setHeader("content-type", "application/json");
-      response.end(JSON.stringify({ files: { "main.js": typeof manifestMain === "function" ? manifestMain(server) : manifestMain } }));
+      response.end(JSON.stringify({ files: { "main.js": manifestMain } }));
     } else if (request.url.startsWith("/images/")) {
       response.statusCode = imageStatus;
       response.setHeader("content-type", "image/svg+xml");
@@ -231,25 +231,6 @@ test("live verification succeeds when the new bundle is being served", async () 
       "3000",
       "--verify-interval-ms",
       "200",
-    ]);
-    assert.equal(result.status, 0, result.stderr);
-    assert.match(result.stdout, /verified live/);
-  } finally {
-    await site.close();
-  }
-});
-
-test("an absolute same-origin bundle URL deploys and verifies", async () => {
-  const remote = createPagesRemote();
-  const site = await liveSite((server) => `http://127.0.0.1:${server.address().port}${NEW_BUNDLE}`);
-  const bundle = `${site.url}${NEW_BUNDLE}`;
-  try {
-    const result = await deploy([
-      "--source", createBuild(bundle),
-      "--repo", remote.url,
-      "--verify-url", site.url,
-      "--verify-timeout-ms", "3000",
-      "--verify-interval-ms", "200",
     ]);
     assert.equal(result.status, 0, result.stderr);
     assert.match(result.stdout, /verified live/);

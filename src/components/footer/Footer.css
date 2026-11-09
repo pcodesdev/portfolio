@@ -1,13 +1,7 @@
-.footer-text {
-  text-align: center;
-  /* color: #868e96; */
-  font-weight: bold;
-  font-family: var(--font-body);
-}
-
 .footer-brand-link {
   color: inherit;
   text-decoration: none;
+  font-weight: 600;
 }
 
 .footer-brand-link:hover,
@@ -16,10 +10,120 @@
 }
 
 .footer-div {
-  display: flex !important;
-  flex-direction: row;
-  flex-wrap: wrap;
+  margin: 3rem 0 0;
+  padding: 2rem 5% 4.5rem;
+  border-top: 1px solid rgba(127, 127, 127, 0.3);
+}
+
+.footer-inner {
+  display: flex;
+  width: min(100%, 1180px);
+  flex-direction: column;
+  gap: 1.75rem;
+  margin: 0 auto;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.8fr) minmax(0, 2.2fr);
+  gap: 2rem;
+}
+
+.footer-identity {
+  align-self: start;
+}
+
+.footer-name {
+  margin: 0 0 0.4rem;
+  color: inherit;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.footer-attribution,
+.footer-detail p,
+.footer-copyright {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.footer-contact-link {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  margin: 2rem 1rem 1rem 1rem;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+  color: inherit;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.footer-contact-link:focus-visible,
+.footer-contact-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.footer-professional-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.footer-detail {
+  min-width: 0;
+}
+
+.footer-detail h2 {
+  margin: 0 0 0.45rem;
+  color: inherit;
+  font-family: var(--font-heading);
+  font-size: 0.96rem;
+  line-height: 1.35;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(127, 127, 127, 0.22);
+}
+
+.analytics-settings-link {
+  padding: 0.35rem 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.analytics-settings-link:focus-visible,
+.analytics-settings-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+@media (max-width: 560px) {
+  .footer-main,
+  .footer-professional-details {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .footer-bottom {
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+  }
 }

@@ -48,12 +48,12 @@
 }
 
 .projects-header-detail-text {
+  max-width: 62ch;
   font-size: 20px;
-  line-height: 30px;
-  margin-top: 0px;
-  margin-left: 20px;
-  margin-right: 20px;
-  font-family: var(--font-heading);
+  line-height: 1.65;
+  margin: 0 auto;
+  font-family: var(--font-body);
+  text-align: left;
 }
 
 .case-study-panel {
@@ -164,6 +164,19 @@
   font-size: 1.05rem;
 }
 
+.github-repositories {
+  width: min(90%, 1180px);
+  margin: 3rem auto 0;
+  text-align: left;
+}
+
+.github-repositories h2 {
+  margin: 0 0 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  line-height: 1.25;
+}
+
 .publications-heading-text-div {
   text-align: center;
   font-family: var(--font-body);
@@ -179,9 +192,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem 1rem;
-  margin-left: 40px;
-  margin-right: 40px;
-  margin-top: 60px;
+  margin: 0;
 }
 
 @media (max-width: 1380px) {
@@ -210,11 +221,10 @@
   }
 
   .projects-header-detail-text {
-    font-size: 16px;
-    margin-right: 0px;
-    margin-left: 0px;
-    line-height: normal;
-    text-align: center;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.6;
+    text-align: left;
   }
 
   .case-study-panel {
@@ -230,8 +240,11 @@
 
   .repo-cards-div-main {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 30px;
+    margin: 0;
+  }
+
+  .github-repositories {
+    width: 92%;
+    margin-top: 2rem;
   }
 }

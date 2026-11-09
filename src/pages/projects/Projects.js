@@ -142,18 +142,24 @@ class Projects extends Component {
           </div>
         </div>
 
-        <div className="repo-cards-div-main">
-          {limitFeaturedItems(ProjectsData.data).map((repo, index) => {
-            return (
-              <GithubRepoCard
-                key={repo.id}
-                repo={repo}
-                theme={theme}
-                revealDelay={(index % 3) * 70}
-              />
-            );
-          })}
-        </div>
+        <section
+          className="github-repositories"
+          aria-labelledby="github-repositories-heading"
+        >
+          <h2 id="github-repositories-heading">Featured GitHub repositories</h2>
+          <div className="repo-cards-div-main">
+            {limitFeaturedItems(ProjectsData.data).map((repo, index) => {
+              return (
+                <GithubRepoCard
+                  key={repo.id}
+                  repo={repo}
+                  theme={theme}
+                  revealDelay={(index % 3) * 70}
+                />
+              );
+            })}
+          </div>
+        </section>
         <Button
           text={"More Projects"}
           className="project-button"

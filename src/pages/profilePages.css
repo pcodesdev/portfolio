@@ -6,7 +6,7 @@
 
 .profile-page-heading {
   max-width: 760px;
-  margin: 2rem 0 2.5rem;
+  margin: 2rem 0 3rem;
 }
 
 .profile-page-heading h1 {
@@ -51,11 +51,17 @@
 
 .about-biography-copy {
   min-width: 0;
+  max-width: 70ch;
 }
 
 .about-biography p {
   margin: 0 0 1rem;
   font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.about-biography-copy p + p {
+  margin-top: 0.75rem;
 }
 
 .about-biography-image {
@@ -122,6 +128,14 @@
   margin-top: 0;
 }
 
+.programme-panel h3 {
+  margin: 1.5rem 0 0.6rem;
+}
+
+.programme-panel > p + h3 {
+  margin-top: 1.75rem;
+}
+
 .programme-pathway,
 .programme-tracks {
   display: flex;
@@ -146,6 +160,21 @@
   border-left: 4px solid #0c9d58;
   background: rgba(12, 157, 88, 0.07);
   font-size: 1.05rem;
+}
+
+.edtech-planning > p:not(.expertise-level),
+.edtech-planning > ul {
+  max-width: 76ch;
+}
+
+.edtech-planning > ul {
+  margin: 1rem 0 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.edtech-planning > ul li {
+  margin-bottom: 0.55rem;
+  line-height: 1.6;
 }
 
 .impact-list {
