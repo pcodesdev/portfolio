@@ -93,10 +93,16 @@ function validateBuild(source) {
   }
   const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
   const mainBundle = manifest.files && manifest.files["main.js"];
-  if (
-    !mainBundle ||
-    !fs.existsSync(path.join(source, mainBundle.replace(/^\//, "")))
-  ) {
+  let localBundlePath = "";
+  if (mainBundle) {
+    try {
+      localBundlePath = new URL(mainBundle, "https://portfolio.invalid")
+        .pathname.replace(/^\//, "");
+    } catch (error) {
+      localBundlePath = "";
+    }
+  }
+  if (!localBundlePath || !fs.existsSync(path.join(source, localBundlePath))) {
     throw new Error(
       "Refusing to deploy: the main JavaScript bundle named in asset-manifest.json is missing"
     );

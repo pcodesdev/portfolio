@@ -156,6 +156,22 @@ test("deploys a valid build, replaces stale hashed assets, and keeps unrelated f
   assert.match(result.stdout, /Deployment outcome: deployed/);
 });
 
+test("deploys builds whose manifest lists an absolute main bundle URL", async () => {
+  const remote = createPagesRemote();
+  const build = createBuild(NEW_BUNDLE);
+  const manifestPath = path.join(build, "asset-manifest.json");
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  manifest.files["main.js"] =
+    "https://pcodesdev.github.io/static/js/main.new.chunk.js";
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+
+  const result = await deploy(["--source", build, "--repo", remote.url]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.ok(remote.files().includes("static/js/main.new.chunk.js"));
+  assert.match(result.stdout, /Deployment outcome: deployed/);
+});
+
 test("an unchanged build creates no commit", async () => {
   const remote = createPagesRemote();
   const build = createBuild(NEW_BUNDLE);
